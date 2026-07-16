@@ -158,7 +158,9 @@ category header shows a technology count.
 
 ## Phase 7 — Case studies
 
-### `feature/case-study-filter` — DONE 2026-07-16
+### `feature/case-study-filter` — DONE 2026-07-16, RELOCATED same day
+(merged into the homepage at `#case-studies`, no longer a routed
+`/case-studies` listing page - see CLAUDE.md Decisions Log)
 **Done when:** `FilterBar` filters the 9-project grid client-side across
 `All · Web · Mobile · AI/MLOps · Design/UX · Systems` with an animated
 (Framer Motion layout) transition between filtered states; `SearchBox` filters by
@@ -225,7 +227,7 @@ confirmation.
 
 ## Phase 9 — Contact & email widget
 
-### `feature/contact-api`
+### `feature/contact-api` — DONE 2026-07-16
 **Done when:** `POST /api/contact` validates with the server-side Zod schema,
 rejects honeypot-filled submissions with a silent 200, rate-limits per IP
 in-memory, sends via Resend, and throws (fails loudly, visible in dev server
@@ -238,7 +240,7 @@ destination address).
 `feat: add server-side zod validation for contact form`,
 `feat: add honeypot and per-ip rate limiting to contact api`.
 
-### `feature/contact-form-ui`
+### `feature/contact-form-ui` — DONE 2026-07-16
 **Done when:** `ContactForm` (RHF + Zod + shadcn `Form`/`Input`/`Label`/`Button`)
 shows inline field errors, a loading state on submit, and a real success/failure
 state via shadcn `Sonner` — no state is faked if the API call fails. The
@@ -279,7 +281,8 @@ keyboard operable, closes on Escape or action select.
 
 ## Phase 11 — Blog
 
-### `feature/blog-index`
+### `feature/blog-index` — DONE 2026-07-16 (index + template only; tags,
+syntax highlighting, reading progress, and RSS not built)
 **Done when:** `/blog` renders an index (empty state is acceptable per
 CLAUDE.md), post template supports tags, syntax-highlighted code blocks, and a
 reading-progress bar; `/blog/rss.xml` route serves a valid RSS feed even with zero

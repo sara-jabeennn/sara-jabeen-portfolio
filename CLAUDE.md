@@ -15,24 +15,25 @@ properly rather than to a date. Deliverables: GitHub repo + live Vercel link.
 
 ## Who I am (use this, don't invent)
 Sara Jabeen — Full-Stack Software Engineer, AI-Integrated Web & Mobile Applications.
-BS Computer Science, FAST-NUCES Islamabad — **graduated**, session 2021–2026,
-complete. Open to full-stack / software engineering roles (remote or
-Islamabad-based).
+BS Computer Science, FAST-NUCES Islamabad — **final semester, expected graduation
+December 2026**. Degree started 2021. Open to full-stack / software engineering
+roles (remote or Islamabad-based).
 - GitHub: github.com/sara-jabeennn (three n's — correct, not a typo)
 - LinkedIn: linkedin.com/in/sara-jabeen-1b6876243
 - Email: syedajabean@gmail.com
-- Phone: +92 311 9806354 *(carried forward from `docs/old-portfolio.html`, not
-  restated in the 2026-07-16 session — confirm it's still current; renders in the
-  Contact section only, see "Phone & WhatsApp" below)*
+- Phone: +92 311 9806354, Contact section only, see "Phone & WhatsApp" below.
+- Location: G10, Islamabad, Pakistan.
 - No portfolio self-link anywhere. `sara-jabeen.vercel.app` is the **old**
   portfolio this site replaces — never link it, not in data, not in socials, not
-  in JSON-LD. This site doesn't have a URL to reference yet; add one once it's
-  deployed (see Content Gaps).
+  in JSON-LD.
 
-**She is not a student.** Every "final-year student" / "graduating 2026" phrasing
-anywhere in `docs/` is stale — `docs/PORTFOLIO_IMPLEMENTATION_PLAN.md` section 7's
-status line and education table are the specific offenders. Do not carry that
-phrasing into `data/profile.ts`, the Hero, or the About section.
+**NEVER use the word "graduated" anywhere on the site or in data. She is NOT
+graduated — CLAUDE.md itself said so incorrectly earlier this session (see
+Decisions Log, this is a corrected instruction I got wrong, not a stale doc
+issue). Every "final-year student" / "graduating 2026" phrasing in `docs/` is
+ALSO stale in the other direction (wrong year) — the current, correct, and only
+authoritative status is "final semester, expected graduation December 2026,"
+degree started 2021.**
 
 ### Bio (About section source text)
 > I build full-stack web and mobile products end-to-end, from database schema to
@@ -55,14 +56,16 @@ Full-Stack Development · Mobile Development · AI Integration · MLOps · UX De
 Systems Programming
 
 ### Education
-FAST-NUCES Islamabad · BS Computer Science · 2021–2026 · **Complete**. Focus:
-full-stack development, AI-integrated applications. No GPA, no roll number, no
-section — that's transcript material, not portfolio material.
+FAST-NUCES Islamabad · BS Computer Science · 2021 – December 2026 (expected) ·
+**final semester, not yet complete**. Focus: full-stack development,
+AI-integrated applications. No GPA, no percentage, no roll number, no section
+— that's transcript material, not portfolio material.
 
 ### Experience (one real entry — do not pad it)
-**Freelance Technical Content Writer** — remote, international clients. Wrote for
-clients across technology, wellness, finance, and academia: Ranklogs,
-Finocircle, Mahamukti Yoga, SlimBoost Tea, Fitspresso. Named clients are fine
+**Freelance Technical Content Writer** — remote, international clients, Sep
+2024 – May 2025. Wrote for clients across technology, wellness, finance, and
+academia: Ranklogs, Finocircle, Fitspresso — three clients, confirmed against
+her CV. Named clients are fine
 here.
 
 Label it exactly for what it is — **not** software engineering experience, not
@@ -96,25 +99,28 @@ looking templated is exactly the risk this scoping exists to avoid.
 
 ## Design system
 
-### Palette — dark-first, warm (not corporate, not indigo)
-| Token | Dark | Light *(proposed — verify AA contrast before merging, see TASKS Phase 2)* |
-|---|---|---|
-| bg | `#0a0a0f` | `#faf9f6` |
-| surface | `#1e1e2e` | `#f3f1ec` |
-| text | `#f0ede8` | `#18171c` |
-| muted | `#a8a4b8` | `#5c5769` |
-| accent (peach) | `#e8b4a0` | `#c9805e` |
-| accent2 (lilac) | `#c9a0dc` | `#8b5fa3` |
-| accent3 (mint) | `#7dd3c0` | `#2f9d85` |
+### Palette — wine/plum/charcoal/off-white (replaced the peach palette entirely, 2026-07-16)
+| Role | Dark | Light | Use |
+|---|---|---|---|
+| bg | `#1A1A1A` | `#F7F5F6` | page background |
+| surface | `#252525` | `#FFFFFF` | cards/popovers |
+| text | `#F1F2F2` | `#1A1A1A` | body text |
+| muted text | `#A3A0A1` | `#6B6567` | secondary text |
+| text-safe wine (`--primary`) | `#D0839B` | `#8B3D55` | links, active states, numbers, small UI — verified AA |
+| text-safe plum (`--chart-2`) | `#B080AA` | `#5E2C4E` | secondary emphasis — verified AA |
+| deep wine (`--color-wine`) | `#8B3D55` | `#8B3D55` | **decorative only** — gradients, glows, particles, borders, button backgrounds |
+| deep plum (`--color-plum`) | `#5E2C4E` | `#5E2C4E` | **decorative only** — same as above |
 
-Light-mode hexes are my derivation to hit AA contrast on a light surface, not
-content Sara supplied — treat as a starting point, confirm with a real contrast
-checker during the design-tokens task, adjust if it drifts from the warm/editorial
-feel.
+**Verified WCAG contrast ratios** (relative-luminance formula, computed not eyeballed):
+- Dark: text/bg 15.52:1 · text/surface 13.67:1 · wine-tint/bg 6.13:1 · wine-tint/surface 5.4:1 · plum-tint/bg 5.4:1 · plum-tint/surface 4.75:1 · muted/bg 6.71:1 · muted/surface 5.91:1 · off-white-on-deep-wine (button text) 6.46:1
+- Light: text/bg 16.03:1 · deep-wine/bg 6.68:1 · deep-wine/surface(white) 7.25:1 · deep-plum/bg 9.94:1 · deep-plum/surface(white) 10.79:1 · muted/bg 5.25:1 · muted/surface 5.7:1
+- All pass AA (≥4.5:1 normal text). The deep originals (`#8B3D55`/`#5E2C4E`) **fail** AA as dark-mode text (2.4:1 / 1.61:1) — that's exactly why `--primary`/`--chart-2` hold the lighter tints in dark mode and the deep originals only in light mode (where they pass), never the reverse.
+- `--primary` does double duty deliberately: it's the text-safe variant in whichever theme it's rendered in, **and** the button-background color, with `--primary-foreground` chosen to contrast against it (dark bg text on the light tint in dark mode, light text on the deep original in light mode). No separate "text accent" token needed.
 
-NOT indigo `#4F46E5`, NOT `#09090B` — both appear in `docs/strategy-plan.md` and are
-explicitly rejected; that doc itself admits dark+indigo is oversaturated in this
-space. The warm palette is the differentiator, it doesn't move.
+Mint `#7dd3c0` and lilac `#c9a0dc` are dropped entirely — replaced by the
+text-safe plum tint above. NOT indigo `#4F46E5`, NOT `#09090B` (from
+`docs/strategy-plan.md`, already rejected) — unaffected, still wrong for the
+same reasons as before.
 
 ### Fonts (via `next/font`)
 Playfair Display — display/headings, the differentiator, non-negotiable · Geist —
@@ -205,16 +211,21 @@ that's the actual reason now.
 Nothing is deferred for time — there is no deadline. Full scope, all in:
 
 9 projects + category filter (`All · Web · Mobile · AI/MLOps · Design/UX ·
-Systems`) · 3 full MDX case studies (QuickAid, E-Commerce Ad Creative Generator,
-SmartWait) · 6 standard project cards, each linking to GitHub only if a real repo
-exists (SmartWait and Shuttle Bot have none — no button renders for either, ever
-falling back to the profile URL) · About + Education + Areas
-of Interest · Experience · Skills with real tech logos · Showcase · working Contact
-form (Resend) · floating EmailWidget · ⌘K command palette · Blog (MDX, tags,
-syntax highlighting, reading progress, RSS) · GitHub contribution graph + latest
-repos (server-cached, token server-only) · dynamic OG images (`next/og`) · sitemap
-· robots.txt · JSON-LD · custom 404 · light/dark theme · full accessibility pass ·
-Vitest + RTL + Playwright + axe-core test suite gating CI.
+Systems`), **merged into the homepage** at `#case-studies` (2026-07-16 — reverses
+the earlier "routed `/case-studies` page" decision, see Decisions Log) · 3 MDX
+case studies still to write (QuickAid, E-Commerce Ad Creative Generator,
+SmartWait — `/case-studies/[slug]` route reserved for these, not built yet) · 6
+standard project cards, each linking to GitHub only if a real repo exists
+(SmartWait and Shuttle Bot have none — no button renders for either, ever
+falling back to the profile URL) · About + Education + Areas of Interest ·
+Experience · Skills with real tech logos · Showcase · **working Contact form
+(Resend) — done** · floating EmailWidget · ⌘K command palette (shell only,
+actions not wired) · **Blog — basic index + MDX template done**, tags/syntax
+highlighting/reading-progress/RSS not yet built · GitHub contribution graph +
+latest repos (server-cached, token server-only) — not started · dynamic OG
+images (`next/og`) — not started · sitemap · robots.txt · JSON-LD — not started
+· custom 404 — not started · light/dark theme — done · full accessibility pass
+· Vitest + RTL + Playwright + axe-core test suite gating CI.
 
 Out of scope, explicitly post-submission: custom domain. (Everything else that was
 previously cut for time — blog, MDX, ⌘K, GitHub graph, dynamic OG — is back in, per
@@ -338,7 +349,10 @@ client-visible request.
 `main` only once CI is green.
 
 ## Content Gaps — needed from Sara, do not fabricate
-1. Résumé/CV PDF for the Hero "Download CV" CTA. **Still outstanding.**
+1. ~~Résumé/CV PDF~~ **RESOLVED 2026-07-16 (session 6)** — real PDF landed at
+   `public/resume/Sara_Jabeen_CV.pdf` (found at `public/Sara Jabeen-C.V..pdf`,
+   moved to the wired path). Download CV button is live via a real
+   `fs.existsSync` check (`lib/resume.ts`), not a hardcoded flag.
 2. Case-study depth for the 3 featured projects: architecture notes/diagram, 2-3
    key technical decisions + why, one honest "what I'd do differently" line.
    QuickAid's is canonical (see "Project content & attribution rules"). Ad
@@ -347,10 +361,14 @@ client-visible request.
     QuickAid is exempted, already canonical without one. **Still outstanding,
     genuinely blocked on Sara — do not invent a number.**
 3. Screenshots / demo GIFs for case studies. **Still outstanding.**
-4. `RESEND_API_KEY` + a verified sending domain (or Resend sandbox) + confirmation
-   that submissions should land at syedajabean@gmail.com.
+4. ~~`RESEND_API_KEY`~~ **RESOLVED 2026-07-16 (session 6)** — key and
+   `CONTACT_TO_EMAIL` are in `.env.local` (moved from `data/.env.local`, where
+   Next.js would never have read them, to the project root). Contact form is
+   built and working. Still sending from Resend's sandbox address
+   (`onboarding@resend.dev`) — a verified sending domain is a separate,
+   still-open gap if a custom "from" address matters.
 5. `GITHUB_TOKEN` (fine-grained PAT, public-repo read scope is enough) for the
-   contribution graph.
+   contribution graph. **Still outstanding.**
 6. ~~Confirm portfolio URL~~ **RESOLVED 2026-07-16** — no portfolio self-link at
    all. `sara-jabeen.vercel.app` is the old site, never referenced. This site's
    own URL gets added once it's actually deployed.
@@ -364,7 +382,9 @@ client-visible request.
     implementation-plan summary for it is explicitly **not** approved for use;
     needs Sara's sign-off before `data/projects.ts` ships with real copy for
     it. Slug/dates/stack/category can land now, `summary` stays a flagged TODO
-    until then.
+    until then. **Constraint added 2026-07-16 (session 6):** her CV calls this
+    a concept — whatever description eventually ships must say
+    concept/prototype and must never imply it shipped.
 9. ~~Confirm QuickAid's fuller technical detail...~~ **RESOLVED 2026-07-16** —
    confirmed accurate, the face recognition work is hers. See "Project content &
    attribution rules" above for the exact scope statement and the
@@ -380,13 +400,21 @@ client-visible request.
     & WhatsApp". The specific digits (+92 311 9806354) are carried forward from
     `docs/old-portfolio.html`, not restated in this session — worth a quick
     reconfirm that they're still current.
-12. ~~Location precision~~ **RESOLVED 2026-07-16** — "Islamabad, Pakistan."
-    (Not the old site's neighborhood-level "G10, Islamabad, Pakistan.")
+12. ~~Location precision~~ **RESOLVED 2026-07-16, then REVISED 2026-07-16
+    (session 6)** — first resolved to "Islamabad, Pakistan," then her CV
+    corrected it back to the neighborhood-level "G10, Islamabad, Pakistan"
+    after all. Current and final: **G10, Islamabad, Pakistan.**
 13. ~~Experience section content~~ **RESOLVED 2026-07-16** — one entry only,
     see "Experience" above. Confirmed no other real roles exist; do not pad it.
-14. At least one real blog post, or confirm shipping the blog index empty at
-    launch (explicitly allowed by the implementation plan). **Still
-    outstanding.**
+14. At least one real blog post. `/blog` and `/blog/[slug]` are built
+    (2026-07-16 session 6) and ship a real "no posts yet" empty state rather
+    than a 404 — explicitly allowed to launch this way. **Still outstanding**
+    for actual post content.
+16. Two projects from her CV aren't on the site yet: **Stock Prediction
+    System** (Jenkins, Docker, CI/CD, Webhooks, Multi-Branch Deployment) and
+    **Servisync** (JavaFX, OOP, Database Systems, Design Patterns, RBAC).
+    Flagged 2026-07-16 (session 6) — do not add to `data/projects.ts` until
+    Sara gives repo URLs and dates for both.
 15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4)** — all 7 entries
     confirmed, kept. Types corrected: MLOps Intensive Coursework and UX
     Engineering Coursework are `coursework` (not `certification` — no external
@@ -549,6 +577,75 @@ client-visible request.
     projects' data but nothing consumes it. Building that route now would
     either 404 or require inventing case-study depth content that's still
     genuinely blocked (Content Gaps #2/#2a/#3).
+- **2026-07-16 (session 6) — corrected "graduated," a mistake I (the
+  assistant) made, not a stale-docs issue.** Earlier this session CLAUDE.md
+  itself was written to say Sara had graduated. That was wrong and I own it —
+  she is in her final semester, expected graduation December 2026, degree
+  started 2021 (not 2022, also corrected — every doc and data file had the
+  wrong start year). Fixed in `data/education.ts`, `data/profile.ts`
+  (`status`), the "Who I am" and "Education" sections above, and added an
+  explicit hard rule: never use the word "graduated" anywhere on the site.
+  Résumé download is now wired to a real file (`public/resume/Sara_Jabeen_CV.pdf`,
+  found misplaced at `public/Sara Jabeen-C.V..pdf` and moved) via an
+  `fs.existsSync` gate, not a boolean flag.
+- **2026-07-16 (session 6) — replaced the entire palette.** Peach/lilac/mint
+  is gone; wine (`#8B3D55`)/plum (`#5E2C4E`)/charcoal (`#1A1A1A`)/off-white
+  (`#F1F2F2`) is the palette now, with every text/surface pairing verified by
+  a real WCAG contrast calculation (ratios recorded in the palette table
+  above) rather than eyeballed. The deep originals fail AA as dark-mode text
+  (2.4:1/1.61:1) so `--primary`/`--chart-2` hold lighter tints in dark mode
+  and the deep originals only in light mode — verified, not assumed.
+- **2026-07-16 (session 6) — reversed the routed-`/case-studies` architecture
+  decision from session 5, same day it was made.** The full project grid +
+  filter now lives inline on the homepage at `#case-studies`
+  (`components/sections/CaseStudies.tsx`); `FeaturedProjects.tsx` and the
+  routed `/case-studies/page.tsx` listing are deleted. The `/case-studies`
+  route itself is kept free for `/case-studies/[slug]` MDX detail pages
+  later. Nav "Case Studies" now anchors instead of routing. Logging this
+  reversal explicitly rather than silently overwriting the earlier decision —
+  same discipline as the Fake News Detection drift entry above.
+- **2026-07-16 (session 6) — built Contact (form + API) and Blog (index +
+  template), previously unbuilt despite nav links pointing at them.** Contact:
+  server-side Zod validation, honeypot, 5-req/10-min per-IP rate limit, fails
+  loudly (500 + logged error) if `RESEND_API_KEY`/`CONTACT_TO_EMAIL` are
+  missing, Resend sends from its sandbox address pending a verified domain.
+  Hit a real `@hookform/resolvers` 5.4.0 / zod 4.4.3 type-level incompatibility
+  (the resolver's types hardcode zod's internal version literal at exactly
+  `4.0.0`) — worked around with an `unknown`-cast, documented inline, not a
+  runtime issue, no `any` used. Blog: `/blog` ships a real empty state, not a
+  404; `/blog/[slug]` dynamically imports `content/blog/*.mdx` but Turbopack's
+  static analysis fails the build outright against a truly empty directory,
+  so `content/blog/_placeholder.mdx` exists solely to satisfy that (excluded
+  from `getBlogSlugs()` by its leading underscore, delete on first real post).
+  Also found `.env.local` sitting at `data/.env.local`, where Next.js would
+  never read it — moved to the project root.
+- **2026-07-16 (session 6) — ported animations from `docs/old-portfolio.html`
+  per its actual line numbers, read in full first.** `ParticleField`
+  (canvas + rAF star field, ~lines 834-866, same particle count/speed/link
+  distance, recolored wine/plum, pauses on tab-hidden, off entirely under
+  `prefers-reduced-motion`), the `body::before` noise/grain overlay
+  (~line 40), `CardGlow` per-card radial glow (~lines 117-120, alternating
+  wine/plum on `SkillGroup`/`ShowcaseEntry`), `ProjectCard`'s diagonal
+  gradient sweep (~line 176, kept 1:1 rather than also stacking `CardGlow`
+  onto it), the Contact section's radial glow (~line 241), and the hero
+  scroll-pulse indicator (~lines 87-89). Added magnetic-hover
+  (`MagneticButton`, wraps the Hero CTA) and scroll parallax on the hero
+  gradient (`useScroll`/`useTransform`) as the two permitted extra effects.
+  Did not port the typewriter or the custom cursor — both still banned.
+- **2026-07-16 (session 6) — CV corrections.** Experience clients: Ranklogs,
+  Finocircle, Fitspresso only — Mahamukti Yoga and SlimBoost Tea were never
+  real, removed. Location: reverted to "G10, Islamabad, Pakistan" (see
+  Content Gap #12). Shuttle Bot's still-pending description gained a
+  constraint: her CV calls it a concept, so it must say concept/prototype
+  whenever it's finally written. Two CV projects (Stock Prediction System,
+  Servisync) flagged as Content Gaps #16/#17, not added — no repo URLs or
+  dates yet. "Years Building" stat rechecked: unaffected by the graduation
+  correction, it was only ever tied to project timeline.
+- **2026-07-16 (session 6) — security check.** `.env.local` confirmed
+  gitignored (both its original wrong location and the corrected one).
+  Scanned full git history (`git log --all -p` and a per-blob scan across
+  every commit) for the Resend key pattern `re_[A-Za-z0-9_]+` — zero matches,
+  the key was never committed at any point.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
@@ -560,9 +657,11 @@ browser install, e2e+a11y tests) succeeded. Re-verify against the Actions tab
 after any future push that touches CI-relevant config — don't assume it's
 still green from this one recorded run.
 
-No Vercel project is connected yet — still requires Sara's browser/account
-action (no `vercel` CLI available, no API token). Steps handed to her
-2026-07-16, pending as of this session.
+Vercel is connected and deploying as of 2026-07-16 (session 6):
+https://sara-jabeen-portfolio-swart.vercel.app/ — fetched and confirmed
+rendering (Hero, About, Experience, Skills, Case Studies, Showcase, Contact,
+Footer, nav all present). Auto-deploys from `main` on every push. Re-fetch
+after any future push to confirm, don't assume it stayed green.
 
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
@@ -576,7 +675,8 @@ action (no `vercel` CLI available, no API token). Steps handed to her
       green locally. CI itself unverified on a remote — see Deployment status.
 - [x] GitHub remote created and pushed, CI verified green on the actual
       remote (run 29492292374, all 16 steps) — 2026-07-16 session 2.
-- [ ] **BLOCKED ON SARA** — connect Vercel, confirm a preview deploy builds.
+- [x] Vercel connected, confirmed rendering at
+      https://sara-jabeen-portfolio-swart.vercel.app/ — 2026-07-16 session 6.
 - [x] Phase 1 — `/types` (committed)
 - [x] Phase 1 — `/data` layer — profile, education, experience, skills, stats,
       showcase, and projects all built and committed 2026-07-16.
@@ -595,9 +695,9 @@ action (no `vercel` CLI available, no API token). Steps handed to her
       pending a full verbatim re-confirmation per Sara's audit request —
       treat every entry as unconfirmed until she responds, not as settled.
 - [x] Phase 2 — design tokens: Playfair Display wired via `next/font`,
-      `--font-heading` repointed from Geist. Light-mode palette still the
-      2026-07-16 provisional derivation — a real contrast-checker pass is
-      still outstanding, don't treat it as verified.
+      `--font-heading` repointed from Geist. Wine/plum palette (both themes)
+      verified against real WCAG contrast calculations 2026-07-16 session 6 —
+      no longer provisional, see the palette table's ratio list.
 - [x] Phase 2 — root shell: Navbar (anchored + routed links, active-section
       highlight, mobile menu), Footer (socials, no phone), ThemeToggle,
       EmailWidget (fully built, not just a shell - collapsed/expanded, copy,
@@ -612,25 +712,33 @@ action (no `vercel` CLI available, no API token). Steps handed to her
 - [x] Phase 6 — Skills with real Simple Icons logos (AWS has no glyph in this
       simple-icons version, renders text-only, same treatment as any other
       non-brand skill).
-- [x] Phase 7 (partial) — Case study grid/filter/search built and routed at
-      `/case-studies` (`ProjectsExplorer`, `FilterBar`, `ProjectCard` - GitHub
-      button only renders when a repo exists, never a profile fallback) +
-      `FeaturedProjects` homepage teaser (3 featured cards + link to the full
-      grid). **The 3 MDX case studies themselves are still not built** —
-      still blocked on Content Gaps #2/#2a/#3 (case-study depth, result
-      metrics, screenshots). `caseStudyMdxPath` exists on the data but no
-      route consumes it yet.
-- [x] Phase 8 — Showcase (all 7 entries, confirmed 2026-07-16 session 4).
+- [x] Phase 7 — Case study grid/filter/search, **merged into the homepage**
+      at `#case-studies` 2026-07-16 session 6 (reverses the routed-page
+      decision from session 5 - see Decisions Log). Featured sort first.
+      `ProjectCard` renders a GitHub button only when a repo exists, never a
+      profile fallback. **The 3 MDX case studies themselves are still not
+      built** — still blocked on Content Gaps #2/#2a/#3 (case-study depth,
+      result metrics, screenshots). `/case-studies/[slug]` route reserved but
+      empty.
+- [x] Phase 8 — Showcase (all 7 entries, confirmed 2026-07-16 session 4;
+      types corrected certification→coursework session 4 revisit).
 - [x] `app/page.tsx` composes Hero → About → Experience → Skills →
-      FeaturedProjects → Showcase. Contact is intentionally absent (Phase 9,
-      blocked on Resend key).
-- [ ] Phase 9 — Contact API + form + EmailWidget behavior (blocked on Content Gaps
-      item 4)
-- [ ] Phase 10 — Command palette
-- [ ] Phase 11 — Blog (can ship empty per plan; blocked on item 14 for real
-      content)
-- [ ] Phase 12 — GitHub graph (blocked on Content Gaps item 5)
-- [ ] Phase 13 — SEO: sitemap, robots, JSON-LD, dynamic OG
-- [ ] Phase 14 — Accessibility + responsive pass
-- [ ] Phase 15 — Test suite (unit, e2e, a11y) wired into CI
-- [ ] Phase 16 — 404, polish, README + CI badge, deploy
+      CaseStudies → Showcase → Contact. Full homepage, nothing missing now.
+- [x] Phase 9 — Contact API + form done 2026-07-16 session 6 (RHF+Zod client,
+      server-side Zod, Resend, honeypot, rate limit, real loading/success/
+      error states). EmailWidget was already done in Phase 2.
+- [ ] Phase 10 — Command palette (shell exists, no actions wired yet).
+- [x] Phase 11 (partial) — Blog index + MDX template done 2026-07-16 session
+      6, real empty state not a 404. Tags/syntax-highlighting/reading-
+      progress/RSS not built. No real posts yet (Content Gap #14).
+- [ ] Phase 12 — GitHub graph (blocked on Content Gaps item 5).
+- [ ] Phase 13 — SEO: sitemap, robots, JSON-LD, dynamic OG.
+- [x] Phase 14 (partial) — Animations ported 2026-07-16 session 6:
+      particle field, noise overlay, per-card glows, project hover sweep,
+      contact glow, scroll indicator, magnetic CTA hover, hero scroll
+      parallax. Full accessibility + responsive pass across every section
+      still not done as a dedicated audit.
+- [ ] Phase 15 — Test suite (unit, e2e, a11y) wired into CI — smoke-level
+      coverage exists from Phase 0, full suite (filter logic, contact happy/
+      error path, keyboard traversal, per-route axe) not built.
+- [ ] Phase 16 — 404, polish, README + CI badge, deploy.
