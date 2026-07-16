@@ -18,10 +18,16 @@ Sara Jabeen — Full-Stack Software Engineer, AI-Integrated Web & Mobile Applica
 BS Computer Science, FAST-NUCES Islamabad — **graduated**, session 2022–2026,
 complete. Open to full-stack / software engineering roles (remote or
 Islamabad-based).
-- GitHub: github.com/sara-jabeennn
+- GitHub: github.com/sara-jabeennn (three n's — correct, not a typo)
 - LinkedIn: linkedin.com/in/sara-jabeen-1b6876243
 - Email: syedajabean@gmail.com
-- Portfolio: sara-jabeen-portfolio.vercel.app *(confirm — see Content Gaps #6)*
+- Phone: +92 311 9806354 *(carried forward from `docs/old-portfolio.html`, not
+  restated in the 2026-07-16 session — confirm it's still current; renders in the
+  Contact section only, see "Phone & WhatsApp" below)*
+- No portfolio self-link anywhere. `sara-jabeen.vercel.app` is the **old**
+  portfolio this site replaces — never link it, not in data, not in socials, not
+  in JSON-LD. This site doesn't have a URL to reference yet; add one once it's
+  deployed (see Content Gaps).
 
 **She is not a student.** Every "final-year student" / "graduating 2026" phrasing
 anywhere in `docs/` is stale — `docs/PORTFOLIO_IMPLEMENTATION_PLAN.md` section 7's
@@ -50,7 +56,20 @@ Systems Programming
 
 ### Education
 FAST-NUCES Islamabad · BS Computer Science · 2022–2026 · **Complete**. Focus:
-full-stack development, AI-integrated applications.
+full-stack development, AI-integrated applications. No GPA, no roll number, no
+section — that's transcript material, not portfolio material.
+
+### Experience (one real entry — do not pad it)
+**Freelance Technical Content Writer** — remote, international clients. Wrote for
+clients across technology, wellness, finance, and academia: Ranklogs,
+Finocircle, Mahamukti Yoga, SlimBoost Tea, Fitspresso. Named clients are fine
+here.
+
+Label it exactly for what it is — **not** software engineering experience, not
+a "Freelance Developer" role. If Experience reads thin next to the project
+work, that's the honest state and correct: no other jobs exist, no
+internships, no university projects reframed as employment. The projects carry
+the weight, not this section.
 
 ## Tech stack (locked — do not substitute)
 Next.js **16.2.10** App Router *(docs say "15" — 16.2.10 is what's actually
@@ -242,7 +261,22 @@ Persistent FAB, bottom-right, every route. Collapsed: circular button, Lucide
 `prefers-reduced-motion` respected, collapses to icon-only on mobile, never
 overlaps the contact form or footer. Pure client component, no server call. Email
 pulled from `data/profile.ts`, never hardcoded twice. Mounted once in
-`app/layout.tsx`.
+`app/layout.tsx`. Email only — no phone number here, see "Phone & WhatsApp"
+below.
+
+## Phone & WhatsApp — Contact section only
+Real channel, not decoration — recruiters in Pakistan often reach out on
+WhatsApp first. Renders **only** in the Contact section: a `tel:` link with a
+click-to-copy affordance matching the email's, plus a `wa.me` WhatsApp link.
+
+- Never in the footer, never in `EmailWidget`, never anywhere it'd repeat.
+- Never in the JSON-LD `Person` schema. Structured data is the first thing
+  scrapers parse — the number stays where humans read it, not where machines
+  index it. `feature/seo-baseline` must omit `telephone` from the Person schema
+  even though `Profile.phone` exists.
+- Source: `Profile.phone` (tel value) and `Profile.whatsappUrl` (`https://wa.me/<digits>`,
+  no `+`, no spaces) in `data/profile.ts` / `types/profile.ts`. Never hardcoded
+  in a component.
 
 ## Command palette (⌘K / Ctrl+K)
 shadcn `Command`, scoped actions: jump to any section/route (Home, About,
@@ -259,8 +293,9 @@ client-visible request.
 ## Testing — gates CI, not optional
 - **Vitest + React Testing Library:** filter logic, Zod schemas (contact + data),
   clipboard-copy behavior, data-integrity tests (every `data/projects.ts` entry
-  matches its type, 8 unique slugs, every category ⊆ the 6-value enum, every
-  featured project has a resolvable MDX path).
+  matches its type, 8 unique slugs, every category ⊆ the 5-value
+  `CaseStudyCategory` enum — `All` is a UI filter state, not a stored category
+  — every featured project has a resolvable MDX path).
 - **Playwright e2e:** nav, category filter, contact happy path + error path,
   keyboard-only traversal.
 - **@axe-core/playwright:** zero-violations assertion on every route.
@@ -275,23 +310,33 @@ client-visible request.
 `main` only once CI is green.
 
 ## Content Gaps — needed from Sara, do not fabricate
-1. Résumé/CV PDF for the Hero "Download CV" CTA.
+1. Résumé/CV PDF for the Hero "Download CV" CTA. **Still outstanding.**
 2. Case-study depth for the 3 featured projects: architecture notes/diagram, 2-3
-   key technical decisions + why, a real measurable result if one exists, one
-   honest "what I'd do differently" line. Currently only card-level summaries
-   exist.
-3. Screenshots / demo GIFs for case studies.
+   key technical decisions + why, one honest "what I'd do differently" line.
+   QuickAid's is canonical (see "Project content & attribution rules"). Ad
+   Creative Generator and SmartWait still need theirs. **Still outstanding.**
+2a. `result` metrics for Ad Creative Generator and SmartWait specifically —
+    QuickAid is exempted, already canonical without one. **Still outstanding,
+    genuinely blocked on Sara — do not invent a number.**
+3. Screenshots / demo GIFs for case studies. **Still outstanding.**
 4. `RESEND_API_KEY` + a verified sending domain (or Resend sandbox) + confirmation
    that submissions should land at syedajabean@gmail.com.
 5. `GITHUB_TOKEN` (fine-grained PAT, public-repo read scope is enough) for the
    contribution graph.
-6. Confirm portfolio URL: `sara-jabeen-portfolio.vercel.app` — is this the
-   actual/intended Vercel project slug?
-7. Confirm Shuttle Bot's filter category — the implementation plan tags it
-   `AI / Robotics`, which isn't one of the six filter values. Defaulted to
-   `AI/MLOps`, correct if wrong.
-8. Confirm categories for LMS and Corporate Vendor & Contract Management System —
-   the plan doesn't tag either; both defaulted to `Web`.
+6. ~~Confirm portfolio URL~~ **RESOLVED 2026-07-16** — no portfolio self-link at
+   all. `sara-jabeen.vercel.app` is the old site, never referenced. This site's
+   own URL gets added once it's actually deployed.
+7. ~~Confirm Shuttle Bot's filter category~~ **RESOLVED 2026-07-16** —
+   `AI/MLOps`, confirmed.
+8. ~~Confirm categories for LMS and Corporate Vendor & Contract Management
+   System~~ **RESOLVED 2026-07-16** — LMS → `Web`. Corporate Vendor & Contract
+   Management System → `Web` + `Systems` (multi-category, corrected from the
+   earlier `Web`-only default).
+8a. Shuttle Bot's one-line description — new gap, 2026-07-16. The
+    implementation-plan summary for it is explicitly **not** approved for use;
+    needs Sara's sign-off before `data/projects.ts` ships with real copy for
+    it. Slug/dates/stack/category can land now, `summary` stays a flagged TODO
+    until then.
 9. ~~Confirm QuickAid's fuller technical detail...~~ **RESOLVED 2026-07-16** —
    confirmed accurate, the face recognition work is hers. See "Project content &
    attribution rules" above for the exact scope statement and the
@@ -299,21 +344,25 @@ client-visible request.
    govern how QuickAid (and every other team project) gets written.
 10. Confirm dropping "Fake News Detection" (DVC/MLflow/scikit-learn) — it was
     project #3 in CLAUDE.md v1 but isn't in the 8-project list from the
-    implementation plan. Intentional, or an oversight?
-11. Phone number in Contact/EmailWidget — old site had one, the new plan's
-    EmailWidget spec is email-only. Keep phone or drop it?
-12. Location precision for About/Contact — old site said "G10, Islamabad,
-    Pakistan," the new plan just says "Islamabad-based." How precise should this
-    be?
-13. Experience section currently has one real entry (Freelance Technical Writer).
-    The plan leaves room for "any internships/teaching roles Sara wants listed" —
-    anything else real to add, or does Experience ship with just the one entry?
+    implementation plan. Intentional, or an oversight? **Still outstanding —
+    not addressed in the 2026-07-16 content answers, treated as dropped for
+    now since the 8-project roster is otherwise fully confirmed.**
+11. ~~Phone number~~ **RESOLVED 2026-07-16** — keep it, real channel. See "Phone
+    & WhatsApp". The specific digits (+92 311 9806354) are carried forward from
+    `docs/old-portfolio.html`, not restated in this session — worth a quick
+    reconfirm that they're still current.
+12. ~~Location precision~~ **RESOLVED 2026-07-16** — "Islamabad, Pakistan."
+    (Not the old site's neighborhood-level "G10, Islamabad, Pakistan.")
+13. ~~Experience section content~~ **RESOLVED 2026-07-16** — one entry only,
+    see "Experience" above. Confirmed no other real roles exist; do not pad it.
 14. At least one real blog post, or confirm shipping the blog index empty at
-    launch (explicitly allowed by the implementation plan).
+    launch (explicitly allowed by the implementation plan). **Still
+    outstanding.**
 15. Showcase section: `docs/old-portfolio.html` has real certifications/
     achievements (Fauji Foundation Scholarship, KIPS Certificate of Merit, A+
-    FYP-1, Coursera/MLOps/UX coursework certs) — reusing these unless told
-    otherwise, flagging so it's a visible decision, not a silent one.
+    FYP-1, Coursera/MLOps/UX coursework certs) — proceeding to reuse these as
+    of 2026-07-16 (not explicitly objected to across two sessions now), still
+    flagged here in case that's wrong.
 
 ## Decisions Log
 - **2026-07-16** — Dropped the 19 July deadline; no external constraint requires
@@ -370,6 +419,33 @@ client-visible request.
   Persons Module still never appears, but the reasoning changed: it's excluded
   because it can't be explained in interview depth, not because of attribution
   — that's now the actual test for what any team project includes.
+- **2026-07-16** — Added phone/WhatsApp as a real contact channel (recruiters in
+  Pakistan often reach out on WhatsApp first). Scoped tightly: Contact section
+  only, `tel:` + click-to-copy + `wa.me` link, explicitly excluded from
+  `EmailWidget`, the footer, and the JSON-LD `Person` schema (structured data is
+  scraper-facing, the number is human-facing only). `Profile` type gained
+  `phone` and `whatsappUrl`.
+- **2026-07-16** — Resolved Content Gaps #6 (no portfolio self-link, old
+  `sara-jabeen.vercel.app` never referenced), #7 (Shuttle Bot → `AI/MLOps`), #8
+  (LMS → `Web`; Corporate Vendor & Contract Management System → `Web` +
+  `Systems`, corrected from an earlier `Web`-only default), #11 (keep phone),
+  #12 (location: "Islamabad, Pakistan"), #13 (Experience ships with exactly one
+  entry, Freelance Technical Content Writer, explicitly labeled as not
+  software-engineering experience, five named clients). Opened a new gap, #8a:
+  Shuttle Bot's one-line description is explicitly not yet approved for use and
+  needs sign-off before it ships — `data/projects.ts` carries its slug/dates/
+  stack/category now but leaves `summary` as a flagged TODO.
+
+## Deployment status — READ THIS FIRST
+No git remote exists yet (`git remote -v` is empty as of 2026-07-16). The repo
+is 100% local. `.github/workflows/ci.yml` cannot run — GitHub Actions requires
+a GitHub remote — so CI is currently decorative, not actually gating anything,
+despite every commit message implying otherwise. No Vercel project is
+connected either. Creating the GitHub repo and connecting Vercel both require
+Sara's browser/account action (no `gh`/`vercel` CLI available, no API token) —
+exact steps were handed to her 2026-07-16, still pending as of the last
+session. **Do not claim CI is green or a deploy is live until this is verified
+against the actual remote**, not assumed from local passes.
 
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
@@ -380,9 +456,18 @@ client-visible request.
       next-themes, MDX, RHF+Zod+Resend, Vitest+RTL, Playwright+axe-core, CI
       workflow. `tsc --noEmit`, `eslint`, `next build`, `vitest run`, and
       `playwright test` (2 smoke tests: page loads, zero axe violations) all
-      green locally.
+      green locally. CI itself unverified on a remote — see Deployment status.
+- [ ] **BLOCKED ON SARA** — create GitHub remote, verify CI goes green there,
+      connect Vercel, confirm a preview deploy builds.
 - [x] Phase 1 — `/types` (committed)
-- [ ] Phase 1 — `/data` layer (blocked on Content Gaps items 6-13)
+- [x] Phase 1 — `/data` layer — profile, education, experience, skills, stats,
+      showcase, and projects all built and committed 2026-07-16.
+      `projects.test.ts` data-integrity suite passing (8 unique slugs, valid
+      categories, exactly 3 featured with resolvable MDX paths). Shuttle Bot's
+      `summary` is a loud `TODO(content-gap-8a)` string, not real copy — must
+      be replaced before Phase 6/7 render it to a visitor. Résumé PDF,
+      screenshots, and Ad Creative Generator/SmartWait `result` metrics remain
+      genuinely blocked on Sara (Content Gaps #1, #2a, #3).
 - [ ] Phase 2 — design tokens (Tailwind `@theme`, fonts, light-mode contrast check)
 - [ ] Phase 2 — root shell: Navbar, Footer, ThemeToggle, EmailWidget mount, palette
       shell

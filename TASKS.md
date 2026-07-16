@@ -230,10 +230,16 @@ destination address).
 ### `feature/contact-form-ui`
 **Done when:** `ContactForm` (RHF + Zod + shadcn `Form`/`Input`/`Label`/`Button`)
 shows inline field errors, a loading state on submit, and a real success/failure
-state via shadcn `Sonner` — no state is faked if the API call fails.
+state via shadcn `Sonner` — no state is faked if the API call fails. The
+Contact section (not the form itself) also renders `Profile.phone` as a `tel:`
+link with click-to-copy matching the email's affordance, plus a `wa.me` link
+from `Profile.whatsappUrl` — this is the only place phone/WhatsApp appear
+anywhere on the site.
 **Files:** `components/ui/ContactForm.tsx`, `components/sections/Contact.tsx`.
-**Data depended on:** `types/contact.ts`, `lib/schemas/contact.ts`.
-**Commits:** `feat: add contact form with inline validation and submit states`.
+**Data depended on:** `types/contact.ts`, `lib/schemas/contact.ts`,
+`data/profile.ts` (phone, whatsappUrl).
+**Commits:** `feat: add contact form with inline validation and submit states`,
+`feat: add phone and whatsapp links to contact section`.
 
 ### `feature/email-widget`
 **Done when:** `EmailWidget` matches the CLAUDE.md spec exactly — collapsed FAB,
@@ -292,7 +298,8 @@ inspecting the network tab / built client chunks).
 ### `feature/seo-baseline`
 **Done when:** `sitemap.ts`, `robots.ts`, and per-route `metadata` exports are
 present; JSON-LD (`Person` on About/home, `CreativeWork` per case study) validates
-in a structured-data testing tool.
+in a structured-data testing tool. `Person` schema deliberately omits
+`telephone` — phone stays human-facing only, see CLAUDE.md "Phone & WhatsApp".
 **Files:** `app/sitemap.ts`, `app/robots.ts`, per-route `page.tsx` metadata,
 `lib/utils.ts` (JSON-LD helper).
 **Data depended on:** `data/profile.ts`, `data/projects.ts`.
