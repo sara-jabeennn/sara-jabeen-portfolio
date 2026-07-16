@@ -41,7 +41,7 @@ export const skills: SkillCategory[] = [
       { name: "Git", simpleIconSlug: "git" },
       { name: "Docker", simpleIconSlug: "docker" },
       { name: "CI/CD (GitHub Actions)", simpleIconSlug: "githubactions" },
-      { name: "AWS", simpleIconSlug: "amazonaws" },
+      { name: "AWS" }, // no AWS glyph exists in this simple-icons version
     ],
   },
   {
