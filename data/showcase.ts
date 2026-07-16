@@ -1,7 +1,7 @@
 import type { ShowcaseEntry } from "@/types";
 
-// Carried forward from docs/old-portfolio.html per CLAUDE.md Content Gap #15 -
-// proceeding on the standing reuse note, flagged there in case that's wrong.
+// All 7 entries confirmed by Sara 2026-07-16 - see CLAUDE.md Content Gap #15
+// (resolved) and the certification-vs-coursework rule in "Hard rules".
 export const showcase: ShowcaseEntry[] = [
   {
     id: "fauji-foundation-scholarship",
@@ -36,20 +36,23 @@ export const showcase: ShowcaseEntry[] = [
     title: "MLOps Intensive Coursework",
     description:
       "CI/CD pipelines, Docker, Kubernetes, monitoring, workflow orchestration",
-    type: "certification",
+    type: "coursework",
+    date: "2021-01",
   },
   {
     id: "ux-engineering-coursework",
     title: "UX Engineering Coursework",
     description:
       "Information architecture, wireframing, prototyping, A/B testing",
-    type: "certification",
+    type: "coursework",
+    date: "2021-01",
   },
   {
     id: "university-technical-collaboration",
     title: "University Technical Projects & Collaboration",
     description:
       "End-to-end team engineering projects across MLOps, full-stack development, and UX design",
-    type: "collaboration",
+    type: "coursework",
+    date: "2026",
   },
 ];

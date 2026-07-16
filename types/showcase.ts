@@ -1,4 +1,9 @@
-export type ShowcaseEntryType = "certification" | "achievement" | "client-work" | "collaboration";
+export type ShowcaseEntryType =
+  | "certification"
+  | "achievement"
+  | "client-work"
+  | "collaboration"
+  | "coursework";
 
 export interface ShowcaseEntry {
   id: string;
