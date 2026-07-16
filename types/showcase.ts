@@ -5,6 +5,7 @@ export interface ShowcaseEntry {
   title: string;
   description: string;
   type: ShowcaseEntryType;
-  date: string;
+  /** Not every real credential has a known date - omit rather than invent one. */
+  date?: string;
   link?: string;
 }
