@@ -7,6 +7,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { EmailWidget } from "@/components/widgets/EmailWidget";
 import { CommandPalette } from "@/components/widgets/CommandPalette";
+import { ParticleField } from "@/components/widgets/ParticleField";
+import { Toaster } from "@/components/ui/sonner";
 import { profile } from "@/data/profile";
 
 const geistSans = Geist({
@@ -44,11 +46,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <TooltipProvider>
+            <ParticleField />
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
             <EmailWidget />
             <CommandPalette />
+            <Toaster />
           </TooltipProvider>
         </ThemeProvider>
       </body>
