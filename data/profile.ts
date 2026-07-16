@@ -21,17 +21,17 @@ export const profile: Profile = {
     {
       label: "GitHub",
       href: "https://github.com/sara-jabeennn",
-      lucideIcon: "Github",
+      icon: "Github",
     },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/sara-jabeen-1b6876243",
-      lucideIcon: "Linkedin",
+      icon: "LinkedIn",
     },
     {
       label: "Email",
       href: "mailto:syedajabean@gmail.com",
-      lucideIcon: "Mail",
+      icon: "Mail",
     },
   ],
   areasOfInterest: [

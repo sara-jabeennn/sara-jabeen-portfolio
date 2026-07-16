@@ -1,7 +1,9 @@
 export interface SocialLink {
   label: string;
   href: string;
-  lucideIcon: string;
+  /** "Mail" (Lucide) | "Github" | "LinkedIn" (rendered via Simple Icons /
+   * a local glyph in components/icons - neither ships a Lucide brand mark). */
+  icon: string;
 }
 
 export interface Profile {
