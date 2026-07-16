@@ -14,15 +14,18 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return projects.filter((project) => {
-      const matchesCategory =
-        filter === "All" || project.categories.includes(filter);
-      const matchesQuery =
-        q.length === 0 ||
-        project.title.toLowerCase().includes(q) ||
-        project.stack.some((tech) => tech.toLowerCase().includes(q));
-      return matchesCategory && matchesQuery;
-    });
+    return projects
+      .filter((project) => {
+        const matchesCategory =
+          filter === "All" || project.categories.includes(filter);
+        const matchesQuery =
+          q.length === 0 ||
+          project.title.toLowerCase().includes(q) ||
+          project.stack.some((tech) => tech.toLowerCase().includes(q));
+        return matchesCategory && matchesQuery;
+      })
+      // Featured sorts first (stable sort keeps relative order otherwise).
+      .sort((a, b) => Number(b.featured) - Number(a.featured));
   }, [projects, filter, query]);
 
   return (

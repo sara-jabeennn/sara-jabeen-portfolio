@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
   { label: "Skills", href: "/#skills" },
-  { label: "Case Studies", href: "/case-studies" },
+  { label: "Case Studies", href: "/#case-studies" },
   { label: "Showcase", href: "/#showcase" },
   { label: "Contact", href: "/#contact" },
   { label: "Blog", href: "/blog" },
