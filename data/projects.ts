@@ -125,9 +125,11 @@ export const projects: Project[] = [
     title: "Shuttle Bot — Autonomous Sports Robotics System",
     // TODO(content-gap-8a): summary is explicitly not approved for use yet -
     // needs Sara's sign-off before this ships. Do not replace this string
-    // with invented copy. See CLAUDE.md Content Gaps #8a.
+    // with invented copy. See CLAUDE.md Content Gaps #8a. Her CV calls this
+    // a concept - whatever description eventually lands here MUST say
+    // concept/prototype and must never imply it shipped.
     summary:
-      "TODO(content-gap-8a): description pending Sara's sign-off — see CLAUDE.md Content Gaps.",
+      "TODO(content-gap-8a): description pending Sara's sign-off — see CLAUDE.md Content Gaps. Must describe this as a concept/prototype, never as shipped.",
     categories: ["AI/MLOps"],
     featured: false,
     dateStart: "2026-02",
