@@ -374,11 +374,14 @@ client-visible request.
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
       pre-existing, unchanged this session
-- [ ] Phase 0 — branch hygiene (`master` → `main`), docs committed
-- [ ] Phase 0 — tooling baseline: shadcn init + retheme, Framer Motion, Lucide,
-      Simple Icons, next-themes, MDX, RHF+Zod, Resend, Vitest, Playwright,
-      axe-core, CI workflow
-- [ ] Phase 1 — `/types` (delivered this session, not yet committed)
+- [x] Phase 0 — branch hygiene (`master` → `main`), docs committed
+- [x] Phase 0 — tooling baseline: shadcn init + retheme (zero default tokens
+      survive, verified by grep), Framer Motion, Lucide, Simple Icons,
+      next-themes, MDX, RHF+Zod+Resend, Vitest+RTL, Playwright+axe-core, CI
+      workflow. `tsc --noEmit`, `eslint`, `next build`, `vitest run`, and
+      `playwright test` (2 smoke tests: page loads, zero axe violations) all
+      green locally.
+- [x] Phase 1 — `/types` (committed)
 - [ ] Phase 1 — `/data` layer (blocked on Content Gaps items 6-13)
 - [ ] Phase 2 — design tokens (Tailwind `@theme`, fonts, light-mode contrast check)
 - [ ] Phase 2 — root shell: Navbar, Footer, ThemeToggle, EmailWidget mount, palette
