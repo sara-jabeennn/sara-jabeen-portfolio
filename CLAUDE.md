@@ -529,6 +529,27 @@ client-visible request.
   `coursework` to `ShowcaseEntryType` and a hard rule that the two are never
   interchangeable. Content Gap #15 resolved.
 
+- **2026-07-16 (session 5)** — Built Phase 3 through Phase 8 in one pass:
+  Hero, About, Experience, Skills, Showcase, and the project case-study grid
+  (filter + search), composed into `app/page.tsx`. Judgment calls made without
+  stopping to ask, as instructed:
+  - Kept the locked nav model (Case Studies as a routed `/case-studies` page)
+    rather than folding the full filterable grid into the homepage, since an
+    earlier session already decided and logged that architecture. Added a
+    `FeaturedProjects` homepage teaser (3 featured cards + a link to the full
+    grid) so "wire app/page.tsx composing all sections" and "Projects grid +
+    filter" are both satisfied without contradicting the existing decision.
+  - Discovered this simple-icons version has **no AWS glyph at all** (not a
+    naming difference — genuinely absent). Dropped `AWS`'s `simpleIconSlug`;
+    it renders text-only in Skills, same as any other non-brand entry.
+  - Download CV renders as a disabled/gated affordance (`aria-disabled`,
+    "Résumé coming soon") since `profile.resumeUrl` doesn't exist — wired, not
+    faked, per instruction.
+  - No MDX case-study routes yet — `caseStudyMdxPath` exists on the 3 featured
+    projects' data but nothing consumes it. Building that route now would
+    either 404 or require inventing case-study depth content that's still
+    genuinely blocked (Content Gaps #2/#2a/#3).
+
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
 `https://github.com/sara-jabeennn/sara-jabeen-portfolio`, `main` pushed. CI
@@ -583,13 +604,26 @@ action (no `vercel` CLI available, no API token). Steps handed to her
       mailto, keyboard, reduced-motion), CommandPalette (shell only, Phase 10
       adds actions). `tsc`/`eslint`/`vitest`/`playwright`+axe/`next build` all
       green locally. Nav model locked (see Decisions Log).
-- [ ] Phase 3 — Hero + StatCounter
-- [ ] Phase 4 — About + EducationCard + AreaOfInterestTag
-- [ ] Phase 5 — Experience (blocked on Content Gaps item 13)
-- [ ] Phase 6 — Skills with real logos
-- [ ] Phase 7 — Case study filter/search + 3 MDX case studies (blocked on Content
-      Gaps items 2-3) + 5 standard cards
-- [ ] Phase 8 — Showcase (pending Content Gaps item 15 confirmation)
+- [x] Phase 3 — Hero (aurora gradient + staggered reveal, tech badges, gated
+      Download CV) + StatCounter (requestAnimationFrame count-up,
+      scroll-triggered). 2026-07-16 session 5.
+- [x] Phase 4 — About + EducationCard (2021–2026, corrected) + AreaOfInterestTag.
+- [x] Phase 5 — Experience (one entry, ExperienceCard).
+- [x] Phase 6 — Skills with real Simple Icons logos (AWS has no glyph in this
+      simple-icons version, renders text-only, same treatment as any other
+      non-brand skill).
+- [x] Phase 7 (partial) — Case study grid/filter/search built and routed at
+      `/case-studies` (`ProjectsExplorer`, `FilterBar`, `ProjectCard` - GitHub
+      button only renders when a repo exists, never a profile fallback) +
+      `FeaturedProjects` homepage teaser (3 featured cards + link to the full
+      grid). **The 3 MDX case studies themselves are still not built** —
+      still blocked on Content Gaps #2/#2a/#3 (case-study depth, result
+      metrics, screenshots). `caseStudyMdxPath` exists on the data but no
+      route consumes it yet.
+- [x] Phase 8 — Showcase (all 7 entries, confirmed 2026-07-16 session 4).
+- [x] `app/page.tsx` composes Hero → About → Experience → Skills →
+      FeaturedProjects → Showcase. Contact is intentionally absent (Phase 9,
+      blocked on Resend key).
 - [ ] Phase 9 — Contact API + form + EmailWidget behavior (blocked on Content Gaps
       item 4)
 - [ ] Phase 10 — Command palette

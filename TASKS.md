@@ -96,7 +96,7 @@ Phase 10).
 
 ## Phase 3 — Home
 
-### `feature/hero`
+### `feature/hero` — DONE 2026-07-16
 **Done when:** Hero renders headline, tagline, tech badge row (Simple Icons, not
 text pills), CTA buttons (View Projects, Download CV), aurora/mesh-gradient
 background, staggered reveal on load — and nothing else (no role-rotator, no
@@ -107,7 +107,7 @@ state immediately, no animation.
 until Content Gap #1 (résumé PDF) is resolved — do not link a placeholder file.
 **Commits:** `feat: add hero section with aurora gradient and staggered reveal`.
 
-### `feature/stat-counters`
+### `feature/stat-counters` — DONE 2026-07-16
 **Done when:** `StatCounter` animates on scroll-into-view once, respects
 reduced-motion (renders final value immediately, no count-up), values come from
 `data/stats.ts` with no hardcoded numbers in the component.
@@ -119,7 +119,7 @@ reduced-motion (renders final value immediately, no count-up), values come from
 
 ## Phase 4 — About
 
-### `feature/about-section`
+### `feature/about-section` — DONE 2026-07-16
 **Done when:** bio renders as provided in `CLAUDE.md` (graduated framing, not
 "final-year"), `EducationCard` shows FAST-NUCES/BS CS/2021–2026/Complete,
 freelance-writing line present, `AreaOfInterestTag` row renders the six tags.
@@ -133,7 +133,7 @@ freelance-writing line present, `AreaOfInterestTag` row renders the six tags.
 
 ## Phase 5 — Experience
 
-### `feature/experience-section`
+### `feature/experience-section` — DONE 2026-07-16
 **Done when:** `ExperienceCard` renders the Freelance Technical Writer entry in
 the dual-track (professional/academic) layout; layout supports a second entry
 without code changes if Content Gap #13 adds one.
@@ -146,7 +146,7 @@ without code changes if Content Gap #13 adds one.
 
 ## Phase 6 — Skills
 
-### `feature/skills-section`
+### `feature/skills-section` — DONE 2026-07-16
 **Done when:** `SkillGroup` renders all 7 categories from the implementation
 plan, each skill shows its real Simple Icons logo (not a text-only pill), each
 category header shows a technology count.
@@ -158,7 +158,7 @@ category header shows a technology count.
 
 ## Phase 7 — Case studies
 
-### `feature/case-study-filter`
+### `feature/case-study-filter` — DONE 2026-07-16
 **Done when:** `FilterBar` filters the 9-project grid client-side across
 `All · Web · Mobile · AI/MLOps · Design/UX · Systems` with an animated
 (Framer Motion layout) transition between filtered states; `SearchBox` filters by
@@ -189,7 +189,10 @@ detection, relay privacy, and on-device face recognition.
 `feat: add e-commerce ad creative generator case study`,
 `feat: add smartwait case study`.
 
-### `feature/case-study-cards-standard`
+### `feature/case-study-cards-standard` — DONE 2026-07-16 (all 9 render
+through the same `ProjectCard`, not just the 6 non-featured ones - no MDX
+route exists for any project yet, featured included, so there's currently no
+distinction to draw between them)
 **Done when:** the remaining 6 projects (Fake News Detection, Shuttle Bot, My
 Beauty Assistant, LMS, Corporate Vendor & Contract Management System, Advanced
 Classroom Management System) render as standard cards, no MDX route generated
@@ -208,7 +211,7 @@ confirmed as of 2026-07-16).
 
 ## Phase 8 — Showcase
 
-### `feature/showcase-section`
+### `feature/showcase-section` — DONE 2026-07-16
 **Done when:** `ShowcaseEntry` list renders certifications/achievements reused
 from `docs/old-portfolio.html` (Fauji Foundation Scholarship, KIPS Certificate of
 Merit, A+ FYP-1, Coursera/MLOps/UX coursework) pending Content Gap #15
