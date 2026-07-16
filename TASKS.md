@@ -50,9 +50,12 @@ skill, education, profile, stats, showcase, blog, contact`.
 
 ### `feature/data-layer`
 **Done when:** every `data/*.ts` file typechecks against its `/types` interface; a
-Vitest data-integrity test passes asserting 8 unique project slugs, every
-project's `categories` is a subset of the 6-value `CaseStudyCategory` enum, and
-every `featured: true` project has a resolvable `caseStudyMdxPath`.
+Vitest data-integrity test passes asserting 9 unique project slugs, every
+project's `categories` is a subset of the 5-value `CaseStudyCategory` enum,
+every `featured: true` project has a resolvable `caseStudyMdxPath`, and no
+project's `links.github` is ever the bare profile URL (see CLAUDE.md's
+"GitHub links" hard rule — corrected 2026-07-16 after that fallback masked a
+missing repo link).
 **Files:** `data/profile.ts`, `data/education.ts`, `data/experience.ts`,
 `data/projects.ts`, `data/skills.ts`, `data/stats.ts`, `data/showcase.ts`.
 **Data depended on:** Content Gaps #6–#13 in `CLAUDE.md` resolved (or explicitly
@@ -156,7 +159,7 @@ category header shows a technology count.
 ## Phase 7 — Case studies
 
 ### `feature/case-study-filter`
-**Done when:** `FilterBar` filters the 8-project grid client-side across
+**Done when:** `FilterBar` filters the 9-project grid client-side across
 `All · Web · Mobile · AI/MLOps · Design/UX · Systems` with an animated
 (Framer Motion layout) transition between filtered states; `SearchBox` filters by
 title/stack; both are keyboard operable.
@@ -187,13 +190,18 @@ detection, relay privacy, and on-device face recognition.
 `feat: add smartwait case study`.
 
 ### `feature/case-study-cards-standard`
-**Done when:** the remaining 5 projects (Shuttle Bot, My Beauty Assistant, LMS,
-Corporate Vendor & Contract Management System, Advanced Classroom Management
-System) render as standard cards linking directly to GitHub, no MDX route
-generated for them.
+**Done when:** the remaining 6 projects (Fake News Detection, Shuttle Bot, My
+Beauty Assistant, LMS, Corporate Vendor & Contract Management System, Advanced
+Classroom Management System) render as standard cards, no MDX route generated
+for any of them. Each renders a GitHub button **only if** `links.github` is
+set (7 of 9 projects total have one, see CLAUDE.md "GitHub links") — SmartWait
+and Shuttle Bot render the card with no GitHub button at all. **This is the
+acceptance test for the whole task**: render every project and confirm exactly
+2 of 9 cards have no GitHub button, and that none of them silently link the
+profile URL instead.
 **Files:** `components/cards/CaseStudyCard.tsx` (variant), `data/projects.ts`.
-**Data depended on:** `data/projects.ts`; Content Gaps #7, #8 (category
-confirmation).
+**Data depended on:** `data/projects.ts` (all categories and repo links
+confirmed as of 2026-07-16).
 **Commits:** `feat: render standard project cards for non-featured projects`.
 
 ---

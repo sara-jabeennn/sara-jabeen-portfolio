@@ -149,6 +149,26 @@ staggered reveal on load. Nothing more.
   does not get filled with a placeholder.
 - WCAG AA contrast minimum, verified in both themes.
 - Target Lighthouse 95+ on mobile across all four categories.
+- **No profile-URL fallback for a project's GitHub link, ever.** If a project
+  has no confirmed repo, `links.github` is omitted entirely and `ProjectCard`
+  must render no GitHub button for it — not a button pointing at the profile.
+  A recruiter clicking "GitHub" and landing on a profile instead of a repo is
+  worse than no link at all. This must be enforced in `ProjectCard` itself
+  (Phase 7), not just by omitting the field in data — see the regression this
+  caused in the 2026-07-16 Decisions Log.
+
+### Project GitHub links (canonical — confirmed 2026-07-16)
+| Project | Repo |
+|---|---|
+| QuickAid | github.com/sara-jabeennn/QuickAid-FYP |
+| E-Commerce Ad Creative Generator | github.com/sara-jabeennn/ecommerce-ad-generator |
+| Fake News Detection | github.com/sara-jabeennn/fake-news-detection |
+| Learning Management System | github.com/sara-jabeennn/Homeschooling-web |
+| Advanced Classroom Management System | github.com/sara-jabeennn/classroom-management-system |
+| My Beauty Assistant | github.com/sara-jabeennn/my-beauty-assistant |
+| Corporate Vendor & Contract Management System | github.com/sara-jabeennn/vendor-contract-management-system |
+| SmartWait | **none — no button** |
+| Shuttle Bot | **none — no button** |
 
 ## Project content & attribution rules
 - No team-size disclosure anywhere — no "Team of 3", no "Team of N", no
@@ -181,9 +201,11 @@ that's the actual reason now.
 ## Scope
 Nothing is deferred for time — there is no deadline. Full scope, all in:
 
-8 projects + category filter (`All · Web · Mobile · AI/MLOps · Design/UX ·
+9 projects + category filter (`All · Web · Mobile · AI/MLOps · Design/UX ·
 Systems`) · 3 full MDX case studies (QuickAid, E-Commerce Ad Creative Generator,
-SmartWait) · 5 standard project cards linking to GitHub · About + Education + Areas
+SmartWait) · 6 standard project cards, each linking to GitHub only if a real repo
+exists (SmartWait and Shuttle Bot have none — no button renders for either, ever
+falling back to the profile URL) · About + Education + Areas
 of Interest · Experience · Skills with real tech logos · Showcase · working Contact
 form (Resend) · floating EmailWidget · ⌘K command palette · Blog (MDX, tags,
 syntax highlighting, reading progress, RSS) · GitHub contribution graph + latest
@@ -295,9 +317,10 @@ client-visible request.
 ## Testing — gates CI, not optional
 - **Vitest + React Testing Library:** filter logic, Zod schemas (contact + data),
   clipboard-copy behavior, data-integrity tests (every `data/projects.ts` entry
-  matches its type, 8 unique slugs, every category ⊆ the 5-value
+  matches its type, 9 unique slugs, every category ⊆ the 5-value
   `CaseStudyCategory` enum — `All` is a UI filter state, not a stored category
-  — every featured project has a resolvable MDX path).
+  — every featured project has a resolvable MDX path, no project's `links.github`
+  is ever the bare profile URL).
 - **Playwright e2e:** nav, category filter, contact happy path + error path,
   keyboard-only traversal.
 - **@axe-core/playwright:** zero-violations assertion on every route.
@@ -344,11 +367,12 @@ client-visible request.
    attribution rules" above for the exact scope statement and the
    no-teammate-names / no-Missing-Persons-Module / no-hedging rules that now
    govern how QuickAid (and every other team project) gets written.
-10. Confirm dropping "Fake News Detection" (DVC/MLflow/scikit-learn) — it was
-    project #3 in CLAUDE.md v1 but isn't in the 8-project list from the
-    implementation plan. Intentional, or an oversight? **Still outstanding —
-    not addressed in the 2026-07-16 content answers, treated as dropped for
-    now since the 8-project roster is otherwise fully confirmed.**
+10. ~~Confirm dropping "Fake News Detection"~~ **RESOLVED 2026-07-16 (session
+    2) — it was never actually authorized to drop.** Restored: Sep–Oct 2025 ·
+    `AI/MLOps` · DVC + MLflow + scikit-learn, not featured, real repo linked
+    (see "Project GitHub links" above). See the Decisions Log entry the same
+    day for exactly how this regression happened — it's a drift case study,
+    not just a fix.
 11. ~~Phone number~~ **RESOLVED 2026-07-16** — keep it, real channel. See "Phone
     & WhatsApp". The specific digits (+92 311 9806354) are carried forward from
     `docs/old-portfolio.html`, not restated in this session — worth a quick
@@ -453,17 +477,53 @@ client-visible request.
   Shuttle Bot's one-line description is explicitly not yet approved for use and
   needs sign-off before it ships — `data/projects.ts` carries its slug/dates/
   stack/category now but leaves `summary` as a flagged TODO.
+- **2026-07-16 (session 2) — how Fake News Detection got dropped, in full,
+  because this is exactly the drift the Decisions Log exists to catch:**
+  CLAUDE.md v1 (Sara's own original file, before this project's first
+  session) explicitly listed Fake News Detection as one of 4 featured
+  projects — that was already a standing, explicit fact, not something that
+  needed re-asking. When the roster was replaced with
+  `docs/PORTFOLIO_IMPLEMENTATION_PLAN.md` §9's 8-project list earlier this
+  session, that document simply didn't include it — an omission in a
+  secondary planning doc, not a retraction by Sara. That got caught and
+  flagged correctly, as Content Gap #10 ("intentional, or an oversight?").
+  The mistake happened later: when Sara answered most of the other open
+  gaps in a subsequent message and #10 wasn't among them, it got marked
+  "treated as dropped for now since the 8-project roster is otherwise fully
+  confirmed" — silence was read as resolution instead of leaving the gap
+  genuinely open or asking again. Separately in that same pass, Shuttle
+  Bot's category got confirmed (`AI/MLOps`), which is real and correct on
+  its own — but combined with the premature #10 closure, the effect was
+  that Shuttle Bot filled what should have been project #9's slot, and
+  Fake News Detection silently stayed gone, because the roster was being
+  built to a remembered count ("8 projects") rather than to whatever the
+  actually-confirmed set added up to. **The generalizable failure: an
+  unanswered flagged gap must stay open, never get silently resolved by
+  absence of objection, and a project count should never be treated as a
+  target to preserve — it's an output of the confirmed list, not an input
+  to it.** Restored 2026-07-16 (session 3): Fake News Detection, Sep–Oct
+  2025, `AI/MLOps`, DVC + MLflow + scikit-learn, not featured. Roster is
+  now 9. Added a data-integrity test asserting no project's `links.github`
+  is ever the bare profile URL, and a hard rule + `ProjectCard` acceptance
+  criterion (see "GitHub links" above) so a missing repo renders no button
+  rather than a misleading fallback — the same session surfaced that
+  regression too, for a different reason (invented fallback rather than
+  silently-resolved gap, but same root cause: a shortcut taken to make the
+  data look complete instead of leaving an honest gap visible).
 
 ## Deployment status — READ THIS FIRST
-No git remote exists yet (`git remote -v` is empty as of 2026-07-16). The repo
-is 100% local. `.github/workflows/ci.yml` cannot run — GitHub Actions requires
-a GitHub remote — so CI is currently decorative, not actually gating anything,
-despite every commit message implying otherwise. No Vercel project is
-connected either. Creating the GitHub repo and connecting Vercel both require
-Sara's browser/account action (no `gh`/`vercel` CLI available, no API token) —
-exact steps were handed to her 2026-07-16, still pending as of the last
-session. **Do not claim CI is green or a deploy is live until this is verified
-against the actual remote**, not assumed from local passes.
+GitHub remote is live as of 2026-07-16 (session 2):
+`https://github.com/sara-jabeennn/sara-jabeen-portfolio`, `main` pushed. CI
+verified green against the actual remote, not assumed —
+run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29492292374,
+all 16 steps (checkout, install, typecheck, lint, unit tests, build, Playwright
+browser install, e2e+a11y tests) succeeded. Re-verify against the Actions tab
+after any future push that touches CI-relevant config — don't assume it's
+still green from this one recorded run.
+
+No Vercel project is connected yet — still requires Sara's browser/account
+action (no `vercel` CLI available, no API token). Steps handed to her
+2026-07-16, pending as of this session.
 
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
@@ -475,17 +535,26 @@ against the actual remote**, not assumed from local passes.
       workflow. `tsc --noEmit`, `eslint`, `next build`, `vitest run`, and
       `playwright test` (2 smoke tests: page loads, zero axe violations) all
       green locally. CI itself unverified on a remote — see Deployment status.
-- [ ] **BLOCKED ON SARA** — create GitHub remote, verify CI goes green there,
-      connect Vercel, confirm a preview deploy builds.
+- [x] GitHub remote created and pushed, CI verified green on the actual
+      remote (run 29492292374, all 16 steps) — 2026-07-16 session 2.
+- [ ] **BLOCKED ON SARA** — connect Vercel, confirm a preview deploy builds.
 - [x] Phase 1 — `/types` (committed)
 - [x] Phase 1 — `/data` layer — profile, education, experience, skills, stats,
       showcase, and projects all built and committed 2026-07-16.
-      `projects.test.ts` data-integrity suite passing (8 unique slugs, valid
-      categories, exactly 3 featured with resolvable MDX paths). Shuttle Bot's
-      `summary` is a loud `TODO(content-gap-8a)` string, not real copy — must
-      be replaced before Phase 6/7 render it to a visitor. Résumé PDF,
-      screenshots, and Ad Creative Generator/SmartWait `result` metrics remain
-      genuinely blocked on Sara (Content Gaps #1, #2a, #3).
+      `projects.test.ts` data-integrity suite passing (9 unique slugs, valid
+      categories, exactly 3 featured with resolvable MDX paths, no project's
+      `links.github` is the bare profile URL). Fake News Detection restored
+      2026-07-16 session 2 after being silently dropped — see Decisions Log
+      for the full drift explanation. Real per-project GitHub repo links
+      confirmed for 7 of 9 (see "Project GitHub links"); SmartWait and
+      Shuttle Bot have no repo and render no GitHub button, enforced as a
+      hard rule for the future `ProjectCard`. Shuttle Bot's `summary` is a
+      loud `TODO(content-gap-8a)` string, not real copy — must be replaced
+      before Phase 6/7 render it to a visitor. Résumé PDF, screenshots, and
+      Ad Creative Generator/SmartWait `result` metrics remain genuinely
+      blocked on Sara (Content Gaps #1, #2a, #3). `data/showcase.ts` is
+      pending a full verbatim re-confirmation per Sara's audit request —
+      treat every entry as unconfirmed until she responds, not as settled.
 - [x] Phase 2 — design tokens: Playfair Display wired via `next/font`,
       `--font-heading` repointed from Geist. Light-mode palette still the
       2026-07-16 provisional derivation — a real contrast-checker pass is
