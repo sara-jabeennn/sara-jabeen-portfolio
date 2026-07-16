@@ -200,8 +200,10 @@ requested.)
 ## Folder structure
 ```
 app/
-  (site sections or routed pages — About, Experience, Skills, Showcase, Contact;
-   finalized in Phase 2/3, single scrolling page vs. routed TBD there)
+  Home, About, Experience, Skills, Showcase, and Contact are anchored sections
+  on one scrolling page (app/page.tsx). Case Studies and Blog are standalone
+  routed pages. Locked in Phase 2 (feature/root-shell), matches the
+  implementation plan's nav model exactly.
   case-studies/[slug]/page.tsx
   blog/[slug]/page.tsx
   api/contact/route.ts
@@ -419,6 +421,22 @@ client-visible request.
   Persons Module still never appears, but the reasoning changed: it's excluded
   because it can't be explained in interview depth, not because of attribution
   — that's now the actual test for what any team project includes.
+- **2026-07-16** — Locked the nav model: Home/About/Experience/Skills/Showcase/
+  Contact as anchored sections on one scrolling page, Case Studies/Blog as
+  routed pages. Matches the implementation plan, resolves the "TBD" left in
+  the folder structure since Phase 0.
+- **2026-07-16** — Discovered neither Lucide nor Simple Icons ships a LinkedIn
+  brand mark in the installed versions (Simple Icons dropped it after a
+  trademark enforcement request; Lucide never carried one). Rather than add a
+  new icon dependency, `LinkedInGlyph` inlines the standard glyph locally in
+  `components/icons`; GitHub renders via Simple Icons' `siGithub` the same
+  way. `SocialLink.lucideIcon` renamed to `icon` to stop implying both were
+  Lucide.
+- **2026-07-16** — Fixed a real a11y bug the Phase 0 axe smoke test caught
+  once the root shell mounted: shadcn's vendored `CommandDialog` rendered its
+  sr-only `DialogHeader` as a sibling of `DialogContent` rather than inside
+  it, leaving unlandmarked content in the DOM even while the palette was
+  closed. Moved it inside `DialogContent` in `components/ui/command.tsx`.
 - **2026-07-16** — Added phone/WhatsApp as a real contact channel (recruiters in
   Pakistan often reach out on WhatsApp first). Scoped tightly: Contact section
   only, `tel:` + click-to-copy + `wa.me` link, explicitly excluded from
@@ -468,9 +486,16 @@ against the actual remote**, not assumed from local passes.
       be replaced before Phase 6/7 render it to a visitor. Résumé PDF,
       screenshots, and Ad Creative Generator/SmartWait `result` metrics remain
       genuinely blocked on Sara (Content Gaps #1, #2a, #3).
-- [ ] Phase 2 — design tokens (Tailwind `@theme`, fonts, light-mode contrast check)
-- [ ] Phase 2 — root shell: Navbar, Footer, ThemeToggle, EmailWidget mount, palette
-      shell
+- [x] Phase 2 — design tokens: Playfair Display wired via `next/font`,
+      `--font-heading` repointed from Geist. Light-mode palette still the
+      2026-07-16 provisional derivation — a real contrast-checker pass is
+      still outstanding, don't treat it as verified.
+- [x] Phase 2 — root shell: Navbar (anchored + routed links, active-section
+      highlight, mobile menu), Footer (socials, no phone), ThemeToggle,
+      EmailWidget (fully built, not just a shell - collapsed/expanded, copy,
+      mailto, keyboard, reduced-motion), CommandPalette (shell only, Phase 10
+      adds actions). `tsc`/`eslint`/`vitest`/`playwright`+axe/`next build` all
+      green locally. Nav model locked (see Decisions Log).
 - [ ] Phase 3 — Hero + StatCounter
 - [ ] Phase 4 — About + EducationCard + AreaOfInterestTag
 - [ ] Phase 5 — Experience (blocked on Content Gaps item 13)

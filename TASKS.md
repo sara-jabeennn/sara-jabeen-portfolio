@@ -242,13 +242,15 @@ anywhere on the site.
 `feat: add phone and whatsapp links to contact section`.
 
 ### `feature/email-widget`
-**Done when:** `EmailWidget` matches the CLAUDE.md spec exactly — collapsed FAB,
-expanded card with copy-to-clipboard + `mailto:`, keyboard accessible (Enter/
-Space/Escape), reduced-motion aware, collapses to icon-only under 768px, never
-overlaps footer or contact form.
-**Files:** `components/widgets/EmailWidget.tsx`.
+**Already built in `feature/root-shell` (Phase 2, 2026-07-16)** — collapsed
+FAB, expanded card with copy-to-clipboard + `mailto:`, Escape/click-outside to
+close, reduced-motion aware. Remaining for this phase: confirm the
+responsive collapse under 768px and the never-overlaps-footer/contact-form
+behavior once Contact (this phase) actually exists to check against.
+**Files:** `components/widgets/EmailWidget.tsx` (exists, revisit only).
 **Data depended on:** `data/profile.ts` (email).
-**Commits:** `feat: add floating email widget`.
+**Commits:** `fix: adjust email widget for contact section layout` (only if
+something actually needs to change once Contact is built).
 
 ---
 
