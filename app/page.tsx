@@ -1,11 +1,19 @@
-// Placeholder until Phase 3 (Hero) and onward replace this with the real
-// homepage sections. No <main> here - the root layout already provides one.
+import { Hero } from "@/components/sections/Hero";
+import { About } from "@/components/sections/About";
+import { Experience } from "@/components/sections/Experience";
+import { Skills } from "@/components/sections/Skills";
+import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { Showcase } from "@/components/sections/Showcase";
+
 export default function Home() {
   return (
-    <div className="flex flex-1 items-center justify-center px-6 py-24">
-      <h1 className="font-heading text-lg italic text-muted-foreground">
-        Sections land in Phase 3 onward.
-      </h1>
-    </div>
+    <>
+      <Hero />
+      <About />
+      <Experience />
+      <Skills />
+      <FeaturedProjects />
+      <Showcase />
+    </>
   );
 }
