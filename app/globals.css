@@ -39,6 +39,10 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  /* Deep wine/plum - decorative use only (gradients, glows, particles,
+     borders). Never used as text - see CLAUDE.md palette table for why. */
+  --color-wine: var(--wine-deep);
+  --color-plum: var(--plum-deep);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -49,78 +53,85 @@
 }
 
 /*
- * Warm dark/light palette from CLAUDE.md — retheme mandate: zero default
- * shadcn zinc/slate/neutral tokens survive past `shadcn init`. Dark values are
- * locked; light values are a provisional derivation pending a real contrast
- * check in the Phase 2 design-tokens task (see CLAUDE.md Decisions Log).
+ * Wine/plum/charcoal/off-white palette from CLAUDE.md, replacing the earlier
+ * warm peach palette entirely (2026-07-16). --primary and --chart-2 hold the
+ * text-safe tint/deep variant appropriate to each theme (lighter tint on dark
+ * backgrounds, the deep original on light backgrounds - both verified AA,
+ * see CLAUDE.md palette table for exact ratios). --wine-deep/--plum-deep are
+ * the saturated originals, reserved for decorative surfaces/gradients/glows/
+ * borders only, never for text.
  */
 :root {
-  --background: #faf9f6;
-  --foreground: #18171c;
-  --card: #f3f1ec;
-  --card-foreground: #18171c;
-  --popover: #f3f1ec;
-  --popover-foreground: #18171c;
-  --primary: #c9805e;
-  --primary-foreground: #faf9f6;
-  --secondary: #ece8e0;
-  --secondary-foreground: #18171c;
-  --muted: #ece8e0;
-  --muted-foreground: #5c5769;
-  --accent: #e9e4da;
-  --accent-foreground: #18171c;
+  --background: #f7f5f6;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #8b3d55;
+  --primary-foreground: #f1f2f2;
+  --secondary: #efeaec;
+  --secondary-foreground: #1a1a1a;
+  --muted: #efeaec;
+  --muted-foreground: #6b6567;
+  --accent: #efeaec;
+  --accent-foreground: #1a1a1a;
   --destructive: #c0392b;
-  --border: #e5e1d8;
-  --input: #e5e1d8;
-  --ring: #c9805e;
-  --chart-1: #c9805e;
-  --chart-2: #8b5fa3;
-  --chart-3: #2f9d85;
-  --chart-4: #5c5769;
-  --chart-5: #18171c;
+  --border: #e5e0e2;
+  --input: #e5e0e2;
+  --ring: #8b3d55;
+  --chart-1: #8b3d55;
+  --chart-2: #5e2c4e;
+  --chart-3: #d0839b;
+  --chart-4: #6b6567;
+  --chart-5: #1a1a1a;
+  --wine-deep: #8b3d55;
+  --plum-deep: #5e2c4e;
   --radius: 0.75rem;
-  --sidebar: #f3f1ec;
-  --sidebar-foreground: #18171c;
-  --sidebar-primary: #c9805e;
-  --sidebar-primary-foreground: #faf9f6;
-  --sidebar-accent: #e9e4da;
-  --sidebar-accent-foreground: #18171c;
-  --sidebar-border: #e5e1d8;
-  --sidebar-ring: #c9805e;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #8b3d55;
+  --sidebar-primary-foreground: #f1f2f2;
+  --sidebar-accent: #efeaec;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e5e0e2;
+  --sidebar-ring: #8b3d55;
 }
 
 .dark {
-  --background: #0a0a0f;
-  --foreground: #f0ede8;
-  --card: #1e1e2e;
-  --card-foreground: #f0ede8;
-  --popover: #1e1e2e;
-  --popover-foreground: #f0ede8;
-  --primary: #e8b4a0;
-  --primary-foreground: #0a0a0f;
-  --secondary: #252535;
-  --secondary-foreground: #f0ede8;
-  --muted: #1a1a24;
-  --muted-foreground: #a8a4b8;
-  --accent: #252535;
-  --accent-foreground: #f0ede8;
+  --background: #1a1a1a;
+  --foreground: #f1f2f2;
+  --card: #252525;
+  --card-foreground: #f1f2f2;
+  --popover: #252525;
+  --popover-foreground: #f1f2f2;
+  --primary: #d0839b;
+  --primary-foreground: #1a1a1a;
+  --secondary: #2e2e2e;
+  --secondary-foreground: #f1f2f2;
+  --muted: #1f1f1f;
+  --muted-foreground: #a3a0a1;
+  --accent: #2e2e2e;
+  --accent-foreground: #f1f2f2;
   --destructive: #e57373;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #e8b4a0;
-  --chart-1: #e8b4a0;
-  --chart-2: #c9a0dc;
-  --chart-3: #7dd3c0;
-  --chart-4: #a8a4b8;
-  --chart-5: #f0ede8;
-  --sidebar: #1e1e2e;
-  --sidebar-foreground: #f0ede8;
-  --sidebar-primary: #e8b4a0;
-  --sidebar-primary-foreground: #0a0a0f;
-  --sidebar-accent: #252535;
-  --sidebar-accent-foreground: #f0ede8;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #e8b4a0;
+  --border: rgba(241, 242, 242, 0.08);
+  --input: rgba(241, 242, 242, 0.12);
+  --ring: #d0839b;
+  --chart-1: #d0839b;
+  --chart-2: #b080aa;
+  --chart-3: #8b3d55;
+  --chart-4: #a3a0a1;
+  --chart-5: #f1f2f2;
+  --wine-deep: #8b3d55;
+  --plum-deep: #5e2c4e;
+  --sidebar: #252525;
+  --sidebar-foreground: #f1f2f2;
+  --sidebar-primary: #d0839b;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #2e2e2e;
+  --sidebar-accent-foreground: #f1f2f2;
+  --sidebar-border: rgba(241, 242, 242, 0.08);
+  --sidebar-ring: #d0839b;
 }
 
 @layer base {
@@ -129,8 +140,38 @@
   }
   body {
     @apply bg-background text-foreground;
+    position: relative;
   }
   html {
     @apply font-sans;
   }
+}
+
+/* Film-grain noise overlay, ported from docs/old-portfolio.html (body::before,
+   ~line 40). Fixed, behind content, non-interactive. Purely decorative. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleY(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.animate-scroll-pulse {
+  transform-origin: top;
+  animation: scroll-pulse 2s ease-in-out infinite;
 }
