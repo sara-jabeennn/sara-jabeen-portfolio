@@ -6,8 +6,19 @@ import { formatDateRange } from "@/lib/format-date";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
-      <div className="flex items-start justify-between gap-2">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+      {/* Diagonal gradient sweep on hover, ported from
+          docs/old-portfolio.html's .project-card::before (~line 176). */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(135deg, color-mix(in oklab, var(--color-wine) 10%, transparent), transparent)",
+        }}
+      />
+
+      <div className="relative flex items-start justify-between gap-2">
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           {formatDateRange(project.dateStart, project.dateEnd)}
         </p>

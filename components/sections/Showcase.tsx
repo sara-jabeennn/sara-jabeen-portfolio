@@ -13,7 +13,7 @@ export function Showcase() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {showcase.map((entry, index) => (
             <Reveal key={entry.id} delay={index * 0.04}>
-              <ShowcaseEntry entry={entry} />
+              <ShowcaseEntry entry={entry} glow={index % 2 === 0 ? "wine" : "plum"} />
             </Reveal>
           ))}
         </div>

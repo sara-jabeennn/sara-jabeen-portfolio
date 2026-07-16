@@ -1,6 +1,7 @@
 import { Award, Trophy, BookOpen, Users, Briefcase } from "lucide-react";
 import type { ShowcaseEntry as ShowcaseEntryData, ShowcaseEntryType } from "@/types";
 import { formatMonthYear } from "@/lib/format-date";
+import { CardGlow } from "@/components/ui/CardGlow";
 
 const TYPE_ICON: Record<ShowcaseEntryType, typeof Award> = {
   certification: Award,
@@ -18,12 +19,19 @@ const TYPE_LABEL: Record<ShowcaseEntryType, string> = {
   "client-work": "Client Work",
 };
 
-export function ShowcaseEntry({ entry }: { entry: ShowcaseEntryData }) {
+export function ShowcaseEntry({
+  entry,
+  glow = "wine",
+}: {
+  entry: ShowcaseEntryData;
+  glow?: "wine" | "plum";
+}) {
   const Icon = TYPE_ICON[entry.type];
 
   return (
-    <article className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5">
-      <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+    <article className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5">
+      <CardGlow color={glow} />
+      <div className="relative flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
         <Icon className="size-4" aria-hidden="true" />
       </div>
       <div>

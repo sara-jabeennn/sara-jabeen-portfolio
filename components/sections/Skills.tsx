@@ -13,7 +13,7 @@ export function Skills() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((group, index) => (
             <Reveal key={group.category} delay={index * 0.05}>
-              <SkillGroup group={group} />
+              <SkillGroup group={group} glow={index % 2 === 0 ? "wine" : "plum"} />
             </Reveal>
           ))}
         </div>

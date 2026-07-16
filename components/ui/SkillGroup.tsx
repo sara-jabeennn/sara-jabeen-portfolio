@@ -1,11 +1,19 @@
 import type { SkillCategory } from "@/types";
 import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
 import { SIMPLE_ICONS } from "@/components/icons/simple-icons-map";
+import { CardGlow } from "@/components/ui/CardGlow";
 
-export function SkillGroup({ group }: { group: SkillCategory }) {
+export function SkillGroup({
+  group,
+  glow = "wine",
+}: {
+  group: SkillCategory;
+  glow?: "wine" | "plum";
+}) {
   return (
-    <article className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
-      <div className="flex items-baseline justify-between">
+    <article className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+      <CardGlow color={glow} />
+      <div className="relative flex items-baseline justify-between">
         <h3 className="font-heading text-lg">{group.category}</h3>
         <span className="font-mono text-xs text-muted-foreground">
           {group.skills.length}
