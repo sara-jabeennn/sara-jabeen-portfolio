@@ -15,7 +15,7 @@ properly rather than to a date. Deliverables: GitHub repo + live Vercel link.
 
 ## Who I am (use this, don't invent)
 Sara Jabeen — Full-Stack Software Engineer, AI-Integrated Web & Mobile Applications.
-BS Computer Science, FAST-NUCES Islamabad — **graduated**, session 2022–2026,
+BS Computer Science, FAST-NUCES Islamabad — **graduated**, session 2021–2026,
 complete. Open to full-stack / software engineering roles (remote or
 Islamabad-based).
 - GitHub: github.com/sara-jabeennn (three n's — correct, not a typo)
@@ -55,7 +55,7 @@ Full-Stack Development · Mobile Development · AI Integration · MLOps · UX De
 Systems Programming
 
 ### Education
-FAST-NUCES Islamabad · BS Computer Science · 2022–2026 · **Complete**. Focus:
+FAST-NUCES Islamabad · BS Computer Science · 2021–2026 · **Complete**. Focus:
 full-stack development, AI-integrated applications. No GPA, no roll number, no
 section — that's transcript material, not portfolio material.
 
@@ -149,6 +149,9 @@ staggered reveal on load. Nothing more.
   does not get filled with a placeholder.
 - WCAG AA contrast minimum, verified in both themes.
 - Target Lighthouse 95+ on mobile across all four categories.
+- **`ShowcaseEntry.type` "certification" means an external body issued it**
+  (Coursera, a university, a certifying org). Coursework is `"coursework"` —
+  never relabel one as the other, they mean different things to a recruiter.
 - **No profile-URL fallback for a project's GitHub link, ever.** If a project
   has no confirmed repo, `links.github` is omitted entirely and `ProjectCard`
   must render no GitHub button for it — not a button pointing at the profile.
@@ -384,11 +387,13 @@ client-visible request.
 14. At least one real blog post, or confirm shipping the blog index empty at
     launch (explicitly allowed by the implementation plan). **Still
     outstanding.**
-15. Showcase section: `docs/old-portfolio.html` has real certifications/
-    achievements (Fauji Foundation Scholarship, KIPS Certificate of Merit, A+
-    FYP-1, Coursera/MLOps/UX coursework certs) — proceeding to reuse these as
-    of 2026-07-16 (not explicitly objected to across two sessions now), still
-    flagged here in case that's wrong.
+15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4)** — all 7 entries
+    confirmed, kept. Types corrected: MLOps Intensive Coursework and UX
+    Engineering Coursework are `coursework` (not `certification` — no external
+    body issued them), dated 2021-01. University Technical Projects &
+    Collaboration is also `coursework`, dated 2026. Google Sheets/Coursera
+    stays `certification`, 2021-10 (Coursera did issue that one). See the
+    certification-vs-coursework hard rule.
 
 ## Decisions Log
 - **2026-07-16** — Dropped the 19 July deadline; no external constraint requires
@@ -510,6 +515,19 @@ client-visible request.
   regression too, for a different reason (invented fallback rather than
   silently-resolved gap, but same root cause: a shortcut taken to make the
   data look complete instead of leaving an honest gap visible).
+
+- **2026-07-16 (session 4)** — Corrected the degree duration everywhere: it's
+  2021–2026, not 2022–2026. Every doc and data file had the wrong start year.
+  Fixed in `data/education.ts`, the "Who I am" and "Education" sections above,
+  and `TASKS.md`. Earlier Decisions Log entries that mention "2022–2026" are
+  left as-is — they're an accurate record of what was believed at the time,
+  not the current fact; this entry is the correction, not a rewrite of history.
+- **2026-07-16 (session 4)** — Showcase confirmed in full: all 7 entries kept.
+  Corrected 3 of them from `certification` to `coursework` (MLOps Intensive
+  Coursework, UX Engineering Coursework, University Technical Projects &
+  Collaboration) since none were issued by an external body — added
+  `coursework` to `ShowcaseEntryType` and a hard rule that the two are never
+  interchangeable. Content Gap #15 resolved.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):

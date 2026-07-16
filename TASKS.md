@@ -121,7 +121,7 @@ reduced-motion (renders final value immediately, no count-up), values come from
 
 ### `feature/about-section`
 **Done when:** bio renders as provided in `CLAUDE.md` (graduated framing, not
-"final-year"), `EducationCard` shows FAST-NUCES/BS CS/2022–2026/Complete,
+"final-year"), `EducationCard` shows FAST-NUCES/BS CS/2021–2026/Complete,
 freelance-writing line present, `AreaOfInterestTag` row renders the six tags.
 **Files:** `components/sections/About.tsx`, `components/cards/EducationCard.tsx`,
 `components/ui/AreaOfInterestTag.tsx`.
