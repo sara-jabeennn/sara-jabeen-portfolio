@@ -10,9 +10,24 @@ const VALID_CATEGORIES: CaseStudyCategory[] = [
   "Systems",
 ];
 
+const PROFILE_URL = "https://github.com/sara-jabeennn";
+
 describe("projects data integrity", () => {
-  it("has exactly 8 projects", () => {
-    expect(projects).toHaveLength(8);
+  it("has exactly 9 projects", () => {
+    expect(projects).toHaveLength(9);
+  });
+
+  it("never falls back to the bare profile URL for a project's github link", () => {
+    // Regression guard: this exact fallback previously masked a missing repo
+    // link and, combined with an unresolved content gap, silently dropped a
+    // real project to keep the count looking right. See CLAUDE.md Decisions
+    // Log, 2026-07-16.
+    for (const project of projects) {
+      if (project.links.github) {
+        expect(project.links.github).not.toBe(PROFILE_URL);
+        expect(project.links.github.startsWith(`${PROFILE_URL}/`)).toBe(true);
+      }
+    }
   });
 
   it("has unique slugs", () => {

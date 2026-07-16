@@ -1,10 +1,10 @@
 import type { Project } from "@/types";
 
-// Per-repo GitHub URLs aren't confirmed yet - every link falls back to the
-// profile URL rather than inventing repo names. Swap in exact repo links
-// once available.
-const GITHUB_PROFILE = "https://github.com/sara-jabeennn";
-
+// No profile-URL fallback here, ever. If a project has no confirmed repo,
+// links.github is simply omitted - ProjectCard must render no GitHub button
+// in that case rather than defaulting to the profile URL. See CLAUDE.md
+// "GitHub links" hard rule and the 2026-07-16 Decisions Log entry explaining
+// why this replaced the earlier GITHUB_PROFILE fallback constant.
 export const projects: Project[] = [
   {
     slug: "quickaid",
@@ -16,7 +16,7 @@ export const projects: Project[] = [
     dateStart: "2025-08",
     dateEnd: "2026-05",
     stack: ["Kotlin", "Firebase", "Bluetooth Mesh Networking", "Android"],
-    links: { github: GITHUB_PROFILE },
+    links: { github: "https://github.com/sara-jabeennn/QuickAid-FYP" },
     caseStudyMdxPath: "content/projects/quickaid.mdx",
   },
   {
@@ -38,8 +38,22 @@ export const projects: Project[] = [
       "Prometheus",
       "Grafana",
     ],
-    links: { github: GITHUB_PROFILE },
+    links: {
+      github: "https://github.com/sara-jabeennn/ecommerce-ad-generator",
+    },
     caseStudyMdxPath: "content/projects/ad-creative-generator.mdx",
+  },
+  {
+    slug: "fake-news-detection",
+    title: "Fake News Detection",
+    summary:
+      "Full MLOps pipeline for fake news detection, with DVC for data versioning, MLflow for experiment tracking, and scikit-learn models.",
+    categories: ["AI/MLOps"],
+    featured: false,
+    dateStart: "2025-09",
+    dateEnd: "2025-10",
+    stack: ["DVC", "MLflow", "scikit-learn"],
+    links: { github: "https://github.com/sara-jabeennn/fake-news-detection" },
   },
   {
     slug: "smartwait",
@@ -51,22 +65,8 @@ export const projects: Project[] = [
     dateStart: "2025-11",
     dateEnd: "2025-12",
     stack: ["Figma", "UX Research", "UI Design", "Accessibility"],
-    links: { github: GITHUB_PROFILE },
+    links: {}, // no repo - a UX/Figma prototype, nothing to link
     caseStudyMdxPath: "content/projects/smartwait.mdx",
-  },
-  {
-    slug: "shuttle-bot",
-    // TODO(content-gap-8a): summary is explicitly not approved for use yet -
-    // needs Sara's sign-off before this ships. Do not replace this string
-    // with invented copy. See CLAUDE.md Content Gaps #8a.
-    summary: "TODO(content-gap-8a): description pending Sara's sign-off — see CLAUDE.md Content Gaps.",
-    title: "Shuttle Bot — Autonomous Sports Robotics System",
-    categories: ["AI/MLOps"],
-    featured: false,
-    dateStart: "2026-02",
-    dateEnd: "2026-05",
-    stack: ["Machine Learning", "Computer Vision", "Robotics Control"],
-    links: { github: GITHUB_PROFILE },
   },
   {
     slug: "my-beauty-assistant",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     dateStart: "2025-04",
     dateEnd: "2025-06",
     stack: ["MongoDB", "Express", "React", "Node.js"],
-    links: { github: GITHUB_PROFILE },
+    links: { github: "https://github.com/sara-jabeennn/my-beauty-assistant" },
   },
   {
     slug: "learning-management-system",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     dateStart: "2025-02",
     dateEnd: "2025-03",
     stack: ["React.js", "Node.js", "MongoDB"],
-    links: { github: GITHUB_PROFILE },
+    links: { github: "https://github.com/sara-jabeennn/Homeschooling-web" },
   },
   {
     slug: "corporate-vendor-contract-management",
@@ -102,7 +102,9 @@ export const projects: Project[] = [
     dateStart: "2024-11",
     dateEnd: "2024-12",
     stack: ["MySQL", "Node.js", "Stored Procedures", "Triggers"],
-    links: { github: GITHUB_PROFILE },
+    links: {
+      github: "https://github.com/sara-jabeennn/vendor-contract-management-system",
+    },
   },
   {
     slug: "advanced-classroom-management-system",
@@ -114,6 +116,23 @@ export const projects: Project[] = [
     dateStart: "2023-06",
     dateEnd: "2023-08",
     stack: ["C++", "Object-Oriented Programming", "File Handling"],
-    links: { github: GITHUB_PROFILE },
+    links: {
+      github: "https://github.com/sara-jabeennn/classroom-management-system",
+    },
+  },
+  {
+    slug: "shuttle-bot",
+    title: "Shuttle Bot — Autonomous Sports Robotics System",
+    // TODO(content-gap-8a): summary is explicitly not approved for use yet -
+    // needs Sara's sign-off before this ships. Do not replace this string
+    // with invented copy. See CLAUDE.md Content Gaps #8a.
+    summary:
+      "TODO(content-gap-8a): description pending Sara's sign-off — see CLAUDE.md Content Gaps.",
+    categories: ["AI/MLOps"],
+    featured: false,
+    dateStart: "2026-02",
+    dateEnd: "2026-05",
+    stack: ["Machine Learning", "Computer Vision", "Robotics Control"],
+    links: {}, // no repo
   },
 ];
