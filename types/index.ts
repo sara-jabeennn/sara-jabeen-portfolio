@@ -5,5 +5,4 @@ export * from "./education";
 export * from "./profile";
 export * from "./stats";
 export * from "./showcase";
-export * from "./blog";
 export * from "./contact";
