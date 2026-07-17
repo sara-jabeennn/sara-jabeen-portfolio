@@ -18,7 +18,7 @@ export function ProjectMediumCard({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-colors hover:border-primary">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary">
       <CardGlow color={glow} />
       <CardSheen />
       <div className="relative flex flex-1 flex-col">
@@ -31,7 +31,7 @@ export function ProjectMediumCard({
           {project.stack.slice(0, 4).map((tech) => (
             <li
               key={tech}
-              className="rounded-md bg-background px-2 py-1 font-mono text-xs text-muted-foreground"
+              className="pill-hover rounded-md border border-transparent bg-background px-2 py-1 font-mono text-xs text-muted-foreground"
             >
               {tech}
             </li>

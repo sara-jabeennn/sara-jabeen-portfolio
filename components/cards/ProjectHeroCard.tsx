@@ -56,7 +56,7 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
           ? undefined
           : { rotateX, rotateY, transformPerspective: 800 }
       }
-      className="group relative overflow-hidden rounded-3xl border-2 border-border bg-card p-8 transition-colors hover:border-primary sm:p-12"
+      className="card-depth group relative overflow-hidden rounded-3xl border-2 border-border bg-card p-8 transition-colors hover:border-primary sm:p-12"
     >
       <CardGlow color="wine" />
       <CardSheen />
@@ -93,7 +93,7 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
               <motion.li
                 key={tech}
                 variants={prefersReducedMotion ? undefined : pill}
-                className="rounded-md bg-background px-3 py-1.5 font-mono text-xs text-muted-foreground"
+                className="pill-hover rounded-md border border-transparent bg-background px-3 py-1.5 font-mono text-xs text-muted-foreground"
               >
                 {tech}
               </motion.li>

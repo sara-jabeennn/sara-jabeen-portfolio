@@ -9,6 +9,7 @@ import { stats } from "@/data/stats";
 import { projects } from "@/data/projects";
 import { Reveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { GlowRing } from "@/components/ui/GlowRing";
 import { AreaOfInterestTag } from "@/components/ui/AreaOfInterestTag";
 import { RoleRotator } from "@/components/ui/RoleRotator";
 import { TerminalWidget } from "@/components/ui/TerminalWidget";
@@ -30,8 +31,11 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
       id="top"
       className="relative overflow-hidden px-6 py-24 sm:py-32"
     >
-      {/* Aurora/mesh gradient with scroll parallax - one of the two allowed
-          hero motion effects, the other is the staggered reveal. */}
+      {/* Aurora/mesh gradient - scroll parallax (y, from useScroll) plus a
+          slow ~20s independent drift (x/scale, from animate) layered on the
+          same element. These are different style keys so framer-motion can
+          drive both at once without conflict. Static under reduced motion -
+          both the scroll-linked y and the drift collapse to 0/1. */}
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
@@ -42,6 +46,16 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
             "radial-gradient(45% 40% at 85% 0%, color-mix(in oklab, var(--color-plum) 20%, transparent), transparent 70%), " +
             "radial-gradient(50% 45% at 50% 100%, color-mix(in oklab, var(--color-wine) 10%, transparent), transparent 70%)",
         }}
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : { x: [0, 24, -16, 0], scale: [1, 1.06, 0.98, 1] }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : { duration: 20, repeat: Infinity, ease: "easeInOut" }
+        }
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
@@ -79,12 +93,15 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
           <Reveal delay={0.4}>
             <div className="mt-8 flex flex-wrap gap-3">
               <MagneticButton>
-                <Link
-                  href="/#case-studies"
-                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
-                >
-                  View Projects
-                </Link>
+                <div className="group relative inline-flex">
+                  <GlowRing />
+                  <Link
+                    href="/#case-studies"
+                    className="relative inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
+                  >
+                    View Projects
+                  </Link>
+                </div>
               </MagneticButton>
               {resumeUrl ? (
                 <a

@@ -8,7 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const dateRange = formatDateRange(project.dateStart, project.dateEnd);
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
       {/* Diagonal gradient sweep, ported from docs/old-portfolio.html's
           .project-card::before (~line 176), plus a sheen pass on top. */}
       <div
@@ -48,7 +48,7 @@ export function ProjectCard({ project }: { project: Project }) {
         {project.stack.map((tech) => (
           <li
             key={tech}
-            className="rounded-md bg-background px-2 py-1 font-mono text-xs text-muted-foreground"
+            className="pill-hover rounded-md border border-transparent bg-background px-2 py-1 font-mono text-xs text-muted-foreground"
           >
             {tech}
           </li>

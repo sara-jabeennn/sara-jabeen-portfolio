@@ -12,7 +12,7 @@ export function SkillGroup({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-colors hover:border-primary">
+    <article className="card-depth group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary">
       <CardGlow color={glow} />
       <CardSheen />
       <div className="relative flex items-baseline justify-between">
@@ -29,7 +29,7 @@ export function SkillGroup({
           return (
             <li
               key={skill.name}
-              className="flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted-foreground"
+              className="pill-hover flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 font-mono text-xs text-muted-foreground"
             >
               {icon && <SimpleIconGlyph icon={icon} className="size-3.5" />}
               {skill.name}

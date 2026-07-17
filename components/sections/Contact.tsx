@@ -36,6 +36,7 @@ export function Contact() {
             eyebrow="Contact"
             title="Let's build something"
             accent="great"
+            tone="plum"
           />
           <p className="mt-3 text-muted-foreground">
             Open to full-stack / software engineering roles. Reach out

@@ -7,7 +7,7 @@ import { CardSheen } from "@/components/ui/CardSheen";
 // except a small GitHub link when a real repo exists.
 export function ProjectCompactCard({ project, index }: { project: Project; index: string }) {
   return (
-    <article className="group relative overflow-hidden rounded-xl border-2 border-border bg-card/60 p-4 transition-colors hover:border-primary/70">
+    <article className="card-depth group relative overflow-hidden rounded-xl border-2 border-border bg-card/60 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/70">
       <CardSheen />
       <div className="relative flex items-baseline justify-between gap-2">
         <h4 className="text-sm font-medium">{project.title}</h4>

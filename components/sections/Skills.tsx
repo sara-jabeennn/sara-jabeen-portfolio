@@ -8,7 +8,7 @@ export function Skills() {
     <section id="skills" className="scroll-mt-20 bg-card/40 px-6 py-24">
       <div className="mx-auto max-w-5xl">
         <Reveal>
-          <SectionHeading eyebrow="Technical Skills" title="The tools I" accent="master" />
+          <SectionHeading eyebrow="Technical Skills" title="The tools I" accent="master" tone="plum" />
         </Reveal>
 
         {/* CSS columns (not a uniform grid) so cards of different heights

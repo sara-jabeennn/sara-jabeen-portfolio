@@ -6,6 +6,7 @@ import { Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 import { contactSchema, type ContactFormValues } from "@/lib/schemas/contact";
 import { Button } from "@/components/ui/button";
+import { GlowRing } from "@/components/ui/GlowRing";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -111,14 +112,21 @@ export function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
-        {isSubmitting ? (
-          <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-        ) : (
-          <Send className="size-4" aria-hidden="true" />
-        )}
-        {isSubmitting ? "Sending..." : "Send message"}
-      </Button>
+      <div className="group relative inline-flex w-full sm:w-auto">
+        <GlowRing />
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="relative w-full sm:w-auto"
+        >
+          {isSubmitting ? (
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+          ) : (
+            <Send className="size-4" aria-hidden="true" />
+          )}
+          {isSubmitting ? "Sending..." : "Send message"}
+        </Button>
+      </div>
     </form>
   );
 }

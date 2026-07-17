@@ -8,7 +8,7 @@ export function Experience() {
     <section id="experience" className="scroll-mt-20 bg-card/40 px-6 py-24">
       <div className="mx-auto max-w-4xl">
         <Reveal>
-          <SectionHeading eyebrow="Experience" title="Where I've" accent="worked" />
+          <SectionHeading eyebrow="Experience" title="Where I've" accent="worked" tone="plum" />
         </Reveal>
 
         <div className="mt-8 space-y-6">

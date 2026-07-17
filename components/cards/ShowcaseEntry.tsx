@@ -42,7 +42,7 @@ export function ShowcaseEntry({
 
   if (isAchievement) {
     return (
-      <article className="group relative overflow-hidden rounded-2xl border-2 border-primary/30 bg-card p-6 text-center transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
+      <article className="card-depth group relative overflow-hidden rounded-2xl border-2 border-primary/30 bg-card p-6 text-center transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
         <CardGlow color={glow} />
         <CardSheen />
         <div className="relative">
@@ -64,7 +64,7 @@ export function ShowcaseEntry({
   // and an accent border-brighten on hover per the "every card" rule, just
   // without the loud glow/emoji treatment that would blur the hierarchy.
   return (
-    <article className="group relative overflow-hidden rounded-xl border-2 border-border/50 bg-card/50 p-4 transition-colors hover:border-primary/60">
+    <article className="card-depth group relative overflow-hidden rounded-xl border-2 border-border/50 bg-card/50 p-4 transition-colors hover:border-primary/60">
       <CardSheen />
       <div className="relative flex items-start gap-4">
         <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">

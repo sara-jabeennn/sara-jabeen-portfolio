@@ -175,3 +175,28 @@ body::before {
   transform-origin: top;
   animation: scroll-pulse 2s ease-in-out infinite;
 }
+
+/* Layered inner shadow + a 1px top highlight edge, so cards read as
+   physical objects catching light from above rather than flat rectangles.
+   Decorative only - never applied to text, no AA implication. */
+.card-depth {
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 -12px 20px -16px rgba(0, 0, 0, 0.35);
+}
+
+/* Tech/skill pill hover: lift + tint with the accent color. Shared so every
+   pill list (project stack, skill list) behaves identically. */
+.pill-hover {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+.pill-hover:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  background-color: color-mix(in oklab, var(--primary) 12%, transparent);
+  color: var(--primary);
+}
