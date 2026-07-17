@@ -1,4 +1,3 @@
-import { Star } from "lucide-react";
 import { siGithub } from "simple-icons";
 import type { Project } from "@/types";
 import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
@@ -22,19 +21,11 @@ export function ProjectCard({ project }: { project: Project }) {
       />
       <CardSheen />
 
-      <div className="relative flex items-start justify-between gap-2">
-        {dateRange && (
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            {dateRange}
-          </p>
-        )}
-        {project.featured && (
-          <span className="flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 font-mono text-xs text-primary">
-            <Star className="size-3" aria-hidden="true" />
-            Featured
-          </span>
-        )}
-      </div>
+      {dateRange && (
+        <p className="relative font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          {dateRange}
+        </p>
+      )}
 
       <h3 className="relative mt-3 font-heading text-lg">{project.title}</h3>
 

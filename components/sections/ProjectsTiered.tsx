@@ -6,11 +6,10 @@ import { ProjectMediumCard } from "@/components/cards/ProjectMediumCard";
 import { ProjectCompactCard } from "@/components/cards/ProjectCompactCard";
 
 // Three visual tiers, matching docs/old-portfolio.html's hierarchy rather
-// than a uniform grid. Driven by `visualTier`, independent of `featured`
-// (the case-study designation) - see CLAUDE.md's "Project hierarchy". This
-// is the default view - filtering or searching (see ProjectsExplorer)
-// switches to the flat animated grid instead, since a fixed hierarchy can't
-// represent an arbitrary filtered set.
+// than a uniform grid, driven by `visualTier` - see CLAUDE.md's "Project
+// hierarchy". This is the default view - filtering or searching (see
+// ProjectsExplorer) switches to the flat animated grid instead, since a
+// fixed hierarchy can't represent an arbitrary filtered set.
 export function ProjectsTiered({ projects }: { projects: Project[] }) {
   const hero = projects.find((p) => p.visualTier === "hero");
   const prominent = projects.filter((p) => p.visualTier === "prominent");

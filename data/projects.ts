@@ -5,10 +5,6 @@ import type { Project } from "@/types";
 // in that case rather than defaulting to the profile URL. See CLAUDE.md
 // "GitHub links" hard rule. Repo URLs confirmed live 2026-07-18 (all 8
 // fetched, zero 404s).
-//
-// `featured` (has/will have an MDX case study, exactly 3) and `visualTier`
-// (hero/prominent/compact, the "Work I'm proud of" hierarchy) are
-// deliberately independent - see CLAUDE.md's "Project hierarchy".
 export const projects: Project[] = [
   {
     slug: "quickaid",
@@ -16,13 +12,11 @@ export const projects: Project[] = [
     summary:
       "Android disaster-response app built on Bluetooth mesh networking, so NGOs and volunteers can coordinate even when cellular networks are down. Built the Communication Module (Bluetooth mesh, Dijkstra routing, gateway detection, relay privacy) and on-device offline face recognition (TFLite + MobileFaceNet, no network dependency). Final year project at FAST-NUCES.",
     categories: ["Mobile", "Systems"],
-    featured: true,
     visualTier: "hero",
     dateStart: "2025-08",
     dateEnd: "2026-05",
     stack: ["Kotlin", "Firebase", "Bluetooth Mesh Networking", "Android"],
     links: { github: "https://github.com/sara-jabeennn/QuickAid-FYP" },
-    caseStudyMdxPath: "content/projects/quickaid.mdx",
   },
   {
     slug: "ecommerce-ad-creative-generator",
@@ -30,7 +24,6 @@ export const projects: Project[] = [
     summary:
       "MLOps pipeline with a T5 model for ad copy generation, deployed on AWS EKS with GitHub Actions CI/CD, Prometheus/Grafana monitoring, and Airflow orchestration.",
     categories: ["AI/MLOps"],
-    featured: true,
     visualTier: "prominent",
     dateStart: "2025-10",
     dateEnd: "2025-11",
@@ -47,7 +40,6 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/sara-jabeennn/ecommerce-ad-generator",
     },
-    caseStudyMdxPath: "content/projects/ad-creative-generator.mdx",
   },
   {
     slug: "fake-news-detection",
@@ -55,7 +47,6 @@ export const projects: Project[] = [
     summary:
       "Full MLOps pipeline for fake news detection, with DVC for data versioning, MLflow for experiment tracking, and scikit-learn models.",
     categories: ["AI/MLOps"],
-    featured: false,
     visualTier: "prominent",
     dateStart: "2025-09",
     dateEnd: "2025-10",
@@ -68,7 +59,6 @@ export const projects: Project[] = [
     summary:
       "Educational platform with an admin dashboard for structured content management and filtering.",
     categories: ["Web"],
-    featured: false,
     visualTier: "prominent",
     dateStart: "2025-02",
     dateEnd: "2025-03",
@@ -81,7 +71,6 @@ export const projects: Project[] = [
     summary:
       "Role-based procurement management system featuring vendor registration, contract lifecycle management, purchase order tracking, budget monitoring, database triggers, stored procedures, and MySQL-Node.js integration.",
     categories: ["Web", "Systems"],
-    featured: false,
     visualTier: "prominent",
     dateStart: "2024-11",
     dateEnd: "2024-12",
@@ -96,7 +85,6 @@ export const projects: Project[] = [
     summary:
       "Full-stack web application featuring beauty tutorials, product recommendations, quizzes, and personalized user experiences.",
     categories: ["Web"],
-    featured: false,
     visualTier: "prominent",
     dateStart: "2025-04",
     dateEnd: "2025-06",
@@ -109,13 +97,11 @@ export const projects: Project[] = [
     summary:
       "UX prototype for a smart waiting experience system for restaurant food pickup, focused on reducing user anxiety through real-time queue visibility, estimated wait times, and calming UI design. Delivered low-fidelity wireframes and a clickable high-fidelity Figma prototype.",
     categories: ["Design/UX"],
-    featured: true,
     visualTier: "compact",
     dateStart: "2025-11",
     dateEnd: "2025-12",
     stack: ["Figma", "UX Research", "UI Design", "Accessibility"],
     links: {}, // no repo - a UX/Figma prototype, nothing to link
-    caseStudyMdxPath: "content/projects/smartwait.mdx",
   },
   {
     slug: "shuttle-bot",
@@ -128,7 +114,6 @@ export const projects: Project[] = [
     summary:
       "TODO(content-gap-8a): description pending Sara's sign-off — see CLAUDE.md Content Gaps. Must describe this as a concept/prototype, never as shipped.",
     categories: ["AI/MLOps"],
-    featured: false,
     visualTier: "compact",
     dateStart: "2026-02",
     dateEnd: "2026-05",
@@ -141,7 +126,6 @@ export const projects: Project[] = [
     summary:
       "Console-based virtual classroom platform featuring user authentication, class and assignment management, grading, notifications, file handling, and persistent data storage using advanced OOP principles.",
     categories: ["Systems"],
-    featured: false,
     visualTier: "compact",
     dateStart: "2023-06",
     dateEnd: "2023-08",
@@ -156,10 +140,9 @@ export const projects: Project[] = [
     summary:
       "CI/CD pipeline for a stock prediction system, with Jenkins multi-branch deployment triggered by webhooks and Docker-based builds.",
     categories: ["Web", "Systems"],
-    featured: false,
     visualTier: "compact",
-    // TODO(content-gap): dates not yet provided - asked, don't guess. See
-    // CLAUDE.md Content Gaps.
+    // Dates genuinely unknown - dateStart/dateEnd are optional on the type,
+    // no other compact-tier card shows dates either so this isn't a gap.
     stack: ["Jenkins", "Docker", "CI/CD", "Webhooks", "Multi-Branch Deployment"],
     links: {}, // no repo, per Sara 2026-07-18
   },
@@ -169,10 +152,8 @@ export const projects: Project[] = [
     summary:
       "Service management system with role-based access control, built in JavaFX using object-oriented design patterns and a relational database.",
     categories: ["Systems"],
-    featured: false,
     visualTier: "compact",
-    // TODO(content-gap): dates not yet provided - asked, don't guess. See
-    // CLAUDE.md Content Gaps.
+    // Dates genuinely unknown - see the Stock Prediction System entry above.
     stack: ["JavaFX", "OOP", "Database Systems", "Design Patterns", "Role-Based Access"],
     links: { github: "https://github.com/sara-jabeennn/SDA-project" },
   },

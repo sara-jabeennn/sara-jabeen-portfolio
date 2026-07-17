@@ -100,8 +100,9 @@ Next.js **16.2.10** App Router *(docs say "15" — 16.2.10 is what's actually
 installed in this repo; the docs are stale, the installed version is correct, see
 Decisions Log)* · React 19 · TypeScript strict · Tailwind CSS v4 · Framer Motion
 (the ONLY animation library — no Motion One, no GSAP) · Lucide React · Simple Icons
-(tech-stack logos) · next-themes · MDX · React Hook Form + Zod · Resend · pnpm ·
-Vercel.
+(tech-stack logos) · next-themes · React Hook Form + Zod · Resend · pnpm ·
+Vercel. *(MDX dropped 2026-07-19 — see Decisions Log — it was only there for
+the case-study detail pages, which are no longer in scope.)*
 
 ### shadcn/ui — installed, scoped
 Use shadcn **only** for primitives that need Radix's focus-trap/keyboard/ARIA
@@ -256,10 +257,7 @@ Bot, Advanced Classroom Management, Stock Prediction System, Servisync,
 `07`-`11`). Filtering or searching (category filter `All · Web · Mobile ·
 AI/MLOps · Design/UX · Systems` + text search) switches to a flat animated
 grid instead — a fixed hierarchy can't represent an arbitrary filtered subset
-· 3 MDX case studies still to write (QuickAid, E-Commerce Ad Creative
-Generator, SmartWait — `/case-studies/[slug]` route reserved for these, not
-built yet — visual tier and case-study status are independent, see "Project
-hierarchy") · each project's GitHub button renders only if a real repo exists
+· each project's GitHub button renders only if a real repo exists
 (SmartWait, Shuttle Bot, and Stock Prediction System have none — no button,
 ever falling back to the profile URL) ·
 Hero (two-column, bento identity/stat/terminal cards, role rotator) + Stats
@@ -274,25 +272,31 @@ light/dark theme — done · full accessibility pass · Vitest + RTL + Playwrigh
 + axe-core test suite gating CI.
 
 **Blog is explicitly out of scope** (removed 2026-07-17 — an empty blog read
-as abandoned; she'll rebuild it when there are real posts). MDX tooling stays
-configured (`next.config.ts`, `mdx-components.tsx`) for the still-pending case
-study detail pages — that's the only reason `@next/mdx` is still a dependency.
+as abandoned; she'll rebuild it when there are real posts).
+
+**MDX case studies are dropped entirely, not deferred** (2026-07-19 — see
+Decisions Log). The 3 case-study detail pages were still TODO shells with no
+real architecture depth to put in them; shipping a route that 404s or reads
+as a placeholder is worse than not having the route. `@next/mdx`,
+`@mdx-js/*`, `mdx-components.tsx`, and every MDX config are removed —
+nothing else needs MDX now that the blog is also gone. The "Case Studies"
+section heading/nav label stays; it's just the projects section.
 
 Out of scope, explicitly post-submission: custom domain, blog. (Everything
-else that was previously cut for time — MDX case studies, ⌘K actions, GitHub
-graph, dynamic OG — is still coming, per the 2026-07-16 scope reversal. The
-RAG "Ask about Sara" chatbot from `docs/strategy-plan.md` was never re-added
-and stays out unless explicitly requested.)
+else that was previously cut for time — ⌘K actions, GitHub graph, dynamic OG
+— is still coming, per the 2026-07-16 scope reversal. MDX case studies are
+the one item that went from "still coming" to genuinely dropped, see above.
+The RAG "Ask about Sara" chatbot from `docs/strategy-plan.md` was never
+re-added and stays out unless explicitly requested.)
 
 ## Project hierarchy (Projects/Case Studies section)
 Three visual tiers by design, not a uniform grid — ported from
 `docs/old-portfolio.html`'s actual hierarchy, which visibly outranked its
 featured project over everything else. Driven by `Project.visualTier`
-(`"hero" | "prominent" | "compact"`), **independent of `Project.featured`**
-(which means "has an MDX case study," still exactly 3 — QuickAid, E-Commerce
-Ad Creative Generator, SmartWait). SmartWait is a case study but visually
-compact; Fake News Detection is visually prominent but has no case study —
-these are two genuinely different concepts, don't conflate them again.
+(`"hero" | "prominent" | "compact"`) alone. *(`Project.featured` — "has an
+MDX case study" — is gone as of 2026-07-19 along with the case studies
+themselves; visual tier was always the only thing that decided this
+hierarchy, so nothing here changes.)*
 
 1. **Hero tier (`ProjectHeroCard`)** — QuickAid only. Full-width row, index
    `01`, "Final Year Project" badge, full summary, more padding/breathing
@@ -315,16 +319,16 @@ query is active, `ProjectsExplorer` switches to the flat animated grid
 represent an arbitrary filtered subset.
 
 ## Folder structure
-Revised 2026-07-17: Blog removed entirely. Case Studies is an anchored
-homepage section, not a routed listing (`/case-studies/[slug]` stays reserved
-for future MDX detail pages only).
+Revised 2026-07-19: Blog removed entirely, and MDX case studies dropped
+outright (not deferred — see Scope and Decisions Log). No `/case-studies`
+route, no `content/` directory, no MDX plumbing anywhere. "Case Studies" is
+purely the anchored `#case-studies` homepage section.
 ```
 app/
   page.tsx                     # Hero, Stats, About, Skills, CaseStudies, Experience, Showcase, Contact
-  case-studies/[slug]/page.tsx  # reserved, not built - MDX case study detail pages
   api/contact/route.ts
   api/github/route.ts           # server-side cached GitHub fetch, not built yet
-  opengraph-image.tsx / case-studies/[slug]/opengraph-image.tsx  # not built yet
+  opengraph-image.tsx           # not built yet
   sitemap.ts / robots.ts / not-found.tsx  # not built yet
 components/
   layout/     Navbar, Footer, ThemeToggle, ThemeProvider
@@ -336,9 +340,8 @@ components/
   ui/         FilterBar, SkillGroup, AreaOfInterestTag, StatCounter, ContactForm,
               SectionHeading, RoleRotator, TerminalWidget, MagneticButton, CardGlow
   icons/      SimpleIconGlyph, LinkedInGlyph, simple-icons-map
-  motion/     Reveal (whileInView wrapper, prefers-reduced-motion aware)
-content/
-  projects/*.mdx   # the 3 featured case studies, not written yet - directory doesn't exist until the first one lands
+  motion/     Reveal, CardReveal (whileInView wrappers, prefers-reduced-motion aware)
+  visuals/    MeshDiagram (QuickAid's Bluetooth mesh/Dijkstra routing diagram)
 data/
   profile.ts, education.ts (Education[], 3-entry timeline), experience.ts,
   projects.ts, skills.ts, stats.ts, showcase.ts
@@ -420,8 +423,7 @@ client-visible request.
   matches its type, 11 unique slugs, exactly 1 hero + 5 prominent + 5 compact
   visual tiers, dateStart/dateEnd always both-present-or-both-absent, every
   category ⊆ the 5-value `CaseStudyCategory` enum — `All` is a UI filter
-  state, not a stored category — every featured project has a resolvable MDX
-  path, no project's `links.github`
+  state, not a stored category — no project's `links.github`
   is ever the bare profile URL).
 - **Playwright e2e:** nav, category filter, contact happy path + error path,
   keyboard-only traversal.
@@ -441,14 +443,19 @@ client-visible request.
    `public/resume/Sara_Jabeen_CV.pdf` (found at `public/Sara Jabeen-C.V..pdf`,
    moved to the wired path). Download CV button is live via a real
    `fs.existsSync` check (`lib/resume.ts`), not a hardcoded flag.
-2. Case-study depth for the 3 featured projects: architecture notes/diagram, 2-3
-   key technical decisions + why, one honest "what I'd do differently" line.
-   QuickAid's is canonical (see "Project content & attribution rules"). Ad
-   Creative Generator and SmartWait still need theirs. **Still outstanding.**
-2a. `result` metrics for Ad Creative Generator and SmartWait specifically —
-    QuickAid is exempted, already canonical without one. **Still outstanding,
-    genuinely blocked on Sara — do not invent a number.**
-3. Screenshots / demo GIFs for case studies. **Still outstanding.**
+2. ~~Case-study depth for the 3 featured projects~~ **DROPPED 2026-07-19, not
+   resolved** — MDX case studies are out of scope entirely now (see Scope and
+   Decisions Log), so there's no longer a page for this content to go into.
+   Ship nothing rather than a TODO page. Not a gap to revisit unless case
+   studies come back into scope.
+2a. ~~`result` metrics for Ad Creative Generator and SmartWait~~ **MOOT
+    2026-07-19** — no `Project.result` field was ever added to the data
+    layer (blocked on this exact gap), so there's nothing to remove. Same
+    reasoning as #2: no case study, no result section to fill.
+3. ~~Screenshots / demo GIFs for case studies~~ **DROPPED 2026-07-19** — not
+   doing them; every project's repo link (where one exists) is the evidence
+   instead. No image slots exist in `ProjectCard`/`ProjectHeroCard`/
+   `ProjectMediumCard`/`ProjectCompactCard` to remove.
 4. ~~`RESEND_API_KEY`~~ **RESOLVED 2026-07-16 (session 6)** — key and
    `CONTACT_TO_EMAIL` are in `.env.local` (moved from `data/.env.local`, where
    Next.js would never have read them, to the project root). Contact form is
@@ -498,13 +505,15 @@ client-visible request.
     scope entirely.** `/blog` and `/blog/[slug]` (built 2026-07-16 session 6)
     were deleted the next day; an empty blog read as abandoned. Rebuild when
     real posts exist — not a gap to track until then.
-16. ~~Two projects from her CV weren't on the site~~ **PARTIALLY RESOLVED
-    2026-07-18** — Stock Prediction System and Servisync are both in
-    `data/projects.ts` now (compact tier, `07`/`11`), repo confirmed for
+16. ~~Two projects from her CV weren't on the site~~ **RESOLVED 2026-07-18,
+    dates gap closed 2026-07-19** — Stock Prediction System and Servisync are
+    both in `data/projects.ts` (compact tier, `07`/`11`), repo confirmed for
     Servisync (`github.com/sara-jabeennn/SDA-project`, fetched live), Stock
-    Prediction System confirmed to have no repo. **Still outstanding: real
-    dates for both** — `dateStart`/`dateEnd` are omitted (not guessed) on
-    both entries. Asked, not yet answered.
+    Prediction System confirmed to have no repo. Dates for both are no longer
+    tracked as a gap — `dateStart`/`dateEnd` are optional on `Project`, no
+    other compact-tier card shows dates either, and inventing a date to
+    satisfy a required field would be exactly the fabrication this section
+    exists to prevent.
 15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4)** — all 7 entries
     confirmed, kept. Types corrected: MLOps Intensive Coursework and UX
     Engineering Coursework are `coursework` (not `certification` — no external
@@ -812,6 +821,32 @@ client-visible request.
   scroll-reveal added to the few grids that were still missing it (About's
   callouts, the education timeline, Experience entries, the flat filtered
   project grid).
+- **2026-07-19 — dropped MDX case studies entirely, not deferred.** The 3
+  detail pages had been reserved-but-empty since session 5/6 — the
+  underlying content (architecture depth, "what I'd do differently," result
+  metrics) was genuinely blocked on Sara and had been for multiple sessions
+  with no sign of landing soon. Rather than keep carrying a route that would
+  either 404 or ship as a TODO shell, cut it: removed `app/case-studies`
+  (was reserved, never built, nothing to delete on disk), `content/`
+  (empty), the `featured` and `caseStudyMdxPath` fields from `Project` and
+  every entry in `data/projects.ts`, the two `projects.test.ts` assertions
+  that depended on them, and all MDX tooling — `next.config.ts`'s
+  `pageExtensions`/`createMDX` wrapper, `mdx-components.tsx`, and the
+  `@next/mdx`/`@mdx-js/loader`/`@mdx-js/react`/`@types/mdx` dependencies
+  (uninstalled via `pnpm remove`, not just deleted from `package.json`) —
+  MDX had no remaining consumer once the blog was already gone. Judgment
+  call beyond the literal ask: removed `featured` itself (not just
+  `caseStudyMdxPath`), including the "Featured" star badge on `ProjectCard`
+  and the featured-sorts-first behavior in `ProjectsExplorer`. `featured`
+  was defined, in this file and in code comments, purely as "has an MDX
+  case study" — with case studies gone, a badge claiming a project is
+  "Featured" with nowhere to click through to would have been its own
+  small dead-end, the same failure mode as a TODO page, just smaller. The
+  "Case Studies" section heading and nav label stay; they now just name the
+  projects grid. Also closed Content Gaps #2/#2a/#3 (case-study depth,
+  result metrics, screenshots) as dropped rather than outstanding, and
+  closed #16's dates sub-gap by making `dateStart`/`dateEnd` explicitly
+  optional rather than continuing to track missing dates as a gap to fill.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
@@ -847,9 +882,10 @@ after any future push to confirm, don't assume it stayed green.
 - [x] Phase 1 — `/data` layer — profile, education, experience, skills, stats,
       showcase, and projects all built 2026-07-16, roster grown to 11 and
       re-tiered 2026-07-18. `projects.test.ts` data-integrity suite passing
-      (11 unique slugs, valid categories, exactly 3 featured with resolvable
-      MDX paths, exactly 1 hero + 5 prominent + 5 compact visual tiers, no
-      project's `links.github` is the bare profile URL). Fake News Detection
+      (11 unique slugs, valid categories, exactly 1 hero + 5 prominent + 5
+      compact visual tiers, no project's `links.github` is the bare profile
+      URL — the `featured`/MDX-path assertions were removed 2026-07-19 along
+      with the field itself, see Decisions Log). Fake News Detection
       restored 2026-07-16 session 2 after being silently dropped — see
       Decisions Log for the full drift explanation. Real per-project GitHub
       repo links confirmed for 8 of 11, all fetched live 2026-07-18 with zero
@@ -896,13 +932,14 @@ after any future push to confirm, don't assume it stayed green.
 - [x] Phase 7 — Case study grid, **merged into the homepage** at
       `#case-studies` (session 6), given a **three-tier hierarchy**
       2026-07-17, **re-tiered again 2026-07-18** to hero(1)+prominent(5)+
-      compact(5) with `visualTier` split from `featured` (see "Project
-      hierarchy" above) — filtering or searching still falls back to the flat
-      animated grid (`ProjectCard`). GitHub button only when a repo exists,
-      never a profile fallback; all 8 confirmed URLs fetched live, zero 404s.
-      **The 3 MDX case studies themselves are still not built** — still
-      blocked on Content Gaps #2/#2a/#3. `/case-studies/[slug]` route
-      reserved but empty.
+      compact(5) driven by `visualTier` (see "Project hierarchy" above) —
+      filtering or searching still falls back to the flat animated grid
+      (`ProjectCard`). GitHub button only when a repo exists, never a
+      profile fallback; all 8 confirmed URLs fetched live, zero 404s.
+      **MDX case studies dropped entirely 2026-07-19** — `featured`,
+      `caseStudyMdxPath`, the reserved `/case-studies/[slug]` route, and all
+      MDX tooling/deps are gone, not just deferred. This phase is complete
+      as scoped now: the section is the grid, full stop.
 - [x] Phase 8 — Showcase (all 7 entries, confirmed session 4). Restyled
       2026-07-17: achievement-type entries render loud (bigger emoji, glow,
       hover lift), coursework/certification/collaboration render quiet —

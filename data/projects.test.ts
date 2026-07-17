@@ -46,29 +46,6 @@ describe("projects data integrity", () => {
     }
   });
 
-  it("exactly the 3 confirmed projects are featured (case study, independent of visual tier)", () => {
-    const featuredSlugs = projects
-      .filter((p) => p.featured)
-      .map((p) => p.slug)
-      .sort();
-    expect(featuredSlugs).toEqual(
-      ["ecommerce-ad-creative-generator", "quickaid", "smartwait"].sort()
-    );
-  });
-
-  it("every featured project has a resolvable case study mdx path", () => {
-    for (const project of projects.filter((p) => p.featured)) {
-      expect(project.caseStudyMdxPath).toBeTruthy();
-      expect(project.caseStudyMdxPath).toMatch(/^content\/projects\/.+\.mdx$/);
-    }
-  });
-
-  it("non-featured projects have no case study mdx path", () => {
-    for (const project of projects.filter((p) => !p.featured)) {
-      expect(project.caseStudyMdxPath).toBeUndefined();
-    }
-  });
-
   it("has exactly 1 hero, 5 prominent, and 5 compact visual tiers", () => {
     for (const project of projects) {
       expect(VALID_TIERS).toContain(project.visualTier);

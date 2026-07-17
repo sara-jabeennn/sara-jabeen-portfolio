@@ -171,25 +171,12 @@ title/stack; both are keyboard operable.
 **Commits:** `feat: add case study grid with category filter`,
 `feat: add case study search`.
 
-### `feature/case-study-mdx`
-**Done when:** MDX detail template renders for the 3 featured projects
-(QuickAid, E-Commerce Ad Creative Generator, SmartWait) at
-`/case-studies/[slug]`, with exactly these sections: Problem, Architecture, Key
-Decisions, Result (only if real), What I'd Do Differently. No "My Role"/"My
-scope" section, no team-size mention.
-**Files:** `app/case-studies/[slug]/page.tsx`, `content/projects/quickaid.mdx`,
-`content/projects/ad-creative-generator.mdx`, `content/projects/smartwait.mdx`.
-**Data depended on:** Content Gaps #2 and #3 — **blocked** until real case-study
-depth content and screenshots exist; do not fill with invented architecture
-decisions or metrics. QuickAid specifically must follow "Project content &
-attribution rules" in `CLAUDE.md` — no teammate names, no supervisor/roll/
-section numbers, no team size, no Missing Persons Module. Architecture/Key
-Decisions depth centers on mesh networking, Dijkstra routing, gateway
-detection, relay privacy, and on-device face recognition.
-**Commits:** `feat: add mdx case study detail template`,
-`feat: add quickaid case study`,
-`feat: add e-commerce ad creative generator case study`,
-`feat: add smartwait case study`.
+### `feature/case-study-mdx` — REMOVED FROM SCOPE 2026-07-19
+MDX case study detail pages are dropped entirely, not deferred - see
+CLAUDE.md Scope and Decisions Log (2026-07-19 entry). The route was reserved
+but never built; there is nothing left to do here. `Project.featured` and
+`Project.caseStudyMdxPath` are gone from the type and data, and all MDX
+tooling/dependencies are uninstalled.
 
 ### `feature/case-study-cards-standard` — DONE 2026-07-16 (all 9 render
 through the same `ProjectCard`, not just the 6 non-featured ones - no MDX
