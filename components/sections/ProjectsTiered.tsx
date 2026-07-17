@@ -1,5 +1,6 @@
 import type { Project } from "@/types";
 import { Reveal } from "@/components/motion/Reveal";
+import { CardReveal } from "@/components/motion/CardReveal";
 import { ProjectHeroCard } from "@/components/cards/ProjectHeroCard";
 import { ProjectMediumCard } from "@/components/cards/ProjectMediumCard";
 import { ProjectCompactCard } from "@/components/cards/ProjectCompactCard";
@@ -25,13 +26,13 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {prominent.map((project, i) => (
-          <Reveal key={project.slug} delay={i * 0.05}>
+          <CardReveal key={project.slug} delay={i * 0.06}>
             <ProjectMediumCard
               project={project}
               index={String(i + 2).padStart(2, "0")}
               glow={i % 2 === 0 ? "plum" : "wine"}
             />
-          </Reveal>
+          </CardReveal>
         ))}
       </div>
 
@@ -44,12 +45,12 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {compact.map((project, i) => (
-          <Reveal key={project.slug} delay={i * 0.03}>
+          <CardReveal key={project.slug} delay={i * 0.04}>
             <ProjectCompactCard
               project={project}
               index={String(i + 2 + prominent.length).padStart(2, "0")}
             />
-          </Reveal>
+          </CardReveal>
         ))}
       </div>
     </div>
