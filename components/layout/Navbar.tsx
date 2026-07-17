@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { profile } from "@/data/profile";
@@ -49,6 +50,7 @@ function useActiveSection(ids: string[]) {
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const activeId = useActiveSection(SECTION_IDS);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -75,13 +77,24 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   aria-current={isActive ? "true" : undefined}
-                  className={`text-sm uppercase tracking-wide transition-colors ${
+                  className={`relative pb-1 text-sm uppercase tracking-wide transition-colors ${
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-primary"
                   }`}
                 >
                   {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-0 -bottom-px h-px bg-primary"
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : { type: "spring", bounce: 0.2, duration: 0.5 }
+                      }
+                    />
+                  )}
                 </Link>
               </li>
             );
