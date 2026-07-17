@@ -66,21 +66,20 @@ export function About() {
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {CALLOUTS.map((callout) => (
-                <div
-                  key={callout.label}
-                  className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
-                >
-                  <span className="text-xl" aria-hidden="true">
-                    {callout.emoji}
-                  </span>
-                  <div>
-                    <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                      {callout.label}
-                    </p>
-                    <p className="mt-0.5 text-sm">{callout.value}</p>
+              {CALLOUTS.map((callout, index) => (
+                <Reveal key={callout.label} delay={index * 0.05}>
+                  <div className="flex items-start gap-3 rounded-2xl border-2 border-border bg-card p-4 transition-colors hover:border-primary">
+                    <span className="text-xl" aria-hidden="true">
+                      {callout.emoji}
+                    </span>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                        {callout.label}
+                      </p>
+                      <p className="mt-0.5 text-sm">{callout.value}</p>
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -90,8 +89,10 @@ export function About() {
               Education
             </p>
             <div className="space-y-3">
-              {education.map((entry) => (
-                <EducationCard key={entry.institution} education={entry} />
+              {education.map((entry, index) => (
+                <Reveal key={entry.institution} delay={index * 0.05}>
+                  <EducationCard education={entry} />
+                </Reveal>
               ))}
             </div>
           </div>

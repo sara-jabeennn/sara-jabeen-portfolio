@@ -2,6 +2,7 @@ import { Award, BookOpen, Users, Briefcase } from "lucide-react";
 import type { ShowcaseEntry as ShowcaseEntryData, ShowcaseEntryType } from "@/types";
 import { formatMonthYear } from "@/lib/format-date";
 import { CardGlow } from "@/components/ui/CardGlow";
+import { CardSheen } from "@/components/ui/CardSheen";
 
 const TYPE_ICON: Record<ShowcaseEntryType, typeof Award> = {
   certification: Award,
@@ -41,10 +42,11 @@ export function ShowcaseEntry({
 
   if (isAchievement) {
     return (
-      <article className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-card p-6 text-center transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+      <article className="group relative overflow-hidden rounded-2xl border-2 border-primary/30 bg-card p-6 text-center transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
         <CardGlow color={glow} />
+        <CardSheen />
         <div className="relative">
-          <span className="text-4xl" aria-hidden="true">
+          <span className="text-5xl" aria-hidden="true">
             {emoji ?? "🏆"}
           </span>
           <h3 className="mt-3 font-heading text-base">{entry.title}</h3>
@@ -58,9 +60,10 @@ export function ShowcaseEntry({
   }
 
   // Coursework / certification / collaboration - deliberately quieter than
-  // achievement cards, no glow, no emoji, smaller icon treatment.
+  // achievement cards: no glow, no emoji, no sheen, smaller icon. Still gets
+  // a slightly thicker border than before so it isn't invisible at rest.
   return (
-    <article className="flex items-start gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
+    <article className="flex items-start gap-4 rounded-xl border-2 border-border/50 bg-card/50 p-4 transition-colors hover:border-border">
       <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
         <Icon className="size-3.5" aria-hidden="true" />
       </div>

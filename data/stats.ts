@@ -1,17 +1,23 @@
 import type { StatItem } from "@/types";
+import { projects } from "@/data/projects";
+import { skills } from "@/data/skills";
+import { education } from "@/data/education";
 
-// "Years Building" = earliest project's dateStart (Advanced Classroom
-// Management System, 2023-06) to today, not to the latest project's
-// dateEnd - a "years of experience" stat should keep counting, not freeze
-// at whatever the most recent listed project happened to end. As of
-// 2026-07-16 that's ~3 years 1 month, honestly rounds to "3+", not the
-// previous "2+" (which undercounted) or a rounded-up "4+" (which would
-// overstate it). Recompute this by hand if it goes stale - it is not
-// derived from data/projects.ts automatically. Rechecked 2026-07-16 after
-// the graduation-status correction: this stat was never tied to degree
-// status, only to project timeline, so it needed no change.
+// Projects and Tech Stacks are derived from the actual data, not hardcoded -
+// they can never silently drift out of sync with the real roster/skill list.
+// Years Study is computed from her degree's actual start year. Freelance
+// Clients (3, matching her CV-confirmed client list) is the one genuinely
+// fixed fact here - there's no meaningful array to derive it from without
+// adding a dedicated clients field for a single stable number.
+//
+// Exact numbers everywhere, no "+" suffixes - every stat here is directly
+// verifiable by counting what's on the page. Recomputed 2026-07-18 against
+// the new 11-project, 8-category data (previously 9/7).
+const yearsStudy = new Date().getFullYear() - Number(education[0].dateStart);
+
 export const stats: StatItem[] = [
-  { label: "Projects Shipped", value: 9 },
-  { label: "Skill Categories", value: 7 },
-  { label: "Years Building", value: 3, suffix: "+" },
+  { label: "Projects", value: projects.length },
+  { label: "Years Study", value: yearsStudy },
+  { label: "Tech Stacks", value: skills.length },
+  { label: "Freelance Clients", value: 3 },
 ];

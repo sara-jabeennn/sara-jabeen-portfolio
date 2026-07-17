@@ -6,13 +6,14 @@ import { Download } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { profile } from "@/data/profile";
 import { stats } from "@/data/stats";
+import { projects } from "@/data/projects";
 import { Reveal } from "@/components/motion/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { AreaOfInterestTag } from "@/components/ui/AreaOfInterestTag";
 import { RoleRotator } from "@/components/ui/RoleRotator";
 import { TerminalWidget } from "@/components/ui/TerminalWidget";
 
-const projectsBuilt = stats.find((s) => s.label === "Projects Shipped")?.value ?? 9;
+const projectsBuilt = stats.find((s) => s.label === "Projects")?.value ?? projects.length;
 
 export function Hero({ resumeUrl }: { resumeUrl?: string }) {
   const sectionRef = useRef<HTMLElement>(null);

@@ -2,6 +2,7 @@ import type { SkillCategory } from "@/types";
 import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
 import { SIMPLE_ICONS } from "@/components/icons/simple-icons-map";
 import { CardGlow } from "@/components/ui/CardGlow";
+import { CardSheen } from "@/components/ui/CardSheen";
 
 export function SkillGroup({
   group,
@@ -11,8 +12,9 @@ export function SkillGroup({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50">
+    <article className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-colors hover:border-primary">
       <CardGlow color={glow} />
+      <CardSheen />
       <div className="relative flex items-baseline justify-between">
         <h3 className="font-heading text-lg">{group.category}</h3>
         <span className="font-mono text-xs text-muted-foreground">

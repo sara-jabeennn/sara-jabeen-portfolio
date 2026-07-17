@@ -12,8 +12,8 @@ export function Experience() {
         </Reveal>
 
         <div className="mt-8 space-y-6">
-          {experience.map((entry) => (
-            <Reveal key={entry.id}>
+          {experience.map((entry, index) => (
+            <Reveal key={entry.id} delay={index * 0.05}>
               <ExperienceCard experience={entry} />
             </Reveal>
           ))}

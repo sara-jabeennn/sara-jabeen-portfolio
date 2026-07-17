@@ -69,14 +69,14 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
             className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence initial={false} mode="popLayout">
-              {filtered.map((project) => (
+              {filtered.map((project, index) => (
                 <motion.div
                   key={project.slug}
                   layout={!prefersReducedMotion}
                   initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, delay: prefersReducedMotion ? 0 : Math.min(index * 0.03, 0.3) }}
                 >
                   <ProjectCard project={project} />
                 </motion.div>

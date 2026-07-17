@@ -3,10 +3,6 @@ import { Reveal } from "@/components/motion/Reveal";
 import { SkillGroup } from "@/components/ui/SkillGroup";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-// Varies card width so the grid isn't seven identical boxes - the two
-// densest categories (most real skills listed) get the wide treatment.
-const WIDE_CATEGORIES = new Set(["Frontend", "DevOps / Tooling"]);
-
 export function Skills() {
   return (
     <section id="skills" className="scroll-mt-20 bg-card/40 px-6 py-24">
@@ -15,13 +11,12 @@ export function Skills() {
           <SectionHeading eyebrow="Technical Skills" title="The tools I" accent="master" />
         </Reveal>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* CSS columns (not a uniform grid) so cards of different heights
+            flow tightly with no orphan rows/dead space - each category's
+            own real skill count naturally varies its height. */}
+        <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
           {skills.map((group, index) => (
-            <Reveal
-              key={group.category}
-              delay={index * 0.05}
-              className={WIDE_CATEGORIES.has(group.category) ? "lg:col-span-2" : ""}
-            >
+            <Reveal key={group.category} delay={index * 0.05}>
               <SkillGroup group={group} glow={index % 2 === 0 ? "wine" : "plum"} />
             </Reveal>
           ))}
