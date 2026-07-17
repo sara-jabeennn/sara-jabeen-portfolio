@@ -4,10 +4,15 @@ export const profile: Profile = {
   name: "Sara Jabeen",
   role: "Full-Stack Software Engineer",
   tagline: "Building AI-integrated web and mobile applications.",
+  // Restored to the original 3-paragraph structure/voice from
+  // docs/old-portfolio.html (real prose she wrote), updated for current
+  // facts: final-semester (not graduated), 9 projects (not "11+"). Freelance
+  // writing moved to an About callout card, matching the old site's actual
+  // structure, rather than staying a 4th bio paragraph.
   bio: [
-    "I build full-stack web and mobile products end-to-end, from database schema to pixel-perfect UI, and I care as much about how something feels to use as how it's engineered underneath.",
-    "Over the past 2+ years, I've shipped 8+ projects spanning web, mobile, ML pipelines, and systems programming, including QuickAid, an Android disaster-response app that runs on Bluetooth mesh networking so NGOs and volunteers can coordinate even when cellular networks are down — my final year project at FAST-NUCES.",
-    "I also spent time as a freelance technical writer for US-based clients, so beyond writing code, I can explain it clearly to a team, a PM, or a user. That combination of engineering, communication, and design sense is what I bring to a product team.",
+    "I'm a final-semester CS student at FAST NUCES Islamabad with a passion for building systems that span the full stack — from Bluetooth mesh networks enabling disaster communication, to production-grade MLOps pipelines running on AWS EKS with Kubernetes.",
+    "My work sits at the intersection of intelligent systems and great user experiences. I care about both the model accuracy and the interface that presents it. Whether it's a T5 transformer generating ad copy or a UX prototype reducing queue anxiety, I bring end-to-end ownership.",
+    "I've shipped 9 projects across MLOps, full-stack web, mobile applications, and systems programming — always pushing to production-ready standards with Docker, CI/CD, and observability baked in.",
   ],
   email: "syedajabean@gmail.com",
   // Carried forward from docs/old-portfolio.html, not restated in the

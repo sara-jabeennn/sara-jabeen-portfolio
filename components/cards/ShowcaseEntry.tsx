@@ -1,11 +1,11 @@
-import { Award, Trophy, BookOpen, Users, Briefcase } from "lucide-react";
+import { Award, BookOpen, Users, Briefcase } from "lucide-react";
 import type { ShowcaseEntry as ShowcaseEntryData, ShowcaseEntryType } from "@/types";
 import { formatMonthYear } from "@/lib/format-date";
 import { CardGlow } from "@/components/ui/CardGlow";
 
 const TYPE_ICON: Record<ShowcaseEntryType, typeof Award> = {
   certification: Award,
-  achievement: Trophy,
+  achievement: Award,
   coursework: BookOpen,
   collaboration: Users,
   "client-work": Briefcase,
@@ -19,6 +19,15 @@ const TYPE_LABEL: Record<ShowcaseEntryType, string> = {
   "client-work": "Client Work",
 };
 
+// Real emoji per achievement, ported from docs/old-portfolio.html - emoji on
+// achievement cards was banned, then explicitly un-banned. See CLAUDE.md
+// Decisions Log.
+const ACHIEVEMENT_EMOJI: Record<string, string> = {
+  "fauji-foundation-scholarship": "🏅",
+  "kips-certificate-of-merit": "📜",
+  "fyp-1-grade": "⭐",
+};
+
 export function ShowcaseEntry({
   entry,
   glow = "wine",
@@ -27,22 +36,41 @@ export function ShowcaseEntry({
   glow?: "wine" | "plum";
 }) {
   const Icon = TYPE_ICON[entry.type];
+  const isAchievement = entry.type === "achievement";
+  const emoji = ACHIEVEMENT_EMOJI[entry.id];
 
+  if (isAchievement) {
+    return (
+      <article className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-card p-6 text-center transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg">
+        <CardGlow color={glow} />
+        <div className="relative">
+          <span className="text-4xl" aria-hidden="true">
+            {emoji ?? "🏆"}
+          </span>
+          <h3 className="mt-3 font-heading text-base">{entry.title}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">
+            {entry.description}
+            {entry.date ? ` · ${formatMonthYear(entry.date)}` : ""}
+          </p>
+        </div>
+      </article>
+    );
+  }
+
+  // Coursework / certification / collaboration - deliberately quieter than
+  // achievement cards, no glow, no emoji, smaller icon treatment.
   return (
-    <article className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-border bg-card p-5">
-      <CardGlow color={glow} />
-      <div className="relative flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <Icon className="size-4" aria-hidden="true" />
+    <article className="flex items-start gap-4 rounded-xl border border-border/60 bg-card/50 p-4">
+      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
+        <Icon className="size-3.5" aria-hidden="true" />
       </div>
       <div>
         <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
           {TYPE_LABEL[entry.type]}
           {entry.date ? ` · ${formatMonthYear(entry.date)}` : ""}
         </p>
-        <h3 className="mt-1 font-heading text-base">{entry.title}</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {entry.description}
-        </p>
+        <h3 className="mt-1 text-sm font-medium">{entry.title}</h3>
+        <p className="mt-1 text-xs text-muted-foreground">{entry.description}</p>
       </div>
     </article>
   );

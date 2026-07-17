@@ -5,20 +5,14 @@ import Link from "next/link";
 import { Download } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { profile } from "@/data/profile";
-import { skills } from "@/data/skills";
 import { stats } from "@/data/stats";
 import { Reveal } from "@/components/motion/Reveal";
-import { StatCounter } from "@/components/ui/StatCounter";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
-import { SIMPLE_ICONS } from "@/components/icons/simple-icons-map";
+import { AreaOfInterestTag } from "@/components/ui/AreaOfInterestTag";
+import { RoleRotator } from "@/components/ui/RoleRotator";
+import { TerminalWidget } from "@/components/ui/TerminalWidget";
 
-const badgeSkills = skills
-  .flatMap((category) => category.skills)
-  .filter(
-    (skill): skill is typeof skill & { simpleIconSlug: string } =>
-      !!skill.simpleIconSlug && skill.simpleIconSlug in SIMPLE_ICONS
-  );
+const projectsBuilt = stats.find((s) => s.label === "Projects Shipped")?.value ?? 9;
 
 export function Hero({ resumeUrl }: { resumeUrl?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,10 +29,8 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
       id="top"
       className="relative overflow-hidden px-6 py-24 sm:py-32"
     >
-      {/* Aurora/mesh gradient (deep wine/plum, decorative - not text, AA
-          exempt) with a subtle scroll parallax - one of the two allowed
-          hero motion effects, the other is the staggered reveal below.
-          No role-rotator, no terminal widget, per CLAUDE.md hard rules. */}
+      {/* Aurora/mesh gradient with scroll parallax - one of the two allowed
+          hero motion effects, the other is the staggered reveal. */}
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
@@ -51,75 +43,110 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
         }}
       />
 
-      <div className="mx-auto max-w-4xl">
-        <Reveal>
-          <p className="mb-4 font-mono text-sm uppercase tracking-widest text-muted-foreground">
-            {profile.status}
-          </p>
-        </Reveal>
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+        {/* Left column */}
+        <div>
+          <Reveal>
+            <p className="mb-4 font-mono text-sm uppercase tracking-widest text-muted-foreground">
+              {profile.status}
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.1}>
-          <h1 className="font-heading text-4xl italic leading-tight sm:text-6xl">
-            {profile.name}
-          </h1>
-        </Reveal>
+          <Reveal delay={0.1}>
+            <h1 className="font-heading text-5xl italic leading-[1.05] sm:text-7xl">
+              {profile.name}
+            </h1>
+          </Reveal>
 
-        <Reveal delay={0.2}>
-          <p className="mt-4 max-w-2xl text-xl text-muted-foreground sm:text-2xl">
-            {profile.role} — {profile.tagline}
-          </p>
-        </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-5 min-h-8 text-xl text-muted-foreground sm:text-2xl">
+              <RoleRotator />
+            </p>
+            <p className="mt-2 max-w-xl text-muted-foreground">{profile.tagline}</p>
+          </Reveal>
 
-        <Reveal delay={0.3}>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <MagneticButton>
-              <Link
-                href="/#case-studies"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
-              >
-                View Projects
-              </Link>
-            </MagneticButton>
-            {resumeUrl ? (
-              <a
-                href={resumeUrl}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
-              >
-                <Download className="size-4" aria-hidden="true" />
-                Download CV
-              </a>
-            ) : (
-              <span
-                aria-disabled="true"
-                title="Résumé coming soon"
-                className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-muted-foreground opacity-60"
-              >
-                <Download className="size-4" aria-hidden="true" />
-                Résumé coming soon
-              </span>
-            )}
+          <Reveal delay={0.3}>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {profile.areasOfInterest.map((area, i) => (
+                <li key={area}>
+                  <AreaOfInterestTag label={area} tone={i % 2 === 0 ? "wine" : "plum"} />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.4}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <MagneticButton>
+                <Link
+                  href="/#case-studies"
+                  className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
+                >
+                  View Projects
+                </Link>
+              </MagneticButton>
+              {resumeUrl ? (
+                <a
+                  href={resumeUrl}
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                >
+                  <Download className="size-4" aria-hidden="true" />
+                  Download CV
+                </a>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  title="Résumé coming soon"
+                  className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-muted-foreground opacity-60"
+                >
+                  <Download className="size-4" aria-hidden="true" />
+                  Résumé coming soon
+                </span>
+              )}
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Right column - bento identity/stat/terminal cards */}
+        <Reveal delay={0.3} className="hidden lg:block">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="col-span-2 rounded-2xl border border-border bg-card p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-primary/40 font-heading text-xl italic text-primary">
+                  SJ
+                </div>
+                <div>
+                  <p className="font-heading text-lg">{profile.name}</p>
+                  <p className="mt-0.5 text-xs uppercase tracking-widest text-muted-foreground">
+                    {profile.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-5">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                Projects Built
+              </p>
+              <p className="mt-1 font-heading text-3xl text-primary">{projectsBuilt}</p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-5">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                FYP-1 Grade
+              </p>
+              <p className="mt-1 font-heading text-3xl" style={{ color: "var(--chart-2)" }}>
+                A+
+              </p>
+            </div>
+
+            <div className="col-span-2 rounded-2xl border border-border bg-card p-4">
+              <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+                Current Stack
+              </p>
+              <TerminalWidget />
+            </div>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.4}>
-          <ul className="mt-12 flex flex-wrap gap-3">
-            {badgeSkills.map((skill) => (
-              <li
-                key={skill.name}
-                className="flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground"
-              >
-                <SimpleIconGlyph
-                  icon={SIMPLE_ICONS[skill.simpleIconSlug]}
-                  className="size-3.5"
-                />
-                {skill.name}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal delay={0.5} className="mt-16">
-          <StatCounter stats={stats} />
         </Reveal>
       </div>
 

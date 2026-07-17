@@ -5,6 +5,7 @@ import { Phone, MessageCircle, Copy, Check } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -31,8 +32,12 @@ export function Contact() {
 
       <div className="mx-auto max-w-2xl">
         <Reveal>
-          <h2 className="font-heading text-3xl italic">Contact</h2>
-          <p className="mt-2 text-muted-foreground">
+          <SectionHeading
+            eyebrow="Contact"
+            title="Let's build something"
+            accent="great"
+          />
+          <p className="mt-3 text-muted-foreground">
             Open to full-stack / software engineering roles. Reach out
             directly or send a message below.
           </p>

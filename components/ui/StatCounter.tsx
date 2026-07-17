@@ -26,7 +26,7 @@ function useCountUp(target: number, active: boolean, reduceMotion: boolean) {
   return value;
 }
 
-function Stat({ stat }: { stat: StatItem }) {
+function Stat({ stat, large }: { stat: StatItem; large?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const reduceMotion = useReducedMotion();
@@ -34,22 +34,30 @@ function Stat({ stat }: { stat: StatItem }) {
 
   return (
     <div ref={ref} className="text-center">
-      <p className="font-heading text-4xl text-primary">
+      <p
+        className={`font-heading text-primary ${large ? "text-5xl sm:text-6xl" : "text-4xl"}`}
+      >
         {value}
         {stat.suffix ?? ""}
       </p>
-      <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+      <p className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
         {stat.label}
       </p>
     </div>
   );
 }
 
-export function StatCounter({ stats }: { stats: StatItem[] }) {
+export function StatCounter({
+  stats,
+  large,
+}: {
+  stats: StatItem[];
+  large?: boolean;
+}) {
   return (
-    <div className="flex flex-wrap gap-8 sm:gap-12">
+    <div className="flex flex-wrap justify-center gap-10 sm:gap-16">
       {stats.map((stat) => (
-        <Stat key={stat.label} stat={stat} />
+        <Stat key={stat.label} stat={stat} large={large} />
       ))}
     </div>
   );

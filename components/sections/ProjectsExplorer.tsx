@@ -6,11 +6,13 @@ import { Search } from "lucide-react";
 import type { Project } from "@/types";
 import { FilterBar, type ProjectFilter } from "@/components/ui/FilterBar";
 import { ProjectCard } from "@/components/cards/ProjectCard";
+import { ProjectsTiered } from "@/components/sections/ProjectsTiered";
 
 export function ProjectsExplorer({ projects }: { projects: Project[] }) {
   const [filter, setFilter] = useState<ProjectFilter>("All");
   const [query, setQuery] = useState("");
   const prefersReducedMotion = useReducedMotion();
+  const isDefaultView = filter === "All" && query.trim().length === 0;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -49,34 +51,45 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
         </label>
       </div>
 
-      <p className="mt-4 font-mono text-xs text-muted-foreground">
-        {filtered.length} of {projects.length} projects
-      </p>
+      {/* Default (no filter/search): the 3-tier hierarchy. Any filter or
+          search query switches to the flat animated grid instead - a fixed
+          hero/medium/compact layout can't represent an arbitrary subset. */}
+      {isDefaultView ? (
+        <div className="mt-8">
+          <ProjectsTiered projects={projects} />
+        </div>
+      ) : (
+        <>
+          <p className="mt-4 font-mono text-xs text-muted-foreground">
+            {filtered.length} of {projects.length} projects
+          </p>
 
-      <motion.div
-        layout={!prefersReducedMotion}
-        className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        <AnimatePresence initial={false} mode="popLayout">
-          {filtered.map((project) => (
-            <motion.div
-              key={project.slug}
-              layout={!prefersReducedMotion}
-              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+          <motion.div
+            layout={!prefersReducedMotion}
+            className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            <AnimatePresence initial={false} mode="popLayout">
+              {filtered.map((project) => (
+                <motion.div
+                  key={project.slug}
+                  layout={!prefersReducedMotion}
+                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
 
-      {filtered.length === 0 && (
-        <p className="mt-12 text-center text-sm text-muted-foreground">
-          No projects match that filter.
-        </p>
+          {filtered.length === 0 && (
+            <p className="mt-12 text-center text-sm text-muted-foreground">
+              No projects match that filter.
+            </p>
+          )}
+        </>
       )}
     </div>
   );
