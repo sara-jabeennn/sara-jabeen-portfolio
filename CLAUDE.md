@@ -267,7 +267,8 @@ coursework/certification tier) + Experience · **working Contact form (Resend)
 — done** · floating EmailWidget · ⌘K command palette (shell only, actions not
 wired) · GitHub contribution graph + latest repos (server-cached, token
 server-only) — not started · dynamic OG images (`next/og`) — not started ·
-sitemap · robots.txt · JSON-LD — not started · custom 404 — not started ·
+sitemap · robots.txt · JSON-LD (`Person` only, no case studies left to give
+a `CreativeWork`) — done 2026-07-19 · custom 404 — done 2026-07-19 ·
 light/dark theme — done · full accessibility pass · Vitest + RTL + Playwright
 + axe-core test suite gating CI.
 
@@ -329,16 +330,17 @@ app/
   api/contact/route.ts
   api/github/route.ts           # server-side cached GitHub fetch, not built yet
   opengraph-image.tsx           # not built yet
-  sitemap.ts / robots.ts / not-found.tsx  # not built yet
+  sitemap.ts / robots.ts / not-found.tsx  # done 2026-07-19
 components/
   layout/     Navbar, Footer, ThemeToggle, ThemeProvider
   sections/   Hero, Stats, About, Skills, CaseStudies, ProjectsExplorer,
               ProjectsTiered, Experience, Showcase, Contact
-  widgets/    EmailWidget, CommandPalette, ParticleField
+  widgets/    EmailWidget, CommandPalette, ParticleField, ScrollProgress
   cards/      ProjectCard, ProjectHeroCard, ProjectMediumCard, ProjectCompactCard,
               ExperienceCard, EducationCard, ShowcaseEntry
   ui/         FilterBar, SkillGroup, AreaOfInterestTag, StatCounter, ContactForm,
-              SectionHeading, RoleRotator, TerminalWidget, MagneticButton, CardGlow
+              SectionHeading, RoleRotator, TerminalWidget, MagneticButton, CardGlow,
+              CardSheen
   icons/      SimpleIconGlyph, LinkedInGlyph, simple-icons-map
   motion/     Reveal, CardReveal (whileInView wrappers, prefers-reduced-motion aware)
   visuals/    MeshDiagram (QuickAid's Bluetooth mesh/Dijkstra routing diagram)
@@ -355,6 +357,7 @@ lib/
   format-date.ts
   bold-phrases.tsx
   github.ts              # server-only GitHub fetch + cache, not built yet
+  site-config.ts          # SITE_URL, single source of truth for the canonical domain
   utils.ts
 .github/workflows/ci.yml
 .env.example
@@ -952,17 +955,28 @@ after any future push to confirm, don't assume it stayed green.
       error states). EmailWidget was already done in Phase 2.
 - [ ] Phase 10 — Command palette (shell exists, no actions wired yet).
 - [x] Phase 11 — **Blog removed entirely 2026-07-17**, one day after being
-      built. An empty blog read as abandoned. MDX tooling stays configured
-      for case studies. Not "deferred" — actively out of scope now, see
-      Content Gap #14 and Scope above.
+      built. An empty blog read as abandoned. Not "deferred" — actively out
+      of scope now, see Content Gap #14 and Scope above. **MDX tooling
+      itself removed 2026-07-19** along with case studies — there was no
+      remaining consumer once the blog was already gone.
 - [ ] Phase 12 — GitHub graph (blocked on Content Gaps item 5).
-- [ ] Phase 13 — SEO: sitemap, robots, JSON-LD, dynamic OG.
-- [x] Phase 14 (partial) — Animations ported 2026-07-16 session 6:
-      particle field, noise overlay, per-card glows, project hover sweep,
-      contact glow, scroll indicator, magnetic CTA hover, hero scroll
-      parallax. Full accessibility + responsive pass across every section
-      still not done as a dedicated audit.
+- [x] Phase 13 (mostly) — `app/sitemap.ts`, `app/robots.ts`, `metadataBase`,
+      and an inline `Person` JSON-LD (omits `telephone`, see "Phone &
+      WhatsApp") landed 2026-07-19. No `CreativeWork` schema — moot now that
+      case studies are dropped. Dynamic OG images still not started.
+- [x] Phase 14 (mostly) — Animations ported 2026-07-16 session 6: particle
+      field, noise overlay, per-card glows, project hover sweep, contact
+      glow, scroll indicator, magnetic CTA hover, hero scroll parallax.
+      2026-07-19 additions: `layoutId` sliding pill on `FilterBar`, `layoutId`
+      underline on `Navbar`'s active section, a page-wide `ScrollProgress`
+      bar, and a visibly-cranked `CardSheen` (see Decisions Log — the
+      previous version was coded but not actually visible, verified by
+      screenshot before and after). Full accessibility + responsive pass
+      across every section still not done as a dedicated audit.
 - [ ] Phase 15 — Test suite (unit, e2e, a11y) wired into CI — smoke-level
       coverage exists from Phase 0, full suite (filter logic, contact happy/
       error path, keyboard traversal, per-route axe) not built.
-- [ ] Phase 16 — 404, polish, README + CI badge, deploy.
+- [x] Phase 16 (partial) — Custom 404 (`app/not-found.tsx`) and basic
+      security headers (`next.config.ts` — X-Content-Type-Options,
+      X-Frame-Options, Referrer-Policy, Permissions-Policy) landed
+      2026-07-19. README + CI badge + Lighthouse pass still not done.

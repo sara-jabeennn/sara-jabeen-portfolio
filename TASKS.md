@@ -49,11 +49,14 @@ skill, education, profile, stats, showcase, blog, contact`.
 *(Delivered 2026-07-16 — see below, not yet committed.)*
 
 ### `feature/data-layer`
+**Stale as of 2026-07-19:** roster grew from 9 to 11 slugs since this was
+written, and `featured`/`caseStudyMdxPath` are gone entirely along with MDX
+case studies - see CLAUDE.md. The done-when below is the original spec, kept
+for the historical record; current assertions live in `projects.test.ts`.
 **Done when:** every `data/*.ts` file typechecks against its `/types` interface; a
-Vitest data-integrity test passes asserting 9 unique project slugs, every
+Vitest data-integrity test passes asserting unique project slugs, every
 project's `categories` is a subset of the 5-value `CaseStudyCategory` enum,
-every `featured: true` project has a resolvable `caseStudyMdxPath`, and no
-project's `links.github` is ever the bare profile URL (see CLAUDE.md's
+and no project's `links.github` is ever the bare profile URL (see CLAUDE.md's
 "GitHub links" hard rule — corrected 2026-07-16 after that fallback masked a
 missing repo link).
 **Files:** `data/profile.ts`, `data/education.ts`, `data/experience.ts`,
@@ -161,12 +164,18 @@ category header shows a technology count.
 ### `feature/case-study-filter` — DONE 2026-07-16, RELOCATED same day
 (merged into the homepage at `#case-studies`, no longer a routed
 `/case-studies` listing page - see CLAUDE.md Decisions Log)
-**Done when:** `FilterBar` filters the 9-project grid client-side across
+**Stale as of 2026-07-19:** roster is 11 projects now, not 9 (see
+CLAUDE.md's project count history). Real component names differ from what's
+listed below - the actual card is `ProjectCard` (plus tier variants
+`ProjectHeroCard`/`ProjectMediumCard`/`ProjectCompactCard`), and search is a
+plain `<input>` inside `ProjectsExplorer`, not a separate `SearchBox`
+component. `CaseStudyCard.tsx` and `SearchBox.tsx` were never built under
+those names - this section is kept for the historical decision record, not
+as a current file map. See `CLAUDE.md`'s Folder structure for what's real.
+**Done when:** `FilterBar` filters the project grid client-side across
 `All · Web · Mobile · AI/MLOps · Design/UX · Systems` with an animated
-(Framer Motion layout) transition between filtered states; `SearchBox` filters by
+(Framer Motion layout) transition between filtered states; search filters by
 title/stack; both are keyboard operable.
-**Files:** `components/cards/CaseStudyCard.tsx`, `components/ui/FilterBar.tsx`,
-`components/ui/SearchBox.tsx`, `app/case-studies/page.tsx`.
 **Data depended on:** `data/projects.ts`.
 **Commits:** `feat: add case study grid with category filter`,
 `feat: add case study search`.
@@ -178,22 +187,18 @@ but never built; there is nothing left to do here. `Project.featured` and
 `Project.caseStudyMdxPath` are gone from the type and data, and all MDX
 tooling/dependencies are uninstalled.
 
-### `feature/case-study-cards-standard` — DONE 2026-07-16 (all 9 render
-through the same `ProjectCard`, not just the 6 non-featured ones - no MDX
-route exists for any project yet, featured included, so there's currently no
-distinction to draw between them)
-**Done when:** the remaining 6 projects (Fake News Detection, Shuttle Bot, My
-Beauty Assistant, LMS, Corporate Vendor & Contract Management System, Advanced
-Classroom Management System) render as standard cards, no MDX route generated
-for any of them. Each renders a GitHub button **only if** `links.github` is
-set (7 of 9 projects total have one, see CLAUDE.md "GitHub links") — SmartWait
-and Shuttle Bot render the card with no GitHub button at all. **This is the
-acceptance test for the whole task**: render every project and confirm exactly
-2 of 9 cards have no GitHub button, and that none of them silently link the
-profile URL instead.
-**Files:** `components/cards/CaseStudyCard.tsx` (variant), `data/projects.ts`.
+### `feature/case-study-cards-standard` — DONE 2026-07-16, roster and card
+set both grew since (see CLAUDE.md - 11 projects now, tiered into
+`ProjectHeroCard`/`ProjectMediumCard`/`ProjectCompactCard`, not one shared
+`CaseStudyCard`). Superseded by the "Project hierarchy" section in
+CLAUDE.md, which is current; this entry is the historical record of the
+original (pre-tier) version of the task.
+**Done when:** every project renders as a card with a GitHub button **only
+if** `links.github` is set (see CLAUDE.md "GitHub links") — SmartWait,
+Shuttle Bot, and Stock Prediction System render with no GitHub button at
+all, and none of them silently link the profile URL instead.
 **Data depended on:** `data/projects.ts` (all categories and repo links
-confirmed as of 2026-07-16).
+confirmed live as of 2026-07-18).
 **Commits:** `feat: render standard project cards for non-featured projects`.
 
 ---
@@ -294,22 +299,23 @@ inspecting the network tab / built client chunks).
 
 ## Phase 13 — SEO & metadata
 
-### `feature/seo-baseline`
-**Done when:** `sitemap.ts`, `robots.ts`, and per-route `metadata` exports are
-present; JSON-LD (`Person` on About/home, `CreativeWork` per case study) validates
-in a structured-data testing tool. `Person` schema deliberately omits
-`telephone` — phone stays human-facing only, see CLAUDE.md "Phone & WhatsApp".
-**Files:** `app/sitemap.ts`, `app/robots.ts`, per-route `page.tsx` metadata,
-`lib/utils.ts` (JSON-LD helper).
-**Data depended on:** `data/profile.ts`, `data/projects.ts`.
+### `feature/seo-baseline` — DONE 2026-07-19
+No per-case-study `CreativeWork` schema - case studies are dropped from
+scope entirely (see CLAUDE.md), so `Person` is the only JSON-LD type on the
+site. `Person` schema deliberately omits `telephone` — phone stays
+human-facing only, see CLAUDE.md "Phone & WhatsApp".
+**Files:** `app/sitemap.ts`, `app/robots.ts`, `lib/site-config.ts` (canonical
+site URL), `app/layout.tsx` (`metadataBase` + inline `Person` JSON-LD -
+single-page site, no per-route metadata needed beyond the root).
+**Data depended on:** `data/profile.ts`.
 **Commits:** `feat: add sitemap, robots, and json-ld structured data`.
 
-### `feature/dynamic-og`
-**Done when:** `next/og` generates a distinct OG image per case study and blog
-post, verified via a link-preview debugger.
-**Files:** `app/opengraph-image.tsx`, `app/case-studies/[slug]/opengraph-image.tsx`,
-`app/blog/[slug]/opengraph-image.tsx`.
-**Data depended on:** `data/projects.ts`.
+### `feature/dynamic-og` — not started
+Single-page site now (no case-study or blog routes), so this is just one
+static-at-build `app/opengraph-image.tsx` if it happens - not the
+per-route dynamic generation this was originally scoped for.
+**Files:** `app/opengraph-image.tsx`.
+**Data depended on:** `data/profile.ts`.
 **Commits:** `feat: add dynamic og image generation`.
 
 ---
@@ -367,7 +373,7 @@ wired as a required CI check.
 
 ## Phase 16 — 404, polish, launch
 
-### `feature/not-found`
+### `feature/not-found` — DONE 2026-07-19
 **Done when:** custom 404 renders with navigation back to key sections, matches
 design system.
 **Files:** `app/not-found.tsx`.
