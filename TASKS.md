@@ -279,19 +279,15 @@ keyboard operable, closes on Escape or action select.
 
 ---
 
-## Phase 11 — Blog
+## Phase 11 — Blog — REMOVED FROM SCOPE 2026-07-17
 
-### `feature/blog-index` — DONE 2026-07-16 (index + template only; tags,
-syntax highlighting, reading progress, and RSS not built)
-**Done when:** `/blog` renders an index (empty state is acceptable per
-CLAUDE.md), post template supports tags, syntax-highlighted code blocks, and a
-reading-progress bar; `/blog/rss.xml` route serves a valid RSS feed even with zero
-posts.
-**Files:** `app/blog/page.tsx`, `app/blog/[slug]/page.tsx`, `app/blog/rss.xml/route.ts`,
-`content/blog/*.mdx` (if Content Gap #14 resolved).
-**Data depended on:** Content Gap #14.
-**Commits:** `feat: add blog index and mdx post template`,
-`feat: add rss feed for blog`.
+### `feature/blog-index` — DONE 2026-07-16, then DELETED 2026-07-17
+Built (index + template, no tags/syntax-highlighting/reading-progress/RSS),
+then removed entirely one day later — an empty blog read as abandoned.
+`app/blog/`, `app/blog/[slug]/`, `lib/blog.ts`, `content/blog/`,
+`types/blog.ts`, and the nav link are all gone. MDX tooling stays configured
+for case studies. Rebuild this task from scratch if the blog ever comes back
+— don't assume anything here still applies, the whole directory is gone.
 
 ---
 

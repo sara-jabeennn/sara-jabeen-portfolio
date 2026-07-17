@@ -35,31 +35,48 @@ ALSO stale in the other direction (wrong year) — the current, correct, and onl
 authoritative status is "final semester, expected graduation December 2026,"
 degree started 2021.**
 
-### Bio (About section source text)
-> I build full-stack web and mobile products end-to-end, from database schema to
-> pixel-perfect UI, and I care as much about how something feels to use as how it's
-> engineered underneath.
+### Bio (About section source text — restored 2026-07-17 to the original
+### 3-paragraph structure/voice from `docs/old-portfolio.html`, updated for
+### current facts)
+> I'm a final-semester CS student at FAST NUCES Islamabad with a passion for
+> building systems that span the full stack — from Bluetooth mesh networks
+> enabling disaster communication, to production-grade MLOps pipelines running
+> on AWS EKS with Kubernetes.
 >
-> Over the past 2+ years, I've shipped 8+ projects spanning web, mobile, ML
-> pipelines, and systems programming, including QuickAid, an Android
-> disaster-response app that runs on Bluetooth mesh networking so NGOs and
-> volunteers can coordinate even when cellular networks are down — my final year
-> project at FAST-NUCES.
+> My work sits at the intersection of intelligent systems and great user
+> experiences. I care about both the model accuracy and the interface that
+> presents it. Whether it's a T5 transformer generating ad copy or a UX
+> prototype reducing queue anxiety, I bring end-to-end ownership.
 >
-> I also spent time as a freelance technical writer for US-based clients, so beyond
-> writing code, I can explain it clearly to a team, a PM, or a user. That
-> combination of engineering, communication, and design sense is what I bring to a
-> product team.
+> I've shipped 9 projects across MLOps, full-stack web, mobile applications,
+> and systems programming — always pushing to production-ready standards with
+> Docker, CI/CD, and observability baked in.
+
+Freelance writing is **not** a 4th bio paragraph — it lives in an About
+callout card instead, matching the old site's actual structure (a small
+Institution/Achievement/Location/Freelance callout grid under the bio, not
+prose).
 
 ### Areas of interest (tags, About section)
 Full-Stack Development · Mobile Development · AI Integration · MLOps · UX Design ·
 Systems Programming
 
-### Education
-FAST-NUCES Islamabad · BS Computer Science · 2021 – December 2026 (expected) ·
-**final semester, not yet complete**. Focus: full-stack development,
-AI-integrated applications. No GPA, no percentage, no roll number, no section
-— that's transcript material, not portfolio material.
+### Education — full timeline, 3 entries (restored 2026-07-17 from
+### `docs/old-portfolio.html`, real content she wrote, previously trimmed to
+### one entry)
+1. **FAST — National University of Computer & Emerging Sciences** · BS
+   Computer Science · 2021 – December 2026 (expected) · **final semester, not
+   yet complete**. Focus: Mobile App Dev, Web Dev, Data Visualization, MLOps,
+   UX Engineering, Operating Systems, Computer Networks, Software Project
+   Management.
+2. **Punjab College for Women, Sargodha** · F.Sc. · 2021 · Physics,
+   Chemistry, Mathematics.
+3. **Comprehensive Girls High School, Sargodha** · Matriculation · 2019 ·
+   Physics, Chemistry, Mathematics, Biology.
+
+No GPA, no percentage, no roll number, no section on any of the three —
+that's transcript material, not portfolio material. `data/education.ts` is
+`Education[]`, not a single object.
 
 ### Experience (one real entry — do not pad it)
 **Freelance Technical Content Writer** — remote, international clients, Sep
@@ -128,20 +145,32 @@ body/UI · Geist Mono — code, tags, stack labels.
 DM Sans and DM Mono are dropped (previous CLAUDE.md version, superseded 2026-07-16).
 
 ### Feel
-Editorial, confident typography, generous whitespace, restrained motion. Hero
-motion is capped at **two** effects: an aurora/mesh-gradient background + a
-staggered reveal on load. Nothing more.
+Editorial, confident typography, generous whitespace. Section eyebrows (rule +
+mono-uppercase label) and an italic Playfair accent on the closing phrase of
+every section heading, per section — this is now the standard heading pattern,
+not optional flourish.
+
+Hero motion, revised 2026-07-17 (expanded from the original two-effect cap,
+which was itself reversed — see Hard rules and Decisions Log): aurora/mesh
+gradient with scroll parallax, staggered reveal, a role rotator on the
+tagline, a terminal "current stack" widget, and magnetic hover on the primary
+CTA. Every one of these respects `prefers-reduced-motion`.
 
 ## Hard rules
 - NO custom cursor. Never set `cursor: none`. Non-negotiable. (`docs/old-portfolio.html`
   has a full custom-cursor implementation — do not port it, it's palette/personality
   reference only.)
-- NO emoji accents anywhere (📍, ✅, etc.) — Lucide icons only. This overrides
-  `docs/PROMPT_2_SONNET_IMPLEMENTATION.md`'s "emoji sparingly" guidance.
-- NO role-rotator. NO terminal-style status widget. Both are the most overused
-  tropes in dev portfolios and both are explicitly specified in
-  `docs/PORTFOLIO_IMPLEMENTATION_PLAN.md`'s Hero section — do not build them. Hero
-  motion is the aurora/gradient + staggered reveal described above, nothing else.
+- **Emoji: allowed on achievement-type Showcase cards and About's callout
+  cards only** (🎓🏆📍✍️🏅📜⭐, matching `docs/old-portfolio.html`'s real
+  usage) — reversed 2026-07-17, was an outright ban. Nowhere else on the site.
+  Lucide/Simple Icons everywhere else.
+- **Role rotator: allowed on the Hero tagline, reduced-motion aware** —
+  reversed 2026-07-17, was banned as an overused trope. Cycles through her
+  real self-described role phrases (`components/ui/RoleRotator.tsx`), static
+  text under reduced motion.
+- **Terminal-style "current stack" widget: allowed in the Hero** — reversed
+  2026-07-17, was banned alongside the role rotator for the same reason.
+  Lives in the Hero's bento right column (`components/ui/TerminalWidget.tsx`).
 - Every animation respects `prefers-reduced-motion`.
 - Semantic HTML: nav/main/section/article. No div soup. ARIA labels on all
   icon-only buttons.
@@ -210,63 +239,94 @@ that's the actual reason now.
 ## Scope
 Nothing is deferred for time — there is no deadline. Full scope, all in:
 
-9 projects + category filter (`All · Web · Mobile · AI/MLOps · Design/UX ·
-Systems`), **merged into the homepage** at `#case-studies` (2026-07-16 — reverses
-the earlier "routed `/case-studies` page" decision, see Decisions Log) · 3 MDX
-case studies still to write (QuickAid, E-Commerce Ad Creative Generator,
-SmartWait — `/case-studies/[slug]` route reserved for these, not built yet) · 6
-standard project cards, each linking to GitHub only if a real repo exists
-(SmartWait and Shuttle Bot have none — no button renders for either, ever
-falling back to the profile URL) · About + Education + Areas of Interest ·
-Experience · Skills with real tech logos · Showcase · **working Contact form
-(Resend) — done** · floating EmailWidget · ⌘K command palette (shell only,
-actions not wired) · **Blog — basic index + MDX template done**, tags/syntax
-highlighting/reading-progress/RSS not yet built · GitHub contribution graph +
-latest repos (server-cached, token server-only) — not started · dynamic OG
-images (`next/og`) — not started · sitemap · robots.txt · JSON-LD — not started
-· custom 404 — not started · light/dark theme — done · full accessibility pass
-· Vitest + RTL + Playwright + axe-core test suite gating CI.
+9 projects, **merged into the homepage** at `#case-studies`, three-tier
+hierarchy by default (2026-07-17 — see "Project hierarchy" below and Decisions
+Log): `ProjectHeroCard` (QuickAid, 01) → `ProjectMediumCard` ×2 (Ad Creative
+Generator 02, SmartWait 03) → `ProjectCompactCard` ×6 ("More Projects", the
+rest). Filtering or searching (category filter `All · Web · Mobile · AI/MLOps
+· Design/UX · Systems` + text search) switches to a flat animated grid instead
+— a fixed hierarchy can't represent an arbitrary filtered subset · 3 MDX case
+studies still to write (QuickAid, E-Commerce Ad Creative Generator, SmartWait
+— `/case-studies/[slug]` route reserved for these, not built yet) · each
+project's GitHub button renders only if a real repo exists (SmartWait and
+Shuttle Bot have none — no button, ever falling back to the profile URL) ·
+Hero (two-column, bento identity/stat/terminal cards, role rotator) + Stats
+strip + About (3-paragraph bio, education timeline, callout cards) + Skills
+(size-varied cards) + Showcase (achievement tier louder than
+coursework/certification tier) + Experience · **working Contact form (Resend)
+— done** · floating EmailWidget · ⌘K command palette (shell only, actions not
+wired) · GitHub contribution graph + latest repos (server-cached, token
+server-only) — not started · dynamic OG images (`next/og`) — not started ·
+sitemap · robots.txt · JSON-LD — not started · custom 404 — not started ·
+light/dark theme — done · full accessibility pass · Vitest + RTL + Playwright
++ axe-core test suite gating CI.
 
-Out of scope, explicitly post-submission: custom domain. (Everything else that was
-previously cut for time — blog, MDX, ⌘K, GitHub graph, dynamic OG — is back in, per
-the 2026-07-16 scope reversal. The RAG "Ask about Sara" chatbot from
-`docs/strategy-plan.md` was never re-added and stays out unless explicitly
-requested.)
+**Blog is explicitly out of scope** (removed 2026-07-17 — an empty blog read
+as abandoned; she'll rebuild it when there are real posts). MDX tooling stays
+configured (`next.config.ts`, `mdx-components.tsx`) for the still-pending case
+study detail pages — that's the only reason `@next/mdx` is still a dependency.
+
+Out of scope, explicitly post-submission: custom domain, blog. (Everything
+else that was previously cut for time — MDX case studies, ⌘K actions, GitHub
+graph, dynamic OG — is still coming, per the 2026-07-16 scope reversal. The
+RAG "Ask about Sara" chatbot from `docs/strategy-plan.md` was never re-added
+and stays out unless explicitly requested.)
+
+## Project hierarchy (Projects/Case Studies section)
+Three visual tiers by design, not a uniform grid — ported from
+`docs/old-portfolio.html`'s actual hierarchy, which visibly outranked its
+featured project over everything else:
+1. **Hero tier (`ProjectHeroCard`)** — QuickAid only. Full-width row, index
+   `01`, "Final Year Project" badge, full summary, more padding/breathing
+   room than anything else on the page.
+2. **Medium tier (`ProjectMediumCard`)** — the other 2 featured projects
+   (Ad Creative Generator `02`, SmartWait `03`), 2-column grid.
+3. **Compact tier (`ProjectCompactCard`)** — the remaining 6, under a "More
+   Projects" eyebrow: title, stack line, index, nothing else.
+
+This is the **default** view only. The moment a category filter or search
+query is active, `ProjectsExplorer` switches to the flat animated grid
+(`ProjectCard`, uniform) instead — the tiered layout is fixed and can't
+represent an arbitrary filtered subset.
 
 ## Folder structure
+Revised 2026-07-17: Blog removed entirely. Case Studies is an anchored
+homepage section, not a routed listing (`/case-studies/[slug]` stays reserved
+for future MDX detail pages only).
 ```
 app/
-  Home, About, Experience, Skills, Showcase, and Contact are anchored sections
-  on one scrolling page (app/page.tsx). Case Studies and Blog are standalone
-  routed pages. Locked in Phase 2 (feature/root-shell), matches the
-  implementation plan's nav model exactly.
-  case-studies/[slug]/page.tsx
-  blog/[slug]/page.tsx
+  page.tsx                     # Hero, Stats, About, Skills, CaseStudies, Experience, Showcase, Contact
+  case-studies/[slug]/page.tsx  # reserved, not built - MDX case study detail pages
   api/contact/route.ts
-  api/github/route.ts          # server-side cached GitHub fetch
-  opengraph-image.tsx / case-studies/[slug]/opengraph-image.tsx
-  sitemap.ts
-  robots.ts
-  not-found.tsx
+  api/github/route.ts           # server-side cached GitHub fetch, not built yet
+  opengraph-image.tsx / case-studies/[slug]/opengraph-image.tsx  # not built yet
+  sitemap.ts / robots.ts / not-found.tsx  # not built yet
 components/
-  layout/     Navbar, Footer, ThemeToggle
-  sections/   Hero, About, Experience, Skills, Showcase, Contact
-  widgets/    EmailWidget, CommandPalette
-  cards/      ProjectCard/CaseStudyCard, ExperienceCard, EducationCard, ShowcaseEntry
-  ui/         FilterBar, SearchBox, SkillGroup, AreaOfInterestTag, StatCounter, ContactForm
+  layout/     Navbar, Footer, ThemeToggle, ThemeProvider
+  sections/   Hero, Stats, About, Skills, CaseStudies, ProjectsExplorer,
+              ProjectsTiered, Experience, Showcase, Contact
+  widgets/    EmailWidget, CommandPalette, ParticleField
+  cards/      ProjectCard, ProjectHeroCard, ProjectMediumCard, ProjectCompactCard,
+              ExperienceCard, EducationCard, ShowcaseEntry
+  ui/         FilterBar, SkillGroup, AreaOfInterestTag, StatCounter, ContactForm,
+              SectionHeading, RoleRotator, TerminalWidget, MagneticButton, CardGlow
+  icons/      SimpleIconGlyph, LinkedInGlyph, simple-icons-map
   motion/     Reveal (whileInView wrapper, prefers-reduced-motion aware)
 content/
-  projects/*.mdx   # the 3 featured case studies only
-  blog/*.mdx
+  projects/*.mdx   # the 3 featured case studies, not written yet - directory doesn't exist until the first one lands
 data/
-  profile.ts, education.ts, experience.ts, projects.ts, skills.ts, stats.ts, showcase.ts
+  profile.ts, education.ts (Education[], 3-entry timeline), experience.ts,
+  projects.ts, skills.ts, stats.ts, showcase.ts
 types/
   project.ts, experience.ts, skill.ts, education.ts, profile.ts, stats.ts,
-  showcase.ts, blog.ts, contact.ts, index.ts
+  showcase.ts, contact.ts, index.ts
 lib/
   schemas/contact.ts   # Zod schema, source of truth — ContactFormValues = z.infer<>
   rate-limit.ts         # in-memory per-IP limiter
-  github.ts              # server-only GitHub fetch + cache
+  resume.ts              # fs.existsSync gate for the Download CV button
+  format-date.ts
+  bold-phrases.tsx
+  github.ts              # server-only GitHub fetch + cache, not built yet
   utils.ts
 .github/workflows/ci.yml
 .env.example
@@ -317,10 +377,11 @@ click-to-copy affordance matching the email's, plus a `wa.me` WhatsApp link.
   in a component.
 
 ## Command palette (⌘K / Ctrl+K)
-shadcn `Command`, scoped actions: jump to any section/route (Home, About,
-Experience, Case Studies, Skills, Showcase, Contact, Blog), jump to a specific
-project by name, toggle theme, copy email. This action list is my own reasonable
-default, not specified verbatim anywhere in `docs/` — amend freely.
+shadcn `Command`, scoped actions: jump to any section (Home, About, Skills,
+Case Studies, Experience, Showcase, Contact), jump to a specific project by
+name, toggle theme, copy email. No Blog target — it's removed. This action
+list is my own reasonable default, not specified verbatim anywhere in
+`docs/` — amend freely.
 
 ## GitHub integration
 Contribution graph + latest repos, fetched server-side with Next's fetch cache
@@ -406,10 +467,10 @@ client-visible request.
     field — if it changes again, ask instead of guessing which direction.
 13. ~~Experience section content~~ **RESOLVED 2026-07-16** — one entry only,
     see "Experience" above. Confirmed no other real roles exist; do not pad it.
-14. At least one real blog post. `/blog` and `/blog/[slug]` are built
-    (2026-07-16 session 6) and ship a real "no posts yet" empty state rather
-    than a 404 — explicitly allowed to launch this way. **Still outstanding**
-    for actual post content.
+14. ~~At least one real blog post~~ **MOOT 2026-07-17 — blog removed from
+    scope entirely.** `/blog` and `/blog/[slug]` (built 2026-07-16 session 6)
+    were deleted the next day; an empty blog read as abandoned. Rebuild when
+    real posts exist — not a gap to track until then.
 16. Two projects from her CV aren't on the site yet: **Stock Prediction
     System** (Jenkins, Docker, CI/CD, Webhooks, Multi-Branch Deployment) and
     **Servisync** (JavaFX, OOP, Database Systems, Design Patterns, RBAC).
@@ -651,6 +712,38 @@ client-visible request.
   Gap #12's full history). `data/profile.ts` never actually rendered location
   anywhere in the UI yet, so no component needed changing, only the data and
   this file.
+- **2026-07-17 — reversed three of my own hard-rule bans, on instruction:
+  emoji (achievement/Showcase/About-callout cards only, not everywhere else),
+  the Hero terminal widget, and the Hero role rotator are all back in.**
+  Reasoning given: they worked on the old site, and the ban was overcorrecting
+  for genuinely overused tropes without weighing that this is her real,
+  previously-shipped design. Custom cursor and `cursor: none` remain banned
+  permanently — that wasn't in question. Updated the Hard rules section
+  directly rather than leaving the old ban text next to a contradicting note.
+- **2026-07-17 — full layout/hierarchy rebuild**, on the assessment that the
+  uniform-grid design was flat next to the old site. Re-read
+  `docs/old-portfolio.html` and ported its actual patterns instead of
+  guessing: section eyebrows + italic-accent headings everywhere, a
+  two-column Hero with a bento right column, a dedicated Stats strip, varied
+  Skills card sizes, the full 3-paragraph About prose + 3-entry education
+  timeline + emoji callout cards, a three-tier Projects hierarchy replacing
+  the uniform grid as the default view, and a loud/quiet split on Showcase
+  achievements vs. coursework. Full detail is in the Progress/TODO entries
+  for Phases 3-8 above rather than duplicated here.
+- **2026-07-17 — deleted the Blog entirely, one day after building it.** An
+  empty blog with zero posts reads as an abandoned section, not a
+  work-in-progress one. Removed `app/blog/`, `app/blog/[slug]/`,
+  `lib/blog.ts`, `content/blog/`, `types/blog.ts`, and the nav link. MDX
+  tooling (`next.config.ts`, `mdx-components.tsx`, the `@next/mdx` dependency)
+  stays configured — it's still needed for the pending case-study detail
+  pages, so removing it too would've been the wrong cut.
+- **2026-07-17 — reordered the homepage.** Hero → Stats → About → Skills →
+  Case Studies → Experience → Showcase → Contact, on the explicit reasoning
+  that Experience is her weakest content and shouldn't lead. Nav reordered to
+  match. Section background tints rebalanced to alternate consistently
+  regardless of the new order (About/CaseStudies/Showcase plain,
+  Skills/Experience/Contact tinted) rather than leaving three tinted sections
+  in a row.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
@@ -709,33 +802,47 @@ after any future push to confirm, don't assume it stayed green.
       mailto, keyboard, reduced-motion), CommandPalette (shell only, Phase 10
       adds actions). `tsc`/`eslint`/`vitest`/`playwright`+axe/`next build` all
       green locally. Nav model locked (see Decisions Log).
-- [x] Phase 3 — Hero (aurora gradient + staggered reveal, tech badges, gated
-      Download CV) + StatCounter (requestAnimationFrame count-up,
-      scroll-triggered). 2026-07-16 session 5.
-- [x] Phase 4 — About + EducationCard (2021–2026, corrected) + AreaOfInterestTag.
-- [x] Phase 5 — Experience (one entry, ExperienceCard).
+- [x] Phase 3 — Hero, rebuilt 2026-07-17 to a two-column layout: left =
+      eyebrow, huge italic name, role rotator + tagline, area-of-interest tag
+      pills, CTAs (magnetic "View Projects", gated Download CV). Right =
+      bento grid (identity card, Projects Built stat, FYP-1 Grade, terminal
+      "current stack" widget). Aurora gradient gained scroll parallax. Stats
+      split out into its own section (`Stats.tsx`) right after Hero, big
+      numerals via `StatCounter`'s new `large` variant.
+- [x] Phase 4 — About, rebuilt 2026-07-17: full 3-paragraph bio restored
+      (voice preserved, "11+ projects" corrected to 9, never says
+      "graduated"), bold key phrases, 2-column layout (bio + 4 emoji callout
+      cards left, 3-entry education timeline right). `data/education.ts` is
+      now `Education[]`, not a single object.
+- [x] Phase 5 — Experience (one entry, ExperienceCard), section-heading
+      pattern applied 2026-07-17 ("Where I've *worked*").
 - [x] Phase 6 — Skills with real Simple Icons logos (AWS has no glyph in this
-      simple-icons version, renders text-only, same treatment as any other
-      non-brand skill).
-- [x] Phase 7 — Case study grid/filter/search, **merged into the homepage**
-      at `#case-studies` 2026-07-16 session 6 (reverses the routed-page
-      decision from session 5 - see Decisions Log). Featured sort first.
-      `ProjectCard` renders a GitHub button only when a repo exists, never a
-      profile fallback. **The 3 MDX case studies themselves are still not
-      built** — still blocked on Content Gaps #2/#2a/#3 (case-study depth,
-      result metrics, screenshots). `/case-studies/[slug]` route reserved but
-      empty.
-- [x] Phase 8 — Showcase (all 7 entries, confirmed 2026-07-16 session 4;
-      types corrected certification→coursework session 4 revisit).
-- [x] `app/page.tsx` composes Hero → About → Experience → Skills →
-      CaseStudies → Showcase → Contact. Full homepage, nothing missing now.
+      simple-icons version, renders text-only). Frontend and DevOps/Tooling
+      span 2 columns (2026-07-17) so the grid isn't seven identical boxes.
+- [x] Phase 7 — Case study grid, **merged into the homepage** at
+      `#case-studies` (session 6), then given a **three-tier hierarchy**
+      2026-07-17 as the default view (`ProjectHeroCard`/`ProjectMediumCard`/
+      `ProjectCompactCard` — see "Project hierarchy" above) — filtering or
+      searching still falls back to the flat animated grid (`ProjectCard`).
+      GitHub button only when a repo exists, never a profile fallback.
+      **The 3 MDX case studies themselves are still not built** — still
+      blocked on Content Gaps #2/#2a/#3. `/case-studies/[slug]` route
+      reserved but empty.
+- [x] Phase 8 — Showcase (all 7 entries, confirmed session 4). Restyled
+      2026-07-17: achievement-type entries render loud (bigger emoji, glow,
+      hover lift), coursework/certification/collaboration render quiet —
+      the hierarchy is visible at a glance now, not flat boxes.
+- [x] `app/page.tsx` composes Hero → Stats → About → Skills → CaseStudies →
+      Experience → Showcase → Contact (reordered 2026-07-17 — Experience no
+      longer leads with her weakest content). Nav reordered to match.
 - [x] Phase 9 — Contact API + form done 2026-07-16 session 6 (RHF+Zod client,
       server-side Zod, Resend, honeypot, rate limit, real loading/success/
       error states). EmailWidget was already done in Phase 2.
 - [ ] Phase 10 — Command palette (shell exists, no actions wired yet).
-- [x] Phase 11 (partial) — Blog index + MDX template done 2026-07-16 session
-      6, real empty state not a 404. Tags/syntax-highlighting/reading-
-      progress/RSS not built. No real posts yet (Content Gap #14).
+- [x] Phase 11 — **Blog removed entirely 2026-07-17**, one day after being
+      built. An empty blog read as abandoned. MDX tooling stays configured
+      for case studies. Not "deferred" — actively out of scope now, see
+      Content Gap #14 and Scope above.
 - [ ] Phase 12 — GitHub graph (blocked on Content Gaps item 5).
 - [ ] Phase 13 — SEO: sitemap, robots, JSON-LD, dynamic OG.
 - [x] Phase 14 (partial) — Animations ported 2026-07-16 session 6:
