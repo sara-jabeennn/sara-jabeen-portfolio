@@ -11,7 +11,7 @@ const BOLD_PHRASES = [
   "FAST NUCES Islamabad",
   "intelligent systems",
   "great user experiences",
-  "9 projects",
+  "11 projects",
 ];
 
 const scholarship = showcase.find((e) => e.id === "fauji-foundation-scholarship");

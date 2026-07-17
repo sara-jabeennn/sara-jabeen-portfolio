@@ -48,9 +48,13 @@ degree started 2021.**
 > presents it. Whether it's a T5 transformer generating ad copy or a UX
 > prototype reducing queue anxiety, I bring end-to-end ownership.
 >
-> I've shipped 9 projects across MLOps, full-stack web, mobile applications,
+> I've shipped 11 projects across MLOps, full-stack web, mobile applications,
 > and systems programming — always pushing to production-ready standards with
 > Docker, CI/CD, and observability baked in.
+
+("11" as of 2026-07-18, after Stock Prediction System and Servisync were
+added — recompute if the roster ever changes, this is not auto-derived in
+`data/profile.ts` the way the Stats numbers are.)
 
 Freelance writing is **not** a 4th bio paragraph — it lives in an About
 callout card instead, matching the old site's actual structure (a small
@@ -195,7 +199,8 @@ CTA. Every one of these respects `prefers-reduced-motion`.
   (Phase 7), not just by omitting the field in data — see the regression this
   caused in the 2026-07-16 Decisions Log.
 
-### Project GitHub links (canonical — confirmed 2026-07-16)
+### Project GitHub links (canonical — confirmed 2026-07-16, all 8 re-verified
+### live by direct fetch 2026-07-18, zero 404s, 2 more added)
 | Project | Repo |
 |---|---|
 | QuickAid | github.com/sara-jabeennn/QuickAid-FYP |
@@ -205,8 +210,10 @@ CTA. Every one of these respects `prefers-reduced-motion`.
 | Advanced Classroom Management System | github.com/sara-jabeennn/classroom-management-system |
 | My Beauty Assistant | github.com/sara-jabeennn/my-beauty-assistant |
 | Corporate Vendor & Contract Management System | github.com/sara-jabeennn/vendor-contract-management-system |
+| Servisync — Service Management System | github.com/sara-jabeennn/SDA-project |
 | SmartWait | **none — no button** |
 | Shuttle Bot | **none — no button** |
+| Stock Prediction System | **none — no button** |
 
 ## Project content & attribution rules
 - No team-size disclosure anywhere — no "Team of 3", no "Team of N", no
@@ -239,17 +246,22 @@ that's the actual reason now.
 ## Scope
 Nothing is deferred for time — there is no deadline. Full scope, all in:
 
-9 projects, **merged into the homepage** at `#case-studies`, three-tier
-hierarchy by default (2026-07-17 — see "Project hierarchy" below and Decisions
-Log): `ProjectHeroCard` (QuickAid, 01) → `ProjectMediumCard` ×2 (Ad Creative
-Generator 02, SmartWait 03) → `ProjectCompactCard` ×6 ("More Projects", the
-rest). Filtering or searching (category filter `All · Web · Mobile · AI/MLOps
-· Design/UX · Systems` + text search) switches to a flat animated grid instead
-— a fixed hierarchy can't represent an arbitrary filtered subset · 3 MDX case
-studies still to write (QuickAid, E-Commerce Ad Creative Generator, SmartWait
-— `/case-studies/[slug]` route reserved for these, not built yet) · each
-project's GitHub button renders only if a real repo exists (SmartWait and
-Shuttle Bot have none — no button, ever falling back to the profile URL) ·
+11 projects, **merged into the homepage** at `#case-studies`, three-tier
+hierarchy by default (2026-07-17, re-tiered again 2026-07-18 — see "Project
+hierarchy" below and Decisions Log): `ProjectHeroCard` (QuickAid, `01`) →
+`ProjectMediumCard` ×5 ("Work I'm proud of" — Ad Creative Generator, Fake News
+Detection, LMS, Corporate Vendor & Contract Management, My Beauty Assistant,
+`02`-`06`) → `ProjectCompactCard` ×5 ("More Projects" — SmartWait, Shuttle
+Bot, Advanced Classroom Management, Stock Prediction System, Servisync,
+`07`-`11`). Filtering or searching (category filter `All · Web · Mobile ·
+AI/MLOps · Design/UX · Systems` + text search) switches to a flat animated
+grid instead — a fixed hierarchy can't represent an arbitrary filtered subset
+· 3 MDX case studies still to write (QuickAid, E-Commerce Ad Creative
+Generator, SmartWait — `/case-studies/[slug]` route reserved for these, not
+built yet — visual tier and case-study status are independent, see "Project
+hierarchy") · each project's GitHub button renders only if a real repo exists
+(SmartWait, Shuttle Bot, and Stock Prediction System have none — no button,
+ever falling back to the profile URL) ·
 Hero (two-column, bento identity/stat/terminal cards, role rotator) + Stats
 strip + About (3-paragraph bio, education timeline, callout cards) + Skills
 (size-varied cards) + Showcase (achievement tier louder than
@@ -275,14 +287,27 @@ and stays out unless explicitly requested.)
 ## Project hierarchy (Projects/Case Studies section)
 Three visual tiers by design, not a uniform grid — ported from
 `docs/old-portfolio.html`'s actual hierarchy, which visibly outranked its
-featured project over everything else:
+featured project over everything else. Driven by `Project.visualTier`
+(`"hero" | "prominent" | "compact"`), **independent of `Project.featured`**
+(which means "has an MDX case study," still exactly 3 — QuickAid, E-Commerce
+Ad Creative Generator, SmartWait). SmartWait is a case study but visually
+compact; Fake News Detection is visually prominent but has no case study —
+these are two genuinely different concepts, don't conflate them again.
+
 1. **Hero tier (`ProjectHeroCard`)** — QuickAid only. Full-width row, index
    `01`, "Final Year Project" badge, full summary, more padding/breathing
-   room than anything else on the page.
-2. **Medium tier (`ProjectMediumCard`)** — the other 2 featured projects
-   (Ad Creative Generator `02`, SmartWait `03`), 2-column grid.
-3. **Compact tier (`ProjectCompactCard`)** — the remaining 6, under a "More
-   Projects" eyebrow: title, stack line, index, nothing else.
+   room than anything else on the page, tilt-on-hover.
+2. **Prominent tier (`ProjectMediumCard`)** — 5 projects ("Work I'm proud
+   of," `02`-`06`): E-Commerce Ad Creative Generator, Fake News Detection,
+   Learning Management System, Corporate Vendor & Contract Management,
+   My Beauty Assistant. All 6 hero+prominent cards show a "View on GitHub"
+   button — all 6 have confirmed real repos.
+3. **Compact tier (`ProjectCompactCard`)** — 5 projects ("More Projects,"
+   `07`-`11`): SmartWait, Shuttle Bot, Advanced Classroom Management System,
+   Stock Prediction System, Servisync. Title + stack line + index only, plus
+   a small GitHub link on the two that have real repos (Advanced Classroom
+   Management, Servisync) — SmartWait, Shuttle Bot, and Stock Prediction
+   System have none.
 
 This is the **default** view only. The moment a category filter or search
 query is active, `ProjectsExplorer` switches to the flat animated grid
@@ -392,9 +417,11 @@ client-visible request.
 ## Testing — gates CI, not optional
 - **Vitest + React Testing Library:** filter logic, Zod schemas (contact + data),
   clipboard-copy behavior, data-integrity tests (every `data/projects.ts` entry
-  matches its type, 9 unique slugs, every category ⊆ the 5-value
-  `CaseStudyCategory` enum — `All` is a UI filter state, not a stored category
-  — every featured project has a resolvable MDX path, no project's `links.github`
+  matches its type, 11 unique slugs, exactly 1 hero + 5 prominent + 5 compact
+  visual tiers, dateStart/dateEnd always both-present-or-both-absent, every
+  category ⊆ the 5-value `CaseStudyCategory` enum — `All` is a UI filter
+  state, not a stored category — every featured project has a resolvable MDX
+  path, no project's `links.github`
   is ever the bare profile URL).
 - **Playwright e2e:** nav, category filter, contact happy path + error path,
   keyboard-only traversal.
@@ -471,11 +498,13 @@ client-visible request.
     scope entirely.** `/blog` and `/blog/[slug]` (built 2026-07-16 session 6)
     were deleted the next day; an empty blog read as abandoned. Rebuild when
     real posts exist — not a gap to track until then.
-16. Two projects from her CV aren't on the site yet: **Stock Prediction
-    System** (Jenkins, Docker, CI/CD, Webhooks, Multi-Branch Deployment) and
-    **Servisync** (JavaFX, OOP, Database Systems, Design Patterns, RBAC).
-    Flagged 2026-07-16 (session 6) — do not add to `data/projects.ts` until
-    Sara gives repo URLs and dates for both.
+16. ~~Two projects from her CV weren't on the site~~ **PARTIALLY RESOLVED
+    2026-07-18** — Stock Prediction System and Servisync are both in
+    `data/projects.ts` now (compact tier, `07`/`11`), repo confirmed for
+    Servisync (`github.com/sara-jabeennn/SDA-project`, fetched live), Stock
+    Prediction System confirmed to have no repo. **Still outstanding: real
+    dates for both** — `dateStart`/`dateEnd` are omitted (not guessed) on
+    both entries. Asked, not yet answered.
 15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4)** — all 7 entries
     confirmed, kept. Types corrected: MLOps Intensive Coursework and UX
     Engineering Coursework are `coursework` (not `certification` — no external
@@ -744,6 +773,45 @@ client-visible request.
   regardless of the new order (About/CaseStudies/Showcase plain,
   Skills/Experience/Contact tinted) rather than leaving three tinted sections
   in a row.
+- **2026-07-18 — roster grown to 11, verified every canonical repo URL by
+  actually fetching it rather than trusting the list.** All 8 previously-known
+  repos plus Servisync's returned 200. Added Stock Prediction System (no
+  repo, confirmed) and Servisync (repo confirmed) to `data/projects.ts` —
+  their dates are genuinely unknown and left unset (`Project.dateStart`/
+  `dateEnd` are now optional; `formatDateRange` returns `undefined` rather
+  than guessing) instead of blocking the whole addition on a missing field.
+- **2026-07-18 — split `featured` (case-study status) from a new
+  `visualTier` field (hero/prominent/compact), after realizing the previous
+  single `featured` boolean was being asked to mean two unrelated things at
+  once.** Re-tiered the Projects display to hero(1)/prominent(5)/compact(5)
+  to match — SmartWait moved to compact tier while keeping its case-study
+  status, Fake News Detection moved to prominent tier without gaining one.
+  `projects.test.ts` updated to assert both independently.
+- **2026-07-18 — replaced the invented 7-category Skills list with her real
+  8 categories from `docs/old-portfolio.html`.** The previous set was
+  plausible-sounding but not what she actually wrote. Checked every skill
+  individually against simple-icons rather than assuming coverage — Java,
+  SQL, SQL Server, Canva, Adobe Photoshop, and Pencil have no glyph in this
+  version, same absent-brand-icon pattern as AWS/LinkedIn from earlier
+  sessions. Switched the section layout from a grid with a manual
+  `col-span-2` hack to CSS columns + `break-inside-avoid`, which actually
+  solves uneven-height orphan rows instead of just relabeling two categories
+  as "wide" and hoping.
+- **2026-07-18 — Stats rebuilt to 11/Years-Study/8/3, two of the four values
+  now derived (`projects.length`, `skills.length`) instead of hardcoded,**
+  so they can't drift out of sync with the roster again the way "Projects
+  Shipped: 9" quietly went stale the moment the roster grew. Dropped every
+  "+" suffix — every number on the strip is now something a visitor could
+  count on the page and get the same answer.
+- **2026-07-18 — card visual pass:** thicker (2px) borders sitewide (the
+  previous 0.08-alpha dark border was reported as nearly invisible at rest,
+  bumped to 0.16), a reusable `CardSheen` hover-sweep component applied to
+  every card type (project, skill, achievement), achievement cards
+  distinctly louder than coursework/certification cards (already split
+  session 6, glow/sheen intensity reinforced it further), and staggered
+  scroll-reveal added to the few grids that were still missing it (About's
+  callouts, the education timeline, Experience entries, the flat filtered
+  project grid).
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
@@ -777,21 +845,23 @@ after any future push to confirm, don't assume it stayed green.
       https://sara-jabeen-portfolio-swart.vercel.app/ — 2026-07-16 session 6.
 - [x] Phase 1 — `/types` (committed)
 - [x] Phase 1 — `/data` layer — profile, education, experience, skills, stats,
-      showcase, and projects all built and committed 2026-07-16.
-      `projects.test.ts` data-integrity suite passing (9 unique slugs, valid
-      categories, exactly 3 featured with resolvable MDX paths, no project's
-      `links.github` is the bare profile URL). Fake News Detection restored
-      2026-07-16 session 2 after being silently dropped — see Decisions Log
-      for the full drift explanation. Real per-project GitHub repo links
-      confirmed for 7 of 9 (see "Project GitHub links"); SmartWait and
-      Shuttle Bot have no repo and render no GitHub button, enforced as a
-      hard rule for the future `ProjectCard`. Shuttle Bot's `summary` is a
-      loud `TODO(content-gap-8a)` string, not real copy — must be replaced
-      before Phase 6/7 render it to a visitor. Résumé PDF, screenshots, and
-      Ad Creative Generator/SmartWait `result` metrics remain genuinely
-      blocked on Sara (Content Gaps #1, #2a, #3). `data/showcase.ts` is
-      pending a full verbatim re-confirmation per Sara's audit request —
-      treat every entry as unconfirmed until she responds, not as settled.
+      showcase, and projects all built 2026-07-16, roster grown to 11 and
+      re-tiered 2026-07-18. `projects.test.ts` data-integrity suite passing
+      (11 unique slugs, valid categories, exactly 3 featured with resolvable
+      MDX paths, exactly 1 hero + 5 prominent + 5 compact visual tiers, no
+      project's `links.github` is the bare profile URL). Fake News Detection
+      restored 2026-07-16 session 2 after being silently dropped — see
+      Decisions Log for the full drift explanation. Real per-project GitHub
+      repo links confirmed for 8 of 11, all fetched live 2026-07-18 with zero
+      404s (see "Project GitHub links"); SmartWait, Shuttle Bot, and Stock
+      Prediction System have no repo and render no GitHub button, enforced as
+      a hard rule in `ProjectCard`/`ProjectHeroCard`/`ProjectMediumCard`/
+      `ProjectCompactCard`. Shuttle Bot's `summary` is a loud
+      `TODO(content-gap-8a)` string, not real copy. Résumé PDF and Download CV
+      are resolved (Content Gap #1); screenshots, Ad Creative Generator/
+      SmartWait `result` metrics, and Stock Prediction System/Servisync dates
+      remain genuinely blocked on Sara (Content Gaps #2a, #3, #16).
+      `data/showcase.ts` is confirmed in full (Content Gap #15 resolved).
 - [x] Phase 2 — design tokens: Playfair Display wired via `next/font`,
       `--font-heading` repointed from Geist. Wine/plum palette (both themes)
       verified against real WCAG contrast calculations 2026-07-16 session 6 —
@@ -816,15 +886,20 @@ after any future push to confirm, don't assume it stayed green.
       now `Education[]`, not a single object.
 - [x] Phase 5 — Experience (one entry, ExperienceCard), section-heading
       pattern applied 2026-07-17 ("Where I've *worked*").
-- [x] Phase 6 — Skills with real Simple Icons logos (AWS has no glyph in this
-      simple-icons version, renders text-only). Frontend and DevOps/Tooling
-      span 2 columns (2026-07-17) so the grid isn't seven identical boxes.
+- [x] Phase 6 — Skills, replaced 2026-07-18 with her real 8 categories from
+      `docs/old-portfolio.html` (was an invented 7-category set). Real
+      Simple Icons logos checked individually — Java, SQL, SQL Server, Canva,
+      Adobe Photoshop, and Pencil confirmed to have no glyph in this version,
+      render text-only. Layout switched from grid to CSS columns +
+      break-inside-avoid (2026-07-18) — a `lg:col-span-2` hack couldn't
+      actually prevent orphan rows with real content, columns can.
 - [x] Phase 7 — Case study grid, **merged into the homepage** at
-      `#case-studies` (session 6), then given a **three-tier hierarchy**
-      2026-07-17 as the default view (`ProjectHeroCard`/`ProjectMediumCard`/
-      `ProjectCompactCard` — see "Project hierarchy" above) — filtering or
-      searching still falls back to the flat animated grid (`ProjectCard`).
-      GitHub button only when a repo exists, never a profile fallback.
+      `#case-studies` (session 6), given a **three-tier hierarchy**
+      2026-07-17, **re-tiered again 2026-07-18** to hero(1)+prominent(5)+
+      compact(5) with `visualTier` split from `featured` (see "Project
+      hierarchy" above) — filtering or searching still falls back to the flat
+      animated grid (`ProjectCard`). GitHub button only when a repo exists,
+      never a profile fallback; all 8 confirmed URLs fetched live, zero 404s.
       **The 3 MDX case studies themselves are still not built** — still
       blocked on Content Gaps #2/#2a/#3. `/case-studies/[slug]` route
       reserved but empty.

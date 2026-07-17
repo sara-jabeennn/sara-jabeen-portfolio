@@ -6,13 +6,13 @@ export const profile: Profile = {
   tagline: "Building AI-integrated web and mobile applications.",
   // Restored to the original 3-paragraph structure/voice from
   // docs/old-portfolio.html (real prose she wrote), updated for current
-  // facts: final-semester (not graduated), 9 projects (not "11+"). Freelance
-  // writing moved to an About callout card, matching the old site's actual
-  // structure, rather than staying a 4th bio paragraph.
+  // facts: final-semester (not graduated), 11 projects (roster count as of
+  // 2026-07-18). Freelance writing moved to an About callout card, matching
+  // the old site's actual structure, rather than staying a 4th bio paragraph.
   bio: [
     "I'm a final-semester CS student at FAST NUCES Islamabad with a passion for building systems that span the full stack — from Bluetooth mesh networks enabling disaster communication, to production-grade MLOps pipelines running on AWS EKS with Kubernetes.",
     "My work sits at the intersection of intelligent systems and great user experiences. I care about both the model accuracy and the interface that presents it. Whether it's a T5 transformer generating ad copy or a UX prototype reducing queue anxiety, I bring end-to-end ownership.",
-    "I've shipped 9 projects across MLOps, full-stack web, mobile applications, and systems programming — always pushing to production-ready standards with Docker, CI/CD, and observability baked in.",
+    "I've shipped 11 projects across MLOps, full-stack web, mobile applications, and systems programming — always pushing to production-ready standards with Docker, CI/CD, and observability baked in.",
   ],
   email: "syedajabean@gmail.com",
   // Carried forward from docs/old-portfolio.html, not restated in the
