@@ -14,7 +14,7 @@ export function ProjectCard({ project }: { project: Project }) {
           .project-card::before (~line 176), plus a sheen pass on top. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:hidden"
         style={{
           background:
             "linear-gradient(135deg, color-mix(in oklab, var(--color-wine) 10%, transparent), transparent)",

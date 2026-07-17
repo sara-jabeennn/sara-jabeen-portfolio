@@ -9,7 +9,7 @@ export function CardSheen() {
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] motion-reduce:hidden"
     >
-      <div className="absolute inset-y-0 left-0 w-1/3 -skew-x-12 -translate-x-[250%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-[450%]" />
+      <div className="absolute inset-y-0 left-0 w-1/4 -skew-x-12 -translate-x-[300%] bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-[600ms] ease-out group-hover:translate-x-[500%]" />
     </div>
   );
 }

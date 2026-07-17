@@ -60,20 +60,24 @@ export function ShowcaseEntry({
   }
 
   // Coursework / certification / collaboration - deliberately quieter than
-  // achievement cards: no glow, no emoji, no sheen, smaller icon. Still gets
-  // a slightly thicker border than before so it isn't invisible at rest.
+  // achievement cards: no glow, no emoji, smaller icon. Still gets the sheen
+  // and an accent border-brighten on hover per the "every card" rule, just
+  // without the loud glow/emoji treatment that would blur the hierarchy.
   return (
-    <article className="flex items-start gap-4 rounded-xl border-2 border-border/50 bg-card/50 p-4 transition-colors hover:border-border">
-      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
-        <Icon className="size-3.5" aria-hidden="true" />
-      </div>
-      <div>
-        <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-          {TYPE_LABEL[entry.type]}
-          {entry.date ? ` · ${formatMonthYear(entry.date)}` : ""}
-        </p>
-        <h3 className="mt-1 text-sm font-medium">{entry.title}</h3>
-        <p className="mt-1 text-xs text-muted-foreground">{entry.description}</p>
+    <article className="group relative overflow-hidden rounded-xl border-2 border-border/50 bg-card/50 p-4 transition-colors hover:border-primary/60">
+      <CardSheen />
+      <div className="relative flex items-start gap-4">
+        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
+          <Icon className="size-3.5" aria-hidden="true" />
+        </div>
+        <div>
+          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            {TYPE_LABEL[entry.type]}
+            {entry.date ? ` · ${formatMonthYear(entry.date)}` : ""}
+          </p>
+          <h3 className="mt-1 text-sm font-medium">{entry.title}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">{entry.description}</p>
+        </div>
       </div>
     </article>
   );
