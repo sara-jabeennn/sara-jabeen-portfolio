@@ -22,7 +22,7 @@ roles (remote or Islamabad-based).
 - LinkedIn: linkedin.com/in/sara-jabeen-1b6876243
 - Email: syedajabean@gmail.com
 - Phone: +92 311 9806354, Contact section only, see "Phone & WhatsApp" below.
-- Location: G10, Islamabad, Pakistan.
+- Location: Islamabad, Pakistan.
 - No portfolio self-link anywhere. `sara-jabeen.vercel.app` is the **old**
   portfolio this site replaces — never link it, not in data, not in socials, not
   in JSON-LD.
@@ -400,10 +400,10 @@ client-visible request.
     & WhatsApp". The specific digits (+92 311 9806354) are carried forward from
     `docs/old-portfolio.html`, not restated in this session — worth a quick
     reconfirm that they're still current.
-12. ~~Location precision~~ **RESOLVED 2026-07-16, then REVISED 2026-07-16
-    (session 6)** — first resolved to "Islamabad, Pakistan," then her CV
-    corrected it back to the neighborhood-level "G10, Islamabad, Pakistan"
-    after all. Current and final: **G10, Islamabad, Pakistan.**
+12. ~~Location precision~~ **RESOLVED 2026-07-16, revised twice, settled
+    2026-07-17.** Went "Islamabad, Pakistan" → "G10, Islamabad, Pakistan" (per
+    her CV) → back to **"Islamabad, Pakistan," final.** Three passes on one
+    field — if it changes again, ask instead of guessing which direction.
 13. ~~Experience section content~~ **RESOLVED 2026-07-16** — one entry only,
     see "Experience" above. Confirmed no other real roles exist; do not pad it.
 14. At least one real blog post. `/blog` and `/blog/[slug]` are built
@@ -646,6 +646,11 @@ client-visible request.
   Scanned full git history (`git log --all -p` and a per-blob scan across
   every commit) for the Resend key pattern `re_[A-Za-z0-9_]+` — zero matches,
   the key was never committed at any point.
+- **2026-07-17 — location settled for real this time: "Islamabad, Pakistan,"
+  not "G10, Islamabad, Pakistan."** Third pass on this one field (see Content
+  Gap #12's full history). `data/profile.ts` never actually rendered location
+  anywhere in the UI yet, so no component needed changing, only the data and
+  this file.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):

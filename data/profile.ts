@@ -15,7 +15,7 @@ export const profile: Profile = {
   // CLAUDE.md "Phone & WhatsApp": never in EmailWidget, footer, or JSON-LD.
   phone: "+923119806354",
   whatsappUrl: "https://wa.me/923119806354",
-  location: "G10, Islamabad, Pakistan",
+  location: "Islamabad, Pakistan",
   // Never "graduated" - she is not. Corrected 2026-07-16 after an earlier
   // session got this wrong. See CLAUDE.md Decisions Log.
   status: "Final semester · Open to opportunities",
