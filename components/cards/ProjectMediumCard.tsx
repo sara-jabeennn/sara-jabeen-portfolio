@@ -1,11 +1,13 @@
+import { ArrowUpRight } from "lucide-react";
 import { siGithub } from "simple-icons";
 import type { Project } from "@/types";
 import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
 import { CardGlow } from "@/components/ui/CardGlow";
+import { CardSheen } from "@/components/ui/CardSheen";
 
-// Middle tier of the Projects hierarchy - the other 2 featured projects
-// (02, 03). Clearly smaller than ProjectHeroCard, clearly bigger than
-// ProjectCompactCard.
+// Middle tier of the Projects hierarchy - the "prominent" projects below the
+// QuickAid hero card. Clearly smaller than ProjectHeroCard, clearly bigger
+// than ProjectCompactCard.
 export function ProjectMediumCard({
   project,
   index,
@@ -16,8 +18,9 @@ export function ProjectMediumCard({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-colors hover:border-primary">
       <CardGlow color={glow} />
+      <CardSheen />
       <div className="relative flex flex-1 flex-col">
         <span className="font-heading text-lg italic text-primary">{index}</span>
         <h3 className="mt-2 font-heading text-xl">{project.title}</h3>
@@ -43,6 +46,7 @@ export function ProjectMediumCard({
           >
             <SimpleIconGlyph icon={siGithub} className="size-4" />
             View on GitHub
+            <ArrowUpRight className="size-3.5" aria-hidden="true" />
           </a>
         )}
       </div>

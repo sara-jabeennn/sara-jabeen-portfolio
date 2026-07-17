@@ -5,14 +5,15 @@ import { ProjectMediumCard } from "@/components/cards/ProjectMediumCard";
 import { ProjectCompactCard } from "@/components/cards/ProjectCompactCard";
 
 // Three visual tiers, matching docs/old-portfolio.html's hierarchy rather
-// than a uniform grid: QuickAid dominates, the other 2 featured projects are
-// medium, the rest are compact. This is the default view - filtering or
-// searching (see ProjectsExplorer) switches to the flat animated grid
-// instead, since a fixed hierarchy can't represent an arbitrary filtered set.
+// than a uniform grid. Driven by `visualTier`, independent of `featured`
+// (the case-study designation) - see CLAUDE.md's "Project hierarchy". This
+// is the default view - filtering or searching (see ProjectsExplorer)
+// switches to the flat animated grid instead, since a fixed hierarchy can't
+// represent an arbitrary filtered set.
 export function ProjectsTiered({ projects }: { projects: Project[] }) {
-  const [hero, ...rest] = projects.filter((p) => p.featured);
-  const medium = rest;
-  const compact = projects.filter((p) => !p.featured);
+  const hero = projects.find((p) => p.visualTier === "hero");
+  const prominent = projects.filter((p) => p.visualTier === "prominent");
+  const compact = projects.filter((p) => p.visualTier === "compact");
 
   return (
     <div className="space-y-4">
@@ -22,8 +23,8 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
         </Reveal>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {medium.map((project, i) => (
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {prominent.map((project, i) => (
           <Reveal key={project.slug} delay={i * 0.05}>
             <ProjectMediumCard
               project={project}
@@ -46,7 +47,7 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
           <Reveal key={project.slug} delay={i * 0.03}>
             <ProjectCompactCard
               project={project}
-              index={String(i + 2 + medium.length).padStart(2, "0")}
+              index={String(i + 2 + prominent.length).padStart(2, "0")}
             />
           </Reveal>
         ))}

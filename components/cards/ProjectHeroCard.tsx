@@ -1,25 +1,65 @@
+"use client";
+
+import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { siGithub } from "simple-icons";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import type { Project } from "@/types";
 import { SimpleIconGlyph } from "@/components/icons/SimpleIconGlyph";
 import { CardGlow } from "@/components/ui/CardGlow";
+import { CardSheen } from "@/components/ui/CardSheen";
 import { formatDateRange } from "@/lib/format-date";
 
 // The visually dominant top tier of the Projects hierarchy - QuickAid only.
 // Wide, its own row, more body copy and breathing room than anything else on
-// the page, per CLAUDE.md's project hierarchy rules.
+// the page, plus a subtle tilt-on-hover, per CLAUDE.md's project hierarchy
+// rules.
 export function ProjectHeroCard({ project, index }: { project: Project; index: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  const dateRange = formatDateRange(project.dateStart, project.dateEnd);
+
+  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+    if (prefersReducedMotion || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(x * 4);
+    rotateX.set(y * -4);
+  }
+
+  function handleMouseLeave() {
+    rotateX.set(0);
+    rotateY.set(0);
+  }
+
   return (
-    <article className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 sm:p-12">
+    <motion.article
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={
+        prefersReducedMotion
+          ? undefined
+          : { rotateX, rotateY, transformPerspective: 800 }
+      }
+      className="group relative overflow-hidden rounded-3xl border-2 border-border bg-card p-8 transition-colors hover:border-primary sm:p-12"
+    >
       <CardGlow color="wine" />
+      <CardSheen />
       <div className="relative">
         <div className="flex flex-wrap items-center gap-3">
           <span className="font-heading text-2xl italic text-primary">{index}</span>
           <span className="rounded-full bg-primary/10 px-3 py-1 font-mono text-xs uppercase tracking-widest text-primary">
             Final Year Project
           </span>
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-            {formatDateRange(project.dateStart, project.dateEnd)}
-          </span>
+          {dateRange && (
+            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              {dateRange}
+            </span>
+          )}
         </div>
 
         <h3 className="mt-5 font-heading text-3xl italic leading-tight sm:text-5xl">
@@ -50,9 +90,10 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
           >
             <SimpleIconGlyph icon={siGithub} className="size-4" />
             View on GitHub
+            <ArrowUpRight className="size-3.5" aria-hidden="true" />
           </a>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }

@@ -21,7 +21,12 @@ export function formatMonthYear(value: string): string {
   return `${MONTHS[index] ?? month} ${year}`;
 }
 
-export function formatDateRange(start: string, end: string | "present"): string {
+/** Returns undefined (never an invented date) when start/end are missing. */
+export function formatDateRange(
+  start: string | undefined,
+  end: (string | "present") | undefined
+): string | undefined {
+  if (!start || !end) return undefined;
   if (end === "present") return `${formatMonthYear(start)} – Present`;
   return `${formatMonthYear(start)} – ${formatMonthYear(end)}`;
 }
