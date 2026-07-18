@@ -106,7 +106,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
               {resumeUrl ? (
                 <a
                   href={resumeUrl}
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                  className="pill-hover inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium"
                 >
                   <Download className="size-4" aria-hidden="true" />
                   Download CV
@@ -128,7 +128,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
         {/* Right column - bento identity/stat/terminal cards */}
         <Reveal delay={0.3} className="hidden lg:block">
           <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-2 rounded-2xl border border-border bg-card p-6">
+            <div className="card-depth col-span-2 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40">
               <div className="flex items-center gap-4">
                 <div className="flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-primary/40 font-heading text-xl italic text-primary">
                   SJ
@@ -142,23 +142,21 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="card-depth rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">
                 Projects Built
               </p>
-              <p className="mt-1 font-heading text-3xl text-primary">{projectsBuilt}</p>
+              <p className="gradient-text mt-1 font-heading text-3xl">{projectsBuilt}</p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="card-depth rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">
                 FYP Grade
               </p>
-              <p className="mt-1 font-heading text-3xl" style={{ color: "var(--chart-2)" }}>
-                A+
-              </p>
+              <p className="gradient-text mt-1 font-heading text-3xl">A+</p>
             </div>
 
-            <div className="col-span-2 rounded-2xl border border-border bg-card p-5">
+            <div className="card-depth col-span-2 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/40">
               <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
                 Current Stack
               </p>

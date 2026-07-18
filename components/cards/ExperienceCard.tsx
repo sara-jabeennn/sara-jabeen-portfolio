@@ -3,7 +3,7 @@ import { formatDateRange } from "@/lib/format-date";
 
 export function ExperienceCard({ experience }: { experience: Experience }) {
   return (
-    <article className="rounded-2xl border border-border bg-card p-7">
+    <article className="card-depth rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-0.5 hover:border-primary/40">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="font-heading text-lg">{experience.role}</h3>
         <p className="font-mono text-xs uppercase tracking-widest text-primary">

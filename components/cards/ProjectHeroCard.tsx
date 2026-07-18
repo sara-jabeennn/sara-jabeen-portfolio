@@ -105,7 +105,7 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
               href={project.links.github}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm transition-colors hover:border-primary hover:text-primary"
+              className="pill-hover mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm"
             >
               <SimpleIconGlyph icon={siGithub} className="size-4" />
               View on GitHub

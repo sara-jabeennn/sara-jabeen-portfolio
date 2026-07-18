@@ -117,7 +117,7 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="relative w-full sm:w-auto"
+          className="relative w-full transition-transform hover:scale-[1.03] motion-reduce:hover:scale-100 sm:w-auto"
         >
           {isSubmitting ? (
             <Loader2 className="size-4 animate-spin" aria-hidden="true" />

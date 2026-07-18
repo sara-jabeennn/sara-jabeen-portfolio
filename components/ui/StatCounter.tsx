@@ -35,7 +35,7 @@ function Stat({ stat, large }: { stat: StatItem; large?: boolean }) {
   return (
     <div ref={ref} className="text-center">
       <p
-        className={`font-heading text-primary ${large ? "text-5xl sm:text-6xl" : "text-4xl"}`}
+        className={`gradient-text font-heading ${large ? "text-5xl sm:text-6xl" : "text-4xl"}`}
       >
         {value}
         {stat.suffix ?? ""}

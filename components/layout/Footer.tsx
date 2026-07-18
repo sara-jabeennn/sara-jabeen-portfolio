@@ -35,7 +35,7 @@ export function Footer() {
                 target={social.href.startsWith("http") ? "_blank" : undefined}
                 rel={social.href.startsWith("http") ? "noreferrer" : undefined}
                 aria-label={social.label}
-                className="inline-flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="pill-hover inline-flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground"
               >
                 {renderSocialIcon(social.icon)}
               </a>

@@ -66,7 +66,7 @@ export function ProjectCard({ project }: { project: Project }) {
           href={project.links.github}
           target="_blank"
           rel="noreferrer"
-          className="relative mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
+          className="pill-hover relative mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
         >
           <SimpleIconGlyph icon={siGithub} className="size-4" />
           View on GitHub

@@ -5,7 +5,12 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Skills() {
   return (
-    <section id="skills" className="scroll-mt-20 bg-card/40 px-6 py-32">
+    <section id="skills" className="scroll-mt-20 relative overflow-hidden bg-card/40 px-6 py-32">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-32 -top-32 size-[28rem] rounded-full opacity-15 blur-3xl"
+        style={{ background: "var(--color-plum)" }}
+      />
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading eyebrow="Technical Skills" title="The tools I" accent="master" tone="plum" />

@@ -27,7 +27,7 @@ export function ProjectCompactCard({ project, index }: { project: Project; index
             href={project.links.github}
             target="_blank"
             rel="noreferrer"
-            className="mt-auto inline-flex w-fit items-center gap-1.5 pt-2 text-xs text-primary hover:underline"
+            className="mt-auto inline-flex w-fit items-center gap-1.5 pt-2 text-xs text-primary transition-transform hover:scale-105 hover:underline motion-reduce:hover:scale-100"
           >
             <SimpleIconGlyph icon={siGithub} className="size-3.5" />
             GitHub
