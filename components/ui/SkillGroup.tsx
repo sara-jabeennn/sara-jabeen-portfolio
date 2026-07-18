@@ -12,7 +12,7 @@ export function SkillGroup({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="card-depth group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary">
       <CardGlow color={glow} />
       <CardSheen />
       <div className="relative flex items-baseline justify-between">
@@ -21,7 +21,7 @@ export function SkillGroup({
           {group.skills.length}
         </span>
       </div>
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="relative mt-4 flex flex-1 flex-wrap content-start gap-2">
         {group.skills.map((skill) => {
           const icon = skill.simpleIconSlug
             ? SIMPLE_ICONS[skill.simpleIconSlug]

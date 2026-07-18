@@ -11,12 +11,15 @@ export function Skills() {
           <SectionHeading eyebrow="Technical Skills" title="The tools I" accent="master" tone="plum" />
         </Reveal>
 
-        {/* CSS columns (not a uniform grid) so cards of different heights
-            flow tightly with no orphan rows/dead space - each category's
-            own real skill count naturally varies its height. */}
-        <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3">
+        {/* Equal-height grid, not CSS columns - reviewer flagged the previous
+            masonry-style columns layout for producing visibly uneven card
+            heights across the row. Each Reveal wrapper stretches to the row
+            height (grid's default align-items: stretch) and SkillGroup fills
+            it with h-full, so every card in a row matches regardless of how
+            many skills its category lists. */}
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((group, index) => (
-            <Reveal key={group.category} delay={index * 0.05}>
+            <Reveal key={group.category} delay={index * 0.05} className="h-full">
               <SkillGroup group={group} glow={index % 2 === 0 ? "wine" : "plum"} />
             </Reveal>
           ))}
