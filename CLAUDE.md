@@ -898,22 +898,52 @@ client-visible request.
   Projects & Collaboration entry they sit next to. No test hardcoded the old
   dates, so this was a pure data fix — see Content Gap #15 for the
   corrected value.
+- **2026-07-18 (session 8) — four reviewer fixes, each committed/pushed/
+  CI-verified/live-confirmed separately:** (1) dropped the standalone "Years
+  Study" hero stat (`data/stats.ts`) — read junior next to a completed FYP;
+  the 2021–2026 timeline still lives on the education card. Rebalanced to a
+  clean 3-stat row (Projects · Tech Stacks · Freelance Clients) rather than
+  inventing a replacement number. (2) Renamed "FYP-1" → "FYP" in
+  `data/showcase.ts`, Hero's stat card, and About's callout fallback — the
+  FYP is complete, "Phase 1" undersold it. Left the `QuickAid-FYP` GitHub
+  repo URL and prior sessions' historical Decisions Log/Progress entries
+  unchanged (real repo name / accurate record of the past, not the current
+  fact being corrected). (3) Fixed real uneven-card-height bugs in both the
+  Skills grid and the compact "More Projects" grid: Skills moved from CSS
+  columns (masonry-style, intentionally uneven per the 2026-07-18 entry
+  above) to a real grid with `items-stretch`, and both `SkillGroup` and
+  `ProjectCompactCard` gained `h-full flex flex-col` to actually fill their
+  stretched grid cell — the grid row was already equal-height, but the
+  article's own border box wasn't filling it, which is what made the
+  unevenness visible. `ProjectMediumCard` already had this pattern; the
+  other two didn't. (4) Repositioned full-stack-first per her actual job
+  target: reordered (not renamed, not removed) `profile.areasOfInterest`,
+  `RoleRotator`'s `ROLES`, and `data/skills.ts`'s category order so
+  Full-Stack/Mobile/UX/DevOps-adjacent categories lead and MLOps/AI
+  Integration close out the list as a supporting differentiator. All four
+  verified with Playwright screenshots against both localhost and the live
+  Vercel URL, not just by reading the diff.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
 `https://github.com/sara-jabeennn/sara-jabeen-portfolio`, `main` pushed. CI
-re-verified green 2026-07-18 (session 7), after this session's homepage
-fixes + README, against the actual remote, not assumed —
-run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29634854163
-succeeded. Re-verify against the Actions tab after any future push that
-touches CI-relevant config — don't assume it's still green from this one
-recorded run.
+re-verified green 2026-07-18 (session 8), after each of that session's 4
+reviewer-fix commits, against the actual remote via the Actions API (no `gh`
+CLI in this environment) — all 4 runs succeeded:
+run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29642437039 (stats),
+29642471931 (FYP rename), 29642659952 (card heights), 29642858489
+(positioning). Re-verify against the Actions tab after any future push that
+touches CI-relevant config — don't assume it's still green from these
+recorded runs.
 
 Vercel is connected and deploying as of 2026-07-16 (session 6):
-https://sara-jabeen-portfolio-swart.vercel.app/ — fetched and confirmed
-rendering (Hero, About, Experience, Skills, Case Studies, Showcase, Contact,
-Footer, nav all present). Auto-deploys from `main` on every push. Re-fetch
-after any future push to confirm, don't assume it stayed green.
+https://sara-jabeen-portfolio-swart.vercel.app/ — re-verified 2026-07-18
+(session 8) via Playwright screenshot against the live URL after all 4
+reviewer fixes: 3-stat row (11/8/3, no Years Study), "FYP Grade" (not
+"FYP-1"), equal-height Skills and More Projects cards, and full-stack-led
+tag/role/skill ordering all confirmed rendering correctly. Auto-deploys from
+`main` on every push. Re-fetch after any future push to confirm, don't
+assume it stayed green.
 
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
