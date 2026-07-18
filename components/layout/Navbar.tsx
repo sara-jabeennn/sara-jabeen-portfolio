@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { profile } from "@/data/profile";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/#top" },
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
   { label: "Case Studies", href: "/#case-studies" },
@@ -63,8 +64,8 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-heading text-lg italic text-primary">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <Link href="/#top" className="font-heading text-lg italic text-primary">
           {profile.name}
         </Link>
 
