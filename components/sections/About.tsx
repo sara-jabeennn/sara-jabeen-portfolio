@@ -9,9 +9,9 @@ import { boldPhrases } from "@/lib/bold-phrases";
 
 const BOLD_PHRASES = [
   "FAST NUCES Islamabad",
-  "intelligent systems",
-  "great user experiences",
+  "model accuracy",
   "11 projects",
+  "production-ready standards",
 ];
 
 const scholarship = showcase.find((e) => e.id === "fauji-foundation-scholarship");

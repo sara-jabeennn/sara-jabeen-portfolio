@@ -35,22 +35,20 @@ ALSO stale in the other direction (wrong year) — the current, correct, and onl
 authoritative status is "final semester, expected graduation December 2026,"
 degree started 2021.**
 
-### Bio (About section source text — restored 2026-07-17 to the original
-### 3-paragraph structure/voice from `docs/old-portfolio.html`, updated for
-### current facts)
-> I'm a final-semester CS student at FAST NUCES Islamabad with a passion for
-> building systems that span the full stack — from Bluetooth mesh networks
-> enabling disaster communication, to production-grade MLOps pipelines running
-> on AWS EKS with Kubernetes.
+### Bio (About section source text — tightened to 2 paragraphs 2026-07-18,
+### internship reviewer feedback on text density; was the 3-paragraph
+### structure/voice restored 2026-07-17 from `docs/old-portfolio.html`, same
+### facts, condensed wording)
+> I'm a final-semester CS student at FAST NUCES Islamabad, building systems
+> that span the full stack — from Bluetooth mesh networks for disaster
+> communication to production-grade MLOps pipelines on AWS EKS. I care as
+> much about model accuracy as the interface that presents it, whether
+> that's a T5 transformer generating ad copy or a UX prototype cutting queue
+> anxiety.
 >
-> My work sits at the intersection of intelligent systems and great user
-> experiences. I care about both the model accuracy and the interface that
-> presents it. Whether it's a T5 transformer generating ad copy or a UX
-> prototype reducing queue anxiety, I bring end-to-end ownership.
->
-> I've shipped 11 projects across MLOps, full-stack web, mobile applications,
-> and systems programming — always pushing to production-ready standards with
-> Docker, CI/CD, and observability baked in.
+> I've shipped 11 projects across MLOps, full-stack web, mobile, and systems
+> programming — always built to production-ready standards, with Docker,
+> CI/CD, and observability baked in.
 
 ("11" as of 2026-07-18, after Stock Prediction System and Servisync were
 added — recompute if the roster ever changes, this is not auto-derived in
@@ -270,7 +268,7 @@ grid instead — a fixed hierarchy can't represent an arbitrary filtered subset
 (SmartWait, Shuttle Bot, and Stock Prediction System have none — no button,
 ever falling back to the profile URL) ·
 Hero (two-column, bento identity/stat/terminal cards, role rotator) + Stats
-strip + About (3-paragraph bio, education timeline, callout cards) + Skills
+strip + About (2-paragraph bio, education timeline, callout cards) + Skills
 (size-varied cards) + Showcase (achievement tier louder than
 coursework/certification tier) + Experience · **working Contact form (Resend)
 — done** · floating EmailWidget · ⌘K command palette (shell only, actions not

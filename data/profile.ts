@@ -4,15 +4,16 @@ export const profile: Profile = {
   name: "Sara Jabeen",
   role: "Full-Stack Software Engineer",
   tagline: "Building AI-integrated web and mobile applications.",
-  // Restored to the original 3-paragraph structure/voice from
-  // docs/old-portfolio.html (real prose she wrote), updated for current
-  // facts: final-semester (not graduated), 11 projects (roster count as of
-  // 2026-07-18). Freelance writing moved to an About callout card, matching
-  // the old site's actual structure, rather than staying a 4th bio paragraph.
+  // Tightened to 2 paragraphs 2026-07-18 (internship reviewer feedback - site
+  // felt cluttered, wants concise/impactful over comprehensive). Was a
+  // 3-paragraph structure restored 2026-07-17 from docs/old-portfolio.html;
+  // same facts (final-semester, 11 projects, AWS EKS/Kubernetes, T5 ad copy,
+  // UX prototype, Docker/CI-CD/observability), condensed wording, nothing
+  // fabricated or removed as a fact. Freelance writing lives in an About
+  // callout card, not a bio paragraph.
   bio: [
-    "I'm a final-semester CS student at FAST NUCES Islamabad with a passion for building systems that span the full stack — from Bluetooth mesh networks enabling disaster communication, to production-grade MLOps pipelines running on AWS EKS with Kubernetes.",
-    "My work sits at the intersection of intelligent systems and great user experiences. I care about both the model accuracy and the interface that presents it. Whether it's a T5 transformer generating ad copy or a UX prototype reducing queue anxiety, I bring end-to-end ownership.",
-    "I've shipped 11 projects across MLOps, full-stack web, mobile applications, and systems programming — always pushing to production-ready standards with Docker, CI/CD, and observability baked in.",
+    "I'm a final-semester CS student at FAST NUCES Islamabad, building systems that span the full stack — from Bluetooth mesh networks for disaster communication to production-grade MLOps pipelines on AWS EKS. I care as much about model accuracy as the interface that presents it, whether that's a T5 transformer generating ad copy or a UX prototype cutting queue anxiety.",
+    "I've shipped 11 projects across MLOps, full-stack web, mobile, and systems programming — always built to production-ready standards, with Docker, CI/CD, and observability baked in.",
   ],
   email: "syedajabean@gmail.com",
   // Carried forward from docs/old-portfolio.html, not restated in the
