@@ -955,27 +955,83 @@ client-visible request.
   shorter summaries changed content flow — still equal. Animations,
   wine/plum palette, and the mesh diagram were explicitly out of scope for
   this revision and are untouched.
+- **2026-07-18 (session 9, continued) — reviewer said the clean layout still
+  read cramped; this was a structural pass, not another text/font trim.**
+  Every section container unified to `max-w-7xl` (was a mix of 4xl/5xl/6xl
+  per section — the actual cause of the "random width" complaint), so every
+  section's left edge lines up sitewide; Experience's card and Contact's
+  form are capped internally (`max-w-3xl` / `max-w-xl`) rather than
+  stretching full width. Section padding `py-28`→`py-32`, heading-to-content
+  gaps opened up, grid gaps widened another step. Added a global
+  `h1-h6 { font-weight: 600 }` base rule — headings had been rendering at
+  the same regular weight as body text ever since Playfair (which carried
+  that distinction via its serif, for free) was dropped session 9; no
+  component had ever set an explicit heading weight. Every card unified to
+  `border` (1px, was a mix with `border-2`), `rounded-2xl` (was xl/2xl/3xl),
+  and solid `bg-card` (dropped scattered `/50`/`/60` opacity variants), with
+  padding bumped up across the board.
+- **2026-07-18 (session 10) — same-day follow-up: "clean but flat," plus two
+  real bugs and a UX regression from session 9's structural pass.** Four
+  parts, each its own commit:
+  1. **Two real dev-overlay bugs**, found by reading the dev server log, not
+     guessed at: `ThemeToggle` branched on `next-themes`' `resolvedTheme`
+     (undefined pre-mount) to dodge a hydration mismatch, but resolvedTheme
+     was already populated by the time React did its hydration comparison —
+     server/client rendered different aria-labels and icon opacity. Fixed
+     with `useSyncExternalStore`'s server/client snapshot split (not a
+     manual `useState`+`useEffect` mounted guard — that trips this repo's
+     `react-hooks/set-state-in-effect` lint rule). Separately, `MeshDiagram`'s
+     animated packet `<motion.circle>` only set `cx`/`cy` inside its
+     `animate` keyframes, never as a static initial value, so on first mount
+     the browser briefly saw literally `cx="undefined"` and logged an SVG
+     attribute error — fixed with an explicit `initial` matching the first
+     keyframe.
+  2. **Equal-height re-check**: About's callout grid and Showcase's
+     achievement + Certifications & Coursework grids got the same
+     `items-stretch` + `h-full` treatment already applied to Skills/More
+     Projects — they'd been missed in the session-9 structural pass.
+  3. **Contact re-centered**: session 9's "every section shares one left
+     edge" fix had left Contact's form hugging the left with the right half
+     empty — reverted to a centered column (`max-w-xl mx-auto`, heading/
+     intro/phone-row/form all centered). `SectionHeading` gained an `align`
+     prop (default `"left"`, every other caller unaffected) so only Contact
+     opts in.
+  4. **Visual polish** — depth and craft, explicitly not new elements:
+     `.card-depth` gained a barely-there top-down gradient, a soft inset top
+     highlight, and a diffuse shadow that deepens on hover, extended to
+     `EducationCard`/`ExperienceCard`/Hero's bento cards/About's callouts
+     which hadn't had it; About/Skills/Case Studies/Experience/Showcase each
+     gained a faint alternating wine/plum corner glow (no `z-index`, same
+     DOM-order-only pattern as `SectionHeading`'s own glow, to avoid
+     resurrecting the CardGlow "-z-10 vanishes behind an opaque ancestor"
+     bug); every `SectionHeading` accent word and the big focal numbers
+     (Hero's Projects Built/FYP Grade, `StatCounter`) switched from flat
+     `text-primary` to a wine→plum `.gradient-text` fill; `.pill-hover`
+     gained a small scale + soft glow on hover (reduced-motion drops the
+     transform, keeps the color/glow), applied to GitHub links, Footer
+     social icons, and Contact's phone/copy/WhatsApp buttons. Palette,
+     animations, the mesh diagram, and section order were explicitly out of
+     scope and untouched.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
 `https://github.com/sara-jabeennn/sara-jabeen-portfolio`, `main` pushed. CI
-re-verified green 2026-07-18 (session 8), after each of that session's 4
-reviewer-fix commits, against the actual remote via the Actions API (no `gh`
-CLI in this environment) — all 4 runs succeeded:
-run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29642437039 (stats),
-29642471931 (FYP rename), 29642659952 (card heights), 29642858489
-(positioning). Re-verify against the Actions tab after any future push that
-touches CI-relevant config — don't assume it's still green from these
-recorded runs.
+re-verified green 2026-07-18 (session 10), after each of that session's 4
+commits (dev-overlay bug fixes, layout-overhaul carryover from session 9,
+equal-height + centered Contact, visual polish), against the actual remote
+via the Actions API (no `gh` CLI in this environment) — all 4 runs
+succeeded: 79e0db3, 30f939b, f9ebe49, d2a476f. Re-verify against the Actions
+tab after any future push that touches CI-relevant config — don't assume
+it's still green from these recorded runs.
 
 Vercel is connected and deploying as of 2026-07-16 (session 6):
 https://sara-jabeen-portfolio-swart.vercel.app/ — re-verified 2026-07-18
-(session 8) via Playwright screenshot against the live URL after all 4
-reviewer fixes: 3-stat row (11/8/3, no Years Study), "FYP Grade" (not
-"FYP-1"), equal-height Skills and More Projects cards, and full-stack-led
-tag/role/skill ordering all confirmed rendering correctly. Auto-deploys from
-`main` on every push. Re-fetch after any future push to confirm, don't
-assume it stayed green.
+(session 10) via Playwright screenshot against the live URL: gradient text
+on stat numbers and section-heading accents, equal-height Coursework grid,
+the re-centered Contact section, and card depth/section corner glows all
+confirmed rendering correctly, and the dev-overlay hydration/SVG errors no
+longer reproduce. Auto-deploys from `main` on every push. Re-fetch after
+any future push to confirm, don't assume it stayed green.
 
 ## Progress / TODO
 - [x] Repo scaffold (Next.js 16 + TS + Tailwind v4 via `create-next-app`) —
