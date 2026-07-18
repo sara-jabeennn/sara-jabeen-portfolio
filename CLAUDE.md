@@ -148,15 +148,21 @@ text-safe plum tint above. NOT indigo `#4F46E5`, NOT `#09090B` (from
 same reasons as before.
 
 ### Fonts (via `next/font`)
-Playfair Display — display/headings, the differentiator, non-negotiable · Geist —
-body/UI · Geist Mono — code, tags, stack labels.
-DM Sans and DM Mono are dropped (previous CLAUDE.md version, superseded 2026-07-16).
+Geist — display/headings AND body/UI (one technical sans, not two typefaces) ·
+Geist Mono — code, tags, stack labels.
+Playfair Display is dropped entirely (internship reviewer feedback,
+2026-07-18 — read as editorial/fashion, not engineering; see Decisions Log).
+`--font-heading` in `globals.css` now points at `--font-geist-sans` — one
+token, whole site changes together. The italic-accent-word heading pattern
+stays; it still reads clean as a sans oblique, not gimmicky. DM Sans and DM
+Mono are dropped (previous CLAUDE.md version, superseded 2026-07-16).
 
 ### Feel
-Editorial, confident typography, generous whitespace. Section eyebrows (rule +
-mono-uppercase label) and an italic Playfair accent on the closing phrase of
-every section heading, per section — this is now the standard heading pattern,
-not optional flourish.
+Clean, technical, confident typography, generous whitespace — professional
+over editorial (reviewer feedback, 2026-07-18). Section eyebrows (rule +
+mono-uppercase label) and an italic accent (Geist oblique, not Playfair) on
+the closing phrase of every section heading, per section — this is now the
+standard heading pattern, not optional flourish.
 
 Hero motion, revised 2026-07-17 (expanded from the original two-effect cap,
 which was itself reversed — see Hard rules and Decisions Log): aurora/mesh

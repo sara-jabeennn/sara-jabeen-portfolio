@@ -19,7 +19,7 @@ form, and a design system built from scratch rather than a template.
 | | |
 |---|---|
 | Framework | [Next.js](https://nextjs.org) 16 (App Router) + React 19 + TypeScript (strict) |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com), hand-built components, Playfair Display + Geist via `next/font` |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com), hand-built components, Geist + Geist Mono via `next/font` |
 | Motion | [Framer Motion](https://motion.dev) — the only animation library used, scoped everywhere to respect `prefers-reduced-motion` |
 | Primitives | [shadcn/ui](https://ui.shadcn.com), scoped strictly to Radix-backed components that need real focus-trap/keyboard/ARIA behavior (dialog, command palette, dropdown, tooltip, sheet, form inputs) — every other component, especially anything carrying visual identity (cards, hero, nav), is hand-built, not shadcn |
 | Forms / email | React Hook Form + Zod (validated both client and server-side) → [Resend](https://resend.com) |
