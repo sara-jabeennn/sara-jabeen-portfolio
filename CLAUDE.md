@@ -850,16 +850,52 @@ client-visible request.
   result metrics, screenshots) as dropped rather than outstanding, and
   closed #16's dates sub-gap by making `dateStart`/`dateEnd` explicitly
   optional rather than continuing to track missing dates as a gap to fill.
+- **2026-07-18 (session 7) — homepage fixes: nav had no way back to the top,
+  Hero didn't fill the viewport, and the role rotator listed roles she
+  doesn't claim.** Added a "Home" nav link (`/#top`) and repointed the logo
+  from a bare `href="/"` to the same anchor, so both pick up active-section
+  highlighting for free and the logo actually scrolls-to-top instead of
+  doing a full navigation. Gave the navbar a deterministic `h-16` so Hero
+  could size against it precisely: `Hero` was un-sized (content-height only,
+  `py-24 sm:py-32`), which left a large dead gap between the CTAs and the
+  Stats section and made "Scroll to explore" float mid-page instead of
+  sitting at the viewport's bottom edge — fixed with
+  `min-h-[calc(100vh-4rem)]` + `flex flex-col justify-center`, verified by
+  screenshot at 1440px and 390px before/after, not just by reading the CSS.
+  `RoleRotator`'s list (Full-Stack Developer, MLOps Engineer, UX Designer,
+  Mobile App Developer, Computer Vision Engineer, DevOps Practitioner —
+  carried forward from `docs/old-portfolio.html`) was replaced with the
+  confirmed set: Full-Stack Software Engineer, MLOps Engineer, Mobile
+  Developer, UX Engineer. "UX Designer" undersold her UX engineering work;
+  Computer Vision Engineer and DevOps Practitioner aren't roles she claims.
+  Also found and fixed a real content leak while sweeping for visible
+  placeholder text: Shuttle Bot's `summary` is a flagged
+  `TODO(content-gap-8a)` string (still pending Sara's sign-off, unchanged —
+  see Content Gap #8a), and `ProjectCompactCard` never renders `summary` so
+  it looked safe, but `ProjectsExplorer`'s flat filtered/search grid uses
+  `ProjectCard`, which does render `summary` directly — filtering to
+  AI/MLOps or searching "Shuttle" rendered the raw internal TODO string to
+  a visitor. Fixed by guarding the paragraph in `ProjectCard` (never render
+  a summary starting with `TODO(`) rather than inventing replacement copy,
+  matching the existing gate-don't-fabricate pattern used for Download CV.
+  Wrote a real `README.md` (was still the untouched create-next-app
+  boilerplate) — live link, CI badge, stack + why, setup steps, two
+  production-build screenshots (reduced-motion, so the role rotator
+  renders settled text instead of mid-type), pointing to this file for
+  architecture/decisions instead of duplicating it. No `gh` CLI available
+  in this environment, so commits went straight to `main` per explicit
+  instruction rather than through the usual `feature/*` + PR flow — each
+  push re-verified green against the Actions API before the next commit.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
 `https://github.com/sara-jabeennn/sara-jabeen-portfolio`, `main` pushed. CI
-verified green against the actual remote, not assumed —
-run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29492292374,
-all 16 steps (checkout, install, typecheck, lint, unit tests, build, Playwright
-browser install, e2e+a11y tests) succeeded. Re-verify against the Actions tab
-after any future push that touches CI-relevant config — don't assume it's
-still green from this one recorded run.
+re-verified green 2026-07-18 (session 7), after this session's homepage
+fixes + README, against the actual remote, not assumed —
+run https://github.com/sara-jabeennn/sara-jabeen-portfolio/actions/runs/29634854163
+succeeded. Re-verify against the Actions tab after any future push that
+touches CI-relevant config — don't assume it's still green from this one
+recorded run.
 
 Vercel is connected and deploying as of 2026-07-16 (session 6):
 https://sara-jabeen-portfolio-swart.vercel.app/ — fetched and confirmed
@@ -976,7 +1012,10 @@ after any future push to confirm, don't assume it stayed green.
 - [ ] Phase 15 — Test suite (unit, e2e, a11y) wired into CI — smoke-level
       coverage exists from Phase 0, full suite (filter logic, contact happy/
       error path, keyboard traversal, per-route axe) not built.
-- [x] Phase 16 (partial) — Custom 404 (`app/not-found.tsx`) and basic
+- [x] Phase 16 (mostly) — Custom 404 (`app/not-found.tsx`) and basic
       security headers (`next.config.ts` — X-Content-Type-Options,
       X-Frame-Options, Referrer-Policy, Permissions-Policy) landed
-      2026-07-19. README + CI badge + Lighthouse pass still not done.
+      2026-07-19. README + CI badge done 2026-07-18 (session 7) — real
+      content, live link, stack rationale, setup steps, screenshots,
+      pointing to this file for architecture/decisions. Lighthouse pass
+      still not done.
