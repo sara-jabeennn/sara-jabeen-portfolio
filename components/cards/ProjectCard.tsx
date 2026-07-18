@@ -40,9 +40,15 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
 
-      <p className="relative mt-3 flex-1 text-sm text-muted-foreground">
-        {project.summary}
-      </p>
+      {/* Guard, not fabricate: a project with a flagged-pending summary (see
+          CLAUDE.md Content Gaps) must never leak its internal TODO note to a
+          visitor via the flat filtered/search grid - omit the paragraph
+          entirely rather than render placeholder text. */}
+      {!project.summary.startsWith("TODO(") && (
+        <p className="relative mt-3 flex-1 text-sm text-muted-foreground">
+          {project.summary}
+        </p>
+      )}
 
       <ul className="relative mt-4 flex flex-wrap gap-1.5">
         {project.stack.map((tech) => (
