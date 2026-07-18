@@ -29,7 +29,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
     <section
       ref={sectionRef}
       id="top"
-      className="relative overflow-hidden px-6 py-24 sm:py-32"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-center overflow-hidden px-6 py-20"
     >
       {/* Aurora/mesh gradient - scroll parallax (y, from useScroll) plus a
           slow ~20s independent drift (x/scale, from animate) layered on the
