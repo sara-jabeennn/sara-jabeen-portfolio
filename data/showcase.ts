@@ -37,7 +37,7 @@ export const showcase: ShowcaseEntry[] = [
     description:
       "CI/CD pipelines, Docker, Kubernetes, monitoring, workflow orchestration",
     type: "coursework",
-    date: "2021-01",
+    date: "2026-01",
   },
   {
     id: "ux-engineering-coursework",
@@ -45,7 +45,7 @@ export const showcase: ShowcaseEntry[] = [
     description:
       "Information architecture, wireframing, prototyping, A/B testing",
     type: "coursework",
-    date: "2021-01",
+    date: "2026-01",
   },
   {
     id: "university-technical-collaboration",

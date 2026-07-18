@@ -517,13 +517,15 @@ client-visible request.
     other compact-tier card shows dates either, and inventing a date to
     satisfy a required field would be exactly the fabrication this section
     exists to prevent.
-15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4)** — all 7 entries
-    confirmed, kept. Types corrected: MLOps Intensive Coursework and UX
-    Engineering Coursework are `coursework` (not `certification` — no external
-    body issued them), dated 2021-01. University Technical Projects &
-    Collaboration is also `coursework`, dated 2026. Google Sheets/Coursera
-    stays `certification`, 2021-10 (Coursera did issue that one). See the
-    certification-vs-coursework hard rule.
+15. ~~Showcase section~~ **RESOLVED 2026-07-16 (session 4), date corrected
+    2026-07-18** — all 7 entries confirmed, kept. Types corrected: MLOps
+    Intensive Coursework and UX Engineering Coursework are `coursework` (not
+    `certification` — no external body issued them), dated **2026-01** (was
+    recorded as 2021-01, which predates her degree — see Decisions Log).
+    University Technical Projects & Collaboration is also `coursework`,
+    dated 2026. Google Sheets/Coursera stays `certification`, 2021-10
+    (Coursera did issue that one). See the certification-vs-coursework hard
+    rule.
 
 ## Decisions Log
 - **2026-07-16** — Dropped the 19 July deadline; no external constraint requires
@@ -886,6 +888,13 @@ client-visible request.
   in this environment, so commits went straight to `main` per explicit
   instruction rather than through the usual `feature/*` + PR flow — each
   push re-verified green against the Actions API before the next commit.
+- **2026-07-18 (session 8) — fixed a data error in `data/showcase.ts`:**
+  MLOps Intensive Coursework and UX Engineering Coursework were both dated
+  `2021-01`, on Sara's own confirmation that this predates her degree and is
+  wrong — corrected both to `2026-01`, matching the University Technical
+  Projects & Collaboration entry they sit next to. No test hardcoded the old
+  dates, so this was a pure data fix — see Content Gap #15 for the
+  corrected value.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):
