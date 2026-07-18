@@ -62,8 +62,11 @@ Institution/Achievement/Location/Freelance callout grid under the bio, not
 prose).
 
 ### Areas of interest (tags, About section)
-Full-Stack Development · Mobile Development · AI Integration · MLOps · UX Design ·
-Systems Programming
+Full-Stack Development · Mobile Development · UX Design · Systems Programming ·
+AI Integration · MLOps
+
+(Reordered 2026-07-18, session 8 — same 6 tags, full-stack leads and MLOps/AI
+support, since she's targeting full-stack SWE roles — see Decisions Log.)
 
 ### Education — full timeline, 3 entries (restored 2026-07-17 from
 ### `docs/old-portfolio.html`, real content she wrote, previously trimmed to

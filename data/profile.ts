@@ -41,12 +41,16 @@ export const profile: Profile = {
       icon: "Mail",
     },
   ],
+  // Full-stack-first order (2026-07-18, reviewer feedback): she's targeting
+  // full-stack software engineering roles, so Full-Stack/Mobile/UX lead and
+  // AI/MLOps/Systems follow as differentiators rather than the headline -
+  // same 6 tags, nothing removed, just reordered.
   areasOfInterest: [
     "Full-Stack Development",
     "Mobile Development",
-    "AI Integration",
-    "MLOps",
     "UX Design",
     "Systems Programming",
+    "AI Integration",
+    "MLOps",
   ],
 };

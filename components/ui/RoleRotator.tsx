@@ -6,11 +6,14 @@ import { useReducedMotion } from "framer-motion";
 // Confirmed accurate role set (not "UX Designer" alone - she does UX
 // engineering, not just design). Role rotator was banned as an overused
 // trope, then explicitly un-banned - see CLAUDE.md Decisions Log.
+// Full-stack leads (she's targeting full-stack SWE roles); MLOps Engineer
+// moved last so it reads as a supporting differentiator, not the headline -
+// same 4 roles, reordered 2026-07-18 per reviewer feedback.
 const ROLES = [
   "Full-Stack Software Engineer",
-  "MLOps Engineer",
   "Mobile Developer",
   "UX Engineer",
+  "MLOps Engineer",
 ];
 
 export function RoleRotator() {

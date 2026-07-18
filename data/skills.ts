@@ -5,6 +5,13 @@ import type { SkillCategory } from "@/types";
 // Java, SQL, SQL Server, Canva, Adobe Photoshop, and Pencil have no simple-icons
 // glyph in this version (checked 2026-07-18, genuinely absent, same pattern
 // as AWS/LinkedIn) - they render text-only.
+//
+// Reordered 2026-07-18 (reviewer feedback, positioning pass): she's
+// targeting full-stack software engineering roles, so full-stack-relevant
+// categories (languages, frontend/mobile, backend, databases, DevOps,
+// design) lead and MLOps/AI Integration - the genuine differentiator most
+// full-stack freshers don't have - close out the list as support, not the
+// headline. Same 8 categories, nothing removed.
 export const skills: SkillCategory[] = [
   {
     category: "Languages",
@@ -41,14 +48,12 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: "MLOps & AI",
+    category: "Databases",
     skills: [
-      { name: "MLflow", simpleIconSlug: "mlflow" },
-      { name: "DVC", simpleIconSlug: "dvc" },
-      { name: "Apache Airflow", simpleIconSlug: "apacheairflow" },
-      { name: "Prometheus", simpleIconSlug: "prometheus" },
-      { name: "Grafana", simpleIconSlug: "grafana" },
-      { name: "Scikit-learn", simpleIconSlug: "scikitlearn" },
+      { name: "MongoDB", simpleIconSlug: "mongodb" },
+      { name: "MySQL", simpleIconSlug: "mysql" },
+      { name: "SQL Server" },
+      { name: "PostgreSQL", simpleIconSlug: "postgresql" },
     ],
   },
   {
@@ -63,22 +68,6 @@ export const skills: SkillCategory[] = [
     ],
   },
   {
-    category: "Databases",
-    skills: [
-      { name: "MongoDB", simpleIconSlug: "mongodb" },
-      { name: "MySQL", simpleIconSlug: "mysql" },
-      { name: "SQL Server" },
-      { name: "PostgreSQL", simpleIconSlug: "postgresql" },
-    ],
-  },
-  {
-    category: "AI Integration",
-    skills: [
-      { name: "LLM / API-Based Features" },
-      { name: "MLOps Pipelines (T5, FastAPI, Airflow, Prometheus/Grafana)" },
-    ],
-  },
-  {
     category: "Design",
     skills: [
       { name: "Figma", simpleIconSlug: "figma" },
@@ -90,6 +79,24 @@ export const skills: SkillCategory[] = [
       { name: "Adobe Photoshop" },
       { name: "UX Research" },
       { name: "Wireframing to High-Fidelity Prototyping" },
+    ],
+  },
+  {
+    category: "MLOps & AI",
+    skills: [
+      { name: "MLflow", simpleIconSlug: "mlflow" },
+      { name: "DVC", simpleIconSlug: "dvc" },
+      { name: "Apache Airflow", simpleIconSlug: "apacheairflow" },
+      { name: "Prometheus", simpleIconSlug: "prometheus" },
+      { name: "Grafana", simpleIconSlug: "grafana" },
+      { name: "Scikit-learn", simpleIconSlug: "scikitlearn" },
+    ],
+  },
+  {
+    category: "AI Integration",
+    skills: [
+      { name: "LLM / API-Based Features" },
+      { name: "MLOps Pipelines (T5, FastAPI, Airflow, Prometheus/Grafana)" },
     ],
   },
 ];
