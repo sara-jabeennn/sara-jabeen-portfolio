@@ -97,6 +97,7 @@ export function MeshDiagram() {
         <motion.circle
           r={5}
           fill="var(--primary)"
+          initial={{ cx: NODES.victim.cx, cy: NODES.victim.cy }}
           animate={{
             cx: [
               NODES.victim.cx,
