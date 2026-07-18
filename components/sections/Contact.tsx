@@ -17,7 +17,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-20 relative bg-card/40 px-6 py-24">
+    <section id="contact" className="scroll-mt-20 relative bg-card/40 px-6 py-28">
       {/* Radial glow behind Contact, ported from docs/old-portfolio.html
           .contact-glow (~line 241) - decorative, deep wine, AA-exempt. */}
       <div

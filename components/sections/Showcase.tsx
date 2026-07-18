@@ -8,7 +8,7 @@ export function Showcase() {
   const rest = showcase.filter((entry) => entry.type !== "achievement");
 
   return (
-    <section id="showcase" className="scroll-mt-20 px-6 py-24">
+    <section id="showcase" className="scroll-mt-20 px-6 py-28">
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <SectionHeading

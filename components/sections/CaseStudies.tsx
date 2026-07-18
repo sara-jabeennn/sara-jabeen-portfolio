@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="scroll-mt-20 px-6 py-24">
+    <section id="case-studies" className="scroll-mt-20 px-6 py-28">
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <SectionHeading eyebrow="Case Studies" title="Work I'm" accent="proud of" />

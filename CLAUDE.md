@@ -927,6 +927,34 @@ client-visible request.
   Integration close out the list as a supporting differentiator. All four
   verified with Playwright screenshots against both localhost and the live
   Vercel URL, not just by reading the diff.
+- **2026-07-18 (session 9) — internship reviewer's actual grading revision
+  (verbatim: "choose a more professional font family... not such fashion
+  design site... reduce the amount of text... clean, visually appealing
+  layout"), tagged `v1-playfair-editorial` at `6b04210` before starting so
+  the prior look is always recoverable.** Their direction overrides earlier
+  aesthetic choices in this file, per instruction. Three changes, each its
+  own commit: (1) **Fonts** — Playfair Display removed entirely
+  (`app/layout.tsx`, `app/globals.css`); `--font-heading` now points at
+  `--font-geist-sans`, so headings share Geist with body/UI instead of a
+  separate serif. Kept the italic-accent-word heading pattern — checked it
+  by screenshot in Geist oblique first, it still read clean rather than
+  gimmicky, so nothing was dropped there. (2) **Text density** — bio cut
+  from 3 paragraphs to 2 (same facts: FAST NUCES, 11 projects, AWS EKS,
+  T5/UX examples, Docker/CI-CD/observability, just condensed; updated
+  `BOLD_PHRASES` in `About.tsx` to match the new wording), and every
+  hero+prominent-tier project summary tightened to 1-2 sentences —
+  QuickAid's cut hardest, dropping the Communication-Module module list
+  from prose since the mesh diagram already shows it. Shuttle Bot's
+  still-unapproved `TODO(content-gap-8a)` summary was deliberately left
+  untouched. (3) **Layout** — section vertical padding `py-24` → `py-28`
+  sitewide for more breathing room; Hero name `sm:text-7xl` → `sm:text-6xl`
+  and `ProjectHeroCard` title `sm:text-5xl` → `sm:text-4xl` for a calmer
+  scale; Skills and Projects grid gaps widened slightly (`gap-4`→`gap-5` /
+  `gap-3`→`gap-4`). Equal-height cards (fixed session 8) re-verified at
+  375/768/1440px by screenshot after the font and text changes, since
+  shorter summaries changed content flow — still equal. Animations,
+  wine/plum palette, and the mesh diagram were explicitly out of scope for
+  this revision and are untouched.
 
 ## Deployment status — READ THIS FIRST
 GitHub remote is live as of 2026-07-16 (session 2):

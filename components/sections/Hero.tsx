@@ -68,7 +68,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h1 className="font-heading text-5xl italic leading-[1.05] sm:text-7xl">
+            <h1 className="font-heading text-5xl italic leading-[1.05] sm:text-6xl">
               {profile.name}
             </h1>
           </Reveal>

@@ -74,7 +74,7 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
             )}
           </div>
 
-          <h3 className="mt-5 font-heading text-3xl italic leading-tight sm:text-5xl">
+          <h3 className="mt-5 font-heading text-3xl italic leading-tight sm:text-4xl">
             {project.title}
           </h3>
 
