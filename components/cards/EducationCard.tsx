@@ -11,7 +11,7 @@ function formatRange(edu: Education) {
 
 export function EducationCard({ education }: { education: Education }) {
   return (
-    <article className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
+    <article className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/40">
       <p className="font-mono text-xs uppercase tracking-widest text-primary">
         {formatRange(education)}
       </p>

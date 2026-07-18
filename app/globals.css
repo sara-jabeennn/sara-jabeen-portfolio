@@ -145,6 +145,18 @@
   html {
     @apply font-sans;
   }
+  /* Headings now share Geist with body text (Playfair removed - reviewer
+     feedback), so weight is what carries the hierarchy Playfair's serif
+     used to: without this, h1-h6 rendered at the same regular weight as
+     body copy and the page read flat. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
 }
 
 /* Film-grain noise overlay, ported from docs/old-portfolio.html (body::before,

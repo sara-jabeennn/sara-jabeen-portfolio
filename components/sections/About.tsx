@@ -45,8 +45,8 @@ const CALLOUTS = [
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-20 px-6 py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id="about" className="scroll-mt-20 px-6 py-32">
+      <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
             eyebrow="About Me"
@@ -55,9 +55,9 @@ export function About() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
+        <div className="mt-14 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
           <div>
-            <div className="space-y-4">
+            <div className="max-w-[70ch] space-y-5">
               {profile.bio.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)} className="leading-relaxed text-muted-foreground">
                   {boldPhrases(paragraph, BOLD_PHRASES)}
@@ -65,10 +65,10 @@ export function About() {
               ))}
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {CALLOUTS.map((callout, index) => (
                 <Reveal key={callout.label} delay={index * 0.05}>
-                  <div className="flex items-start gap-3 rounded-2xl border-2 border-border bg-card p-4 transition-colors hover:border-primary">
+                  <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary">
                     <span className="text-xl" aria-hidden="true">
                       {callout.emoji}
                     </span>

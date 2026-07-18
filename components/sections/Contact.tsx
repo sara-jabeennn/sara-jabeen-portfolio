@@ -17,7 +17,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-20 relative bg-card/40 px-6 py-28">
+    <section id="contact" className="scroll-mt-20 relative bg-card/40 px-6 py-32">
       {/* Radial glow behind Contact, ported from docs/old-portfolio.html
           .contact-glow (~line 241) - decorative, deep wine, AA-exempt. */}
       <div
@@ -30,7 +30,7 @@ export function Contact() {
         />
       </div>
 
-      <div className="mx-auto max-w-2xl">
+      <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
@@ -38,51 +38,59 @@ export function Contact() {
             accent="great"
             tone="plum"
           />
-          <p className="mt-3 text-muted-foreground">
-            Open to full-stack / software engineering roles. Reach out
-            directly or send a message below.
-          </p>
         </Reveal>
 
-        {/* Phone + WhatsApp - Contact section only, never repeated elsewhere
-            per CLAUDE.md "Phone & WhatsApp". */}
-        <Reveal delay={0.1}>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={`tel:${profile.phone}`}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-            >
-              <Phone className="size-4" aria-hidden="true" />
-              {profile.phone}
-            </a>
-            <button
-              type="button"
-              onClick={copyPhone}
-              aria-label={copied ? "Phone number copied" : "Copy phone number"}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-            >
-              {copied ? (
-                <Check className="size-4" aria-hidden="true" />
-              ) : (
-                <Copy className="size-4" aria-hidden="true" />
-              )}
-              {copied ? "Copied" : "Copy"}
-            </button>
-            <a
-              href={profile.whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-            >
-              <MessageCircle className="size-4" aria-hidden="true" />
-              WhatsApp
-            </a>
-          </div>
-        </Reveal>
+        {/* Inner content capped at max-w-xl (no mx-auto) so the form/phone
+            block doesn't stretch full width, while staying flush with the
+            same left edge as the heading and every other section. */}
+        <div className="mt-14 max-w-xl">
+          <Reveal>
+            <p className="text-muted-foreground">
+              Open to full-stack / software engineering roles. Reach out
+              directly or send a message below.
+            </p>
+          </Reveal>
 
-        <Reveal delay={0.2} className="mt-10">
-          <ContactForm />
-        </Reveal>
+          {/* Phone + WhatsApp - Contact section only, never repeated
+              elsewhere per CLAUDE.md "Phone & WhatsApp". */}
+          <Reveal delay={0.1}>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={`tel:${profile.phone}`}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
+              >
+                <Phone className="size-4" aria-hidden="true" />
+                {profile.phone}
+              </a>
+              <button
+                type="button"
+                onClick={copyPhone}
+                aria-label={copied ? "Phone number copied" : "Copy phone number"}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
+              >
+                {copied ? (
+                  <Check className="size-4" aria-hidden="true" />
+                ) : (
+                  <Copy className="size-4" aria-hidden="true" />
+                )}
+                {copied ? "Copied" : "Copy"}
+              </button>
+              <a
+                href={profile.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
+              >
+                <MessageCircle className="size-4" aria-hidden="true" />
+                WhatsApp
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2} className="mt-10">
+            <ContactForm />
+          </Reveal>
+        </div>
       </div>
     </section>
   );

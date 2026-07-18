@@ -12,7 +12,7 @@ import { CardSheen } from "@/components/ui/CardSheen";
 // filling it.
 export function ProjectCompactCard({ project, index }: { project: Project; index: string }) {
   return (
-    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-xl border-2 border-border bg-card/60 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/70">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary/70">
       <CardSheen />
       <div className="relative flex flex-1 flex-col">
         <div className="flex items-baseline justify-between gap-2">

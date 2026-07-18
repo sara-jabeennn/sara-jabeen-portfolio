@@ -16,14 +16,14 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
   const compact = projects.filter((p) => p.visualTier === "compact");
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       {hero && (
         <Reveal>
           <ProjectHeroCard project={hero} index="01" />
         </Reveal>
       )}
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {prominent.map((project, i) => (
           <CardReveal key={project.slug} delay={i * 0.06}>
             <ProjectMediumCard
@@ -36,13 +36,13 @@ export function ProjectsTiered({ projects }: { projects: Project[] }) {
       </div>
 
       <Reveal delay={0.15}>
-        <p className="pt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+        <p className="pt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">
           <span className="mr-3 inline-block h-px w-8 bg-primary align-middle" aria-hidden="true" />
           More Projects
         </p>
       </Reveal>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {compact.map((project, i) => (
           <CardReveal key={project.slug} delay={i * 0.04}>
             <ProjectCompactCard

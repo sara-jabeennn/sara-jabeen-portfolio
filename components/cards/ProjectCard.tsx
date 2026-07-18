@@ -8,7 +8,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const dateRange = formatDateRange(project.dateStart, project.dateEnd);
 
   return (
-    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
       {/* Diagonal gradient sweep, ported from docs/old-portfolio.html's
           .project-card::before (~line 176), plus a sheen pass on top. */}
       <div
@@ -45,7 +45,7 @@ export function ProjectCard({ project }: { project: Project }) {
           visitor via the flat filtered/search grid - omit the paragraph
           entirely rather than render placeholder text. */}
       {!project.summary.startsWith("TODO(") && (
-        <p className="relative mt-3 flex-1 text-sm text-muted-foreground">
+        <p className="relative mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
           {project.summary}
         </p>
       )}

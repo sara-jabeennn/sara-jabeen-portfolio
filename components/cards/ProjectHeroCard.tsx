@@ -56,7 +56,7 @@ export function ProjectHeroCard({ project, index }: { project: Project; index: s
           ? undefined
           : { rotateX, rotateY, transformPerspective: 800 }
       }
-      className="card-depth group relative overflow-hidden rounded-3xl border-2 border-border bg-card p-8 transition-colors hover:border-primary sm:p-12"
+      className="card-depth group relative overflow-hidden rounded-2xl border border-border bg-card p-8 transition-colors hover:border-primary sm:p-14"
     >
       <CardGlow color="wine" />
       <CardSheen />

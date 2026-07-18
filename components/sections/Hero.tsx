@@ -58,7 +58,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
         }
       />
 
-      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-center">
         {/* Left column */}
         <div>
           <Reveal>
@@ -127,8 +127,8 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
 
         {/* Right column - bento identity/stat/terminal cards */}
         <Reveal delay={0.3} className="hidden lg:block">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="col-span-2 rounded-2xl border border-border bg-card p-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-2 rounded-2xl border border-border bg-card p-6">
               <div className="flex items-center gap-4">
                 <div className="flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-primary/40 font-heading text-xl italic text-primary">
                   SJ
@@ -142,14 +142,14 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-5">
+            <div className="rounded-2xl border border-border bg-card p-6">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">
                 Projects Built
               </p>
               <p className="mt-1 font-heading text-3xl text-primary">{projectsBuilt}</p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-5">
+            <div className="rounded-2xl border border-border bg-card p-6">
               <p className="text-xs uppercase tracking-widest text-muted-foreground">
                 FYP Grade
               </p>
@@ -158,7 +158,7 @@ export function Hero({ resumeUrl }: { resumeUrl?: string }) {
               </p>
             </div>
 
-            <div className="col-span-2 rounded-2xl border border-border bg-card p-4">
+            <div className="col-span-2 rounded-2xl border border-border bg-card p-5">
               <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
                 Current Stack
               </p>

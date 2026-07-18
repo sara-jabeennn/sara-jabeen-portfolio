@@ -63,7 +63,7 @@ export function ProjectsExplorer({ projects }: { projects: Project[] }) {
 
           <motion.div
             layout={!prefersReducedMotion}
-            className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence initial={false} mode="popLayout">
               {filtered.map((project, index) => (

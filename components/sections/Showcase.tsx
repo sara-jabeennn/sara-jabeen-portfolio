@@ -8,8 +8,8 @@ export function Showcase() {
   const rest = showcase.filter((entry) => entry.type !== "achievement");
 
   return (
-    <section id="showcase" className="scroll-mt-20 px-6 py-28">
-      <div className="mx-auto max-w-4xl">
+    <section id="showcase" className="scroll-mt-20 px-6 py-32">
+      <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
             eyebrow="Achievements & Certifications"
@@ -18,7 +18,7 @@ export function Showcase() {
           />
         </Reveal>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-3">
           {achievements.map((entry, index) => (
             <Reveal key={entry.id} delay={index * 0.05}>
               <ShowcaseEntry entry={entry} glow={index % 2 === 0 ? "wine" : "plum"} />
@@ -27,12 +27,12 @@ export function Showcase() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mb-4 mt-10 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <p className="mb-5 mt-14 font-mono text-xs uppercase tracking-widest text-muted-foreground">
             Certifications & Coursework
           </p>
         </Reveal>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {rest.map((entry, index) => (
             <Reveal key={entry.id} delay={index * 0.04}>
               <ShowcaseEntry entry={entry} />

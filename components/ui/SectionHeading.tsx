@@ -42,7 +42,7 @@ export function SectionHeading({
           background: `radial-gradient(50% 50% at 30% 30%, color-mix(in oklab, var(--color-${tone}) 16%, transparent), transparent 70%)`,
         }}
       />
-      <div className="mb-3 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-primary">
+      <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-primary">
         <motion.span
           className="h-px w-8 origin-left bg-primary"
           aria-hidden="true"
@@ -53,7 +53,7 @@ export function SectionHeading({
         />
         {eyebrow}
       </div>
-      <h2 className="font-heading text-3xl leading-tight sm:text-4xl">
+      <h2 className="font-heading text-4xl leading-tight sm:text-5xl">
         {title}{" "}
         <motion.em
           className="italic text-primary"

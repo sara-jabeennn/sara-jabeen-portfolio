@@ -12,7 +12,7 @@ export function SkillGroup({
   glow?: "wine" | "plum";
 }) {
   return (
-    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary">
       <CardGlow color={glow} />
       <CardSheen />
       <div className="relative flex items-baseline justify-between">
