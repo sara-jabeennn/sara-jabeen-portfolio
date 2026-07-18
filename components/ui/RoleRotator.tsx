@@ -3,16 +3,14 @@
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 
-// Real phrases she wrote herself for docs/old-portfolio.html's typewriter -
-// carried forward as real content, not invented. Role rotator was banned as
-// an overused trope, then explicitly un-banned - see CLAUDE.md Decisions Log.
+// Confirmed accurate role set (not "UX Designer" alone - she does UX
+// engineering, not just design). Role rotator was banned as an overused
+// trope, then explicitly un-banned - see CLAUDE.md Decisions Log.
 const ROLES = [
-  "Full-Stack Developer",
+  "Full-Stack Software Engineer",
   "MLOps Engineer",
-  "UX Designer",
-  "Mobile App Developer",
-  "Computer Vision Engineer",
-  "DevOps Practitioner",
+  "Mobile Developer",
+  "UX Engineer",
 ];
 
 export function RoleRotator() {
