@@ -42,10 +42,10 @@ export function ShowcaseEntry({
 
   if (isAchievement) {
     return (
-      <article className="card-depth group relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 text-center transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
+      <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 text-center transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg hover:shadow-[color-mix(in_oklab,var(--color-wine)_25%,transparent)]">
         <CardGlow color={glow} />
         <CardSheen />
-        <div className="relative">
+        <div className="relative flex flex-1 flex-col justify-center">
           <span className="text-5xl" aria-hidden="true">
             {emoji ?? "🏆"}
           </span>
@@ -64,9 +64,9 @@ export function ShowcaseEntry({
   // and an accent border-brighten on hover per the "every card" rule, just
   // without the loud glow/emoji treatment that would blur the hierarchy.
   return (
-    <article className="card-depth group relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 transition-colors hover:border-primary/60">
+    <article className="card-depth group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/50 bg-card p-7 transition-colors hover:border-primary/60">
       <CardSheen />
-      <div className="relative flex items-start gap-4">
+      <div className="relative flex flex-1 items-start gap-4">
         <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
           <Icon className="size-3.5" aria-hidden="true" />
         </div>

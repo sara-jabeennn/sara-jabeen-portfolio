@@ -30,67 +30,67 @@ export function Contact() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl">
+      {/* Centered column (reverted from the shared-left-edge layout per
+          explicit instruction) - heading, intro, and phone row are
+          text-centered; the form block is centered via mx-auto but its own
+          fields stay left-aligned, standard form UX. */}
+      <div className="mx-auto max-w-xl">
         <Reveal>
           <SectionHeading
             eyebrow="Contact"
             title="Let's build something"
             accent="great"
             tone="plum"
+            align="center"
           />
         </Reveal>
 
-        {/* Inner content capped at max-w-xl (no mx-auto) so the form/phone
-            block doesn't stretch full width, while staying flush with the
-            same left edge as the heading and every other section. */}
-        <div className="mt-14 max-w-xl">
-          <Reveal>
-            <p className="text-muted-foreground">
-              Open to full-stack / software engineering roles. Reach out
-              directly or send a message below.
-            </p>
-          </Reveal>
+        <Reveal>
+          <p className="mt-3 text-center text-muted-foreground">
+            Open to full-stack / software engineering roles. Reach out
+            directly or send a message below.
+          </p>
+        </Reveal>
 
-          {/* Phone + WhatsApp - Contact section only, never repeated
-              elsewhere per CLAUDE.md "Phone & WhatsApp". */}
-          <Reveal delay={0.1}>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href={`tel:${profile.phone}`}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-              >
-                <Phone className="size-4" aria-hidden="true" />
-                {profile.phone}
-              </a>
-              <button
-                type="button"
-                onClick={copyPhone}
-                aria-label={copied ? "Phone number copied" : "Copy phone number"}
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-              >
-                {copied ? (
-                  <Check className="size-4" aria-hidden="true" />
-                ) : (
-                  <Copy className="size-4" aria-hidden="true" />
-                )}
-                {copied ? "Copied" : "Copy"}
-              </button>
-              <a
-                href={profile.whatsappUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition-colors hover:border-primary hover:text-primary"
-              >
-                <MessageCircle className="size-4" aria-hidden="true" />
-                WhatsApp
-              </a>
-            </div>
-          </Reveal>
+        {/* Phone + WhatsApp - Contact section only, never repeated
+            elsewhere per CLAUDE.md "Phone & WhatsApp". */}
+        <Reveal delay={0.1}>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <a
+              href={`tel:${profile.phone}`}
+              className="pill-hover inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
+            >
+              <Phone className="size-4" aria-hidden="true" />
+              {profile.phone}
+            </a>
+            <button
+              type="button"
+              onClick={copyPhone}
+              aria-label={copied ? "Phone number copied" : "Copy phone number"}
+              className="pill-hover inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
+            >
+              {copied ? (
+                <Check className="size-4" aria-hidden="true" />
+              ) : (
+                <Copy className="size-4" aria-hidden="true" />
+              )}
+              {copied ? "Copied" : "Copy"}
+            </button>
+            <a
+              href={profile.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="pill-hover inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm"
+            >
+              <MessageCircle className="size-4" aria-hidden="true" />
+              WhatsApp
+            </a>
+          </div>
+        </Reveal>
 
-          <Reveal delay={0.2} className="mt-10">
-            <ContactForm />
-          </Reveal>
-        </div>
+        <Reveal delay={0.2} className="mt-10">
+          <ContactForm />
+        </Reveal>
       </div>
     </section>
   );

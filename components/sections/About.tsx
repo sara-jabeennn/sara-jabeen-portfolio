@@ -45,7 +45,17 @@ const CALLOUTS = [
 
 export function About() {
   return (
-    <section id="about" className="scroll-mt-20 px-6 py-32">
+    <section id="about" className="scroll-mt-20 relative overflow-hidden px-6 py-32">
+      {/* Faint corner glow, breaks up the flat section background - no
+          z-index (see SectionHeading's own glow comment for why: a -z-10
+          descendant can paint behind an opaque ancestor's own background
+          and vanish entirely). DOM order alone, painted first, stacks
+          correctly beneath the content that follows it. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 -top-32 size-[28rem] rounded-full opacity-15 blur-3xl"
+        style={{ background: "var(--color-wine)" }}
+      />
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
@@ -65,10 +75,10 @@ export function About() {
               ))}
             </div>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="mt-10 grid items-stretch gap-4 sm:grid-cols-2">
               {CALLOUTS.map((callout, index) => (
-                <Reveal key={callout.label} delay={index * 0.05}>
-                  <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary">
+                <Reveal key={callout.label} delay={index * 0.05} className="h-full">
+                  <div className="card-depth flex h-full items-start gap-3 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-primary">
                     <span className="text-xl" aria-hidden="true">
                       {callout.emoji}
                     </span>

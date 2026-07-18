@@ -18,13 +18,16 @@ export function SectionHeading({
   title,
   accent,
   tone = "wine",
+  align = "left",
 }: {
   eyebrow: string;
   title: string;
   accent: ReactNode;
   tone?: "wine" | "plum";
+  align?: "left" | "center";
 }) {
   const prefersReducedMotion = useReducedMotion();
+  const centered = align === "center";
 
   return (
     <div className="relative">
@@ -42,7 +45,11 @@ export function SectionHeading({
           background: `radial-gradient(50% 50% at 30% 30%, color-mix(in oklab, var(--color-${tone}) 16%, transparent), transparent 70%)`,
         }}
       />
-      <div className="mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-primary">
+      <div
+        className={`mb-4 flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-primary ${
+          centered ? "justify-center" : ""
+        }`}
+      >
         <motion.span
           className="h-px w-8 origin-left bg-primary"
           aria-hidden="true"
@@ -53,10 +60,10 @@ export function SectionHeading({
         />
         {eyebrow}
       </div>
-      <h2 className="font-heading text-4xl leading-tight sm:text-5xl">
+      <h2 className={`font-heading text-4xl leading-tight sm:text-5xl ${centered ? "text-center" : ""}`}>
         {title}{" "}
         <motion.em
-          className="italic text-primary"
+          className="gradient-text italic"
           initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
