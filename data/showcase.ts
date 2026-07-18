@@ -19,8 +19,8 @@ export const showcase: ShowcaseEntry[] = [
   },
   {
     id: "fyp-1-grade",
-    title: "A+ Grade, FYP-1",
-    description: "Final Year Project Phase 1, FAST-NUCES",
+    title: "A+ Grade, FYP",
+    description: "Final Year Project, FAST-NUCES",
     type: "achievement",
     date: "2025",
   },

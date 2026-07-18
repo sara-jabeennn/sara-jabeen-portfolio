@@ -27,7 +27,7 @@ const CALLOUTS = [
   {
     emoji: "🏆",
     label: "Achievement",
-    value: `${fyp1?.title ?? "A+ Grade, FYP-1"} · ${scholarship?.title ?? "Scholarship Recipient"}`,
+    value: `${fyp1?.title ?? "A+ Grade, FYP"} · ${scholarship?.title ?? "Scholarship Recipient"}`,
   },
   {
     emoji: "📍",
